@@ -1,0 +1,20 @@
+{
+  "__version__": "1.0.4",
+  "physics": {
+    "gravity": {
+      "y": 0
+    }
+  },
+  "general": {
+    "designResolution": {
+      "width": 1080,
+      "height": 1920
+    }
+  },
+  "layer": [
+    {
+      "name": "Miner",
+      "value": 524288
+    }
+  ]
+}

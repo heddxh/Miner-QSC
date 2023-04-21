@@ -1,0 +1,64 @@
+#/
+# Fireball Projects
+#/
+
+/library/
+/temp/
+/local/
+/build/
+
+/jsb/
+/jsb-binary/
+
+/export/
+
+/runtime/
+
+/web-mobile/
+/web-desktop/
+
+
+#/
+# npm files
+#/
+
+npm-debug.log
+node_modules/
+
+#/
+# Logs and databases
+#/
+
+*.log
+*.sql
+*.sqlite
+#/
+# files for debugger
+#/
+
+*.sln
+*.csproj
+*.pidb
+*.unityproj
+*.suo
+
+#/
+# OS generated files
+#/
+
+.DS_Store
+ehthumbs.db
+Thumbs.db
+
+#/
+# WebStorm files
+#/
+
+.idea/
+
+#//
+# VS Code files
+#//
+
+creator.d.ts
+.vscode/
