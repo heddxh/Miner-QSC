@@ -2,7 +2,7 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
-  "uuid": "a1e74fa4-cd02-44ae-82dc-582099f1039f",
+  "uuid": "31fa4724-0032-4733-953d-50adbcd8420c",
   "files": [
     ".json",
     ".png"
@@ -10,14 +10,14 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "a1e74fa4-cd02-44ae-82dc-582099f1039f@6c48a",
-      "displayName": "darkbg",
+      "uuid": "31fa4724-0032-4733-953d-50adbcd8420c@6c48a",
+      "displayName": "HookoutButton",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "a1e74fa4-cd02-44ae-82dc-582099f1039f",
+        "imageUuidOrDatabaseUri": "31fa4724-0032-4733-953d-50adbcd8420c",
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,8 +34,8 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "a1e74fa4-cd02-44ae-82dc-582099f1039f@f9941",
-      "displayName": "darkbg",
+      "uuid": "31fa4724-0032-4733-953d-50adbcd8420c@f9941",
+      "displayName": "HookoutButton",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
@@ -46,10 +46,10 @@
         "offsetY": 0,
         "trimX": 0,
         "trimY": 0,
-        "width": 3325,
-        "height": 2667,
-        "rawWidth": 3325,
-        "rawHeight": 2667,
+        "width": 115,
+        "height": 38,
+        "rawWidth": 115,
+        "rawHeight": 38,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
@@ -61,17 +61,17 @@
         "meshType": 0,
         "vertices": {
           "rawPosition": [
-            -1662.5,
-            -1333.5,
+            -57.5,
+            -19,
             0,
-            1662.5,
-            -1333.5,
+            57.5,
+            -19,
             0,
-            -1662.5,
-            1333.5,
+            -57.5,
+            19,
             0,
-            1662.5,
-            1333.5,
+            57.5,
+            19,
             0
           ],
           "indexes": [
@@ -84,12 +84,12 @@
           ],
           "uv": [
             0,
-            2667,
-            3325,
-            2667,
+            38,
+            115,
+            38,
             0,
             0,
-            3325,
+            115,
             0
           ],
           "nuv": [
@@ -103,18 +103,18 @@
             1
           ],
           "minPos": [
-            -1662.5,
-            -1333.5,
+            -57.5,
+            -19,
             0
           ],
           "maxPos": [
-            1662.5,
-            1333.5,
+            57.5,
+            19,
             0
           ]
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "a1e74fa4-cd02-44ae-82dc-582099f1039f@6c48a",
+        "imageUuidOrDatabaseUri": "31fa4724-0032-4733-953d-50adbcd8420c@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +129,9 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
-    "redirect": "a1e74fa4-cd02-44ae-82dc-582099f1039f@f9941"
+    "redirect": "31fa4724-0032-4733-953d-50adbcd8420c@f9941",
+    "compressSettings": {
+      "useCompressTexture": false
+    }
   }
 }
