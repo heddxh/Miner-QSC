@@ -1,4 +1,4 @@
-import { CCObject, Component, Game, Label,  _decorator } from 'cc';
+import { CCObject, Color, Component, Game, Label,  Sprite,  _decorator } from 'cc';
 import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
@@ -10,6 +10,17 @@ export class UIController extends Component {
     private TimeText:Label;
     @property(Label)
     private ScoreText:Label;
+    @property(Sprite)
+    private StrengthenIcon:Sprite;
+    
+    @property(Sprite)
+    private LuckyIcon:Sprite;
+
+    @property(Sprite)
+    private RockAppreciateIcon:Sprite;
+    
+    @property(Sprite)
+    private DiamondPolishIcon:Sprite;
     
     private static instance:UIController = null;
 
@@ -17,10 +28,23 @@ export class UIController extends Component {
         if(UIController.instance == null){
             UIController.instance = this;
         }else return;
-        
-        
+
     }
 
+    start() {
+        UIController.instance.LuckyIcon.color = UIController.getColor(
+            GameManager.getLucky());
+        UIController.instance.StrengthenIcon.color = UIController.getColor(
+            GameManager.getStrengthen());
+        UIController.instance.DiamondPolishIcon.color = UIController.getColor(
+            GameManager.getDiamondPolish());
+        UIController.instance.RockAppreciateIcon.color = UIController.getColor(
+            GameManager.getRockAppreciate()); 
+    }
+
+    private static getColor(isActive:boolean){
+        return isActive? Color.WHITE : Color.GRAY;
+    }
 
     public static setTime(time:number){
 
@@ -38,5 +62,6 @@ export class UIController extends Component {
     public static setScore(nowScore:number){
         UIController.instance.ScoreText.string = nowScore.toString();
     }
+
 }
 

@@ -192,7 +192,7 @@ export class MineController extends Component {
                 tempBomb.setPosition(this.node.getPosition());
                 this.scheduleOnce(()=>{
                     tempBomb.destroy();
-                },0.6);
+                },0.5);
 
 
                 GameManager.setTNTNum(tnt-1);
@@ -233,11 +233,9 @@ export class MineController extends Component {
             this.stretchVec.multiplyScalar(oreData.dragForce);
 
             this.ore=oreData.value;
-
-            //钻石涨价技能
-            if(oreData.isDiamond && GameManager.getDiamondPolish()){
-                this.ore*=1.5;
-            }
+            
+            //矿物被抓到的反应
+            oreData.getCaught();
 
             this.oreOffset=new Vec3(0,0,0);
             Vec3.subtract(this.oreOffset,this.oreNode.getPosition(),this.node.getPosition());

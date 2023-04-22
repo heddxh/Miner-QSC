@@ -38,6 +38,7 @@ export class GameManager extends Component{
             this.isStrengthen=false;
             this.isRockAppreciate=false;
             GameManager.instance = this;
+            
         }else{
             //进入下一关，关卡开始时进行技能使用
             GameManager.instance.level+=1;

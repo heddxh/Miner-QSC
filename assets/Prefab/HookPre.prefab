@@ -613,6 +613,13 @@
     "ropeLength": 2400,
     "refreshDelay": 0.4,
     "affectOfStrengthenDose": 2,
+    "hookNode": {
+      "__id__": 9
+    },
+    "bombPrefab": {
+      "__uuid__": "1941638d-6da2-4798-95f6-e2547010cbc1",
+      "__expectedType__": "cc.Prefab"
+    },
     "hookButton": {
       "__id__": 27
     },
@@ -1040,8 +1047,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 1.1,
+      "y": 1.1,
       "z": 1
     },
     "_mobility": 0,

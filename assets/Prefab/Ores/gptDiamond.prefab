@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "gptDiamond",
+    "_name": "GptDiamond",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "gptDiamond",
+    "_name": "GptDiamond",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -203,13 +203,12 @@
     },
     "value": 500,
     "dragForce": 1,
-    "isRamdonBag": false,
-    "isDiamond": true,
-    "isBomb": false,
+    "type": 1,
     "isMultiImgs": false,
     "imgs": [],
     "isRotate": false,
     "isZoom": false,
+    "isMoving": false,
     "_id": ""
   },
   {
@@ -225,6 +224,7 @@
       "__id__": 0
     },
     "fileId": "a986RwGp1OqJ2PeBmTlesG",
+    "instance": null,
     "targetOverrides": null
   }
 ]

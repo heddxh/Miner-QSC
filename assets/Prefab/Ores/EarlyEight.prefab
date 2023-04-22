@@ -208,13 +208,12 @@
     },
     "value": 40,
     "dragForce": 0.15,
-    "isRamdonBag": false,
-    "isDiamond": false,
-    "isBomb": false,
+    "type": 4,
     "isMultiImgs": false,
     "imgs": [],
     "isRotate": false,
     "isZoom": false,
+    "isMoving": false,
     "_id": ""
   },
   {
@@ -230,6 +229,7 @@
       "__id__": 0
     },
     "fileId": "098wQ3xVFOgqRnkUTeSu3l",
+    "instance": null,
     "targetOverrides": null
   }
 ]

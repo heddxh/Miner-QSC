@@ -643,8 +643,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 599.664,
-      "y": 1750.151,
+      "x": 609.382,
+      "y": 1764.729,
       "z": 0
     },
     "_lrot": {
@@ -1411,6 +1411,18 @@
     "ScoreText": {
       "__id__": 6
     },
+    "StrengthenIcon": {
+      "__id__": 46
+    },
+    "LuckyIcon": {
+      "__id__": 38
+    },
+    "RockAppreciateIcon": {
+      "__id__": 54
+    },
+    "DiamondPolishIcon": {
+      "__id__": 30
+    },
     "_id": ""
   },
   {
@@ -1426,6 +1438,6 @@
       "__id__": 0
     },
     "fileId": "e92lHqWfZNnbol6eKA7MMz",
-    "targetOverrides": null
+    "targetOverrides": []
   }
 ]
