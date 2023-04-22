@@ -4,5 +4,8 @@
     "current": {
       "platform": "browser"
     }
+  },
+  "general": {
+    "start_scene": "0d972fe8-dc46-4193-bf9b-f52a43030c77"
   }
 }

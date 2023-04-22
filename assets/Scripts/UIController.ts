@@ -10,35 +10,27 @@ export class UIController extends Component {
     private TimeText:Label;
     @property(Label)
     private ScoreText:Label;
-
-    private leftTime:number;
     
     private static instance:UIController = null;
 
-    start() {
+    onLoad() {
         if(UIController.instance == null){
             UIController.instance = this;
         }else return;
         
-        this.leftTime=GameManager.getTotalTime();
         
-        
-        this.setTime();
-        this.schedule(this.setTime,1);
     }
 
 
-    setTime(){
-        this.leftTime--;
-        if(this.leftTime<=0){
-            //调用GameManager游戏结束函数
-            GameManager.gameOver();
-            this.unschedule(this.setTime);
+    public static setTime(time:number){
+
+        if(time<=0){
+            return;
         }
 
-        let min=this.leftTime/60;
-        let sec=this.leftTime%60;
-        this.TimeText.string = (min<10?"0":"")+Math.floor(min).toString()
+        let min=time/60;
+        let sec=time%60;
+        UIController.instance.TimeText.string = (min<10?"0":"")+Math.floor(min).toString()
         +":"+(sec<10?"0":"")+(sec).toString();
     }
 

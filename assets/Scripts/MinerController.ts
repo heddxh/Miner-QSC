@@ -1,9 +1,11 @@
-import { _decorator, Component, Node , Sprite, Vec3, view, Collider2D, Contact2DType, SpriteFrame} from 'cc';
+import { _decorator, Component, Node , Sprite, Vec3, view, Collider2D, Contact2DType, SpriteFrame, Label, Color, instantiate, Prefab} from 'cc';
 import { GameManager } from './GameManager';
+import { OreData } from './OreData';
+
 const { ccclass, property } = _decorator;
 
 @ccclass('MinerController')
-export class Hook extends Component {
+export class MineController extends Component {
     
     @property({serializable:true})
     private startAngle:number = -40;
@@ -17,21 +19,33 @@ export class Hook extends Component {
     private ropeLength:number = 2400;
     @property
     private refreshDelay:number = 0.4;
-
+    @property
+    private affectOfStrengthenDose:number =2;
     
+    @property(Node)
+    private hookNode:Node;
+    private hookNodeOriPos:Vec3;
+
+    @property(Prefab)
+    private bombPrefab:Prefab;
+
     @property({group: { name: "按钮相关" },type:Sprite})
     private hookButton:Sprite;
     @property({group: { name: "按钮相关" },type:SpriteFrame})
     private HookDownImg:SpriteFrame;
     @property({group: { name: "按钮相关" },type:SpriteFrame})
     private UseTNTImg:SpriteFrame;
-    
+    @property({group: { name: "按钮相关" },type:Label})
+    private TNTText:Label;
 
     //初始参数，将初始角度作为0位置,方向向下。
     private originalAngle:number;
     private originalPos:Vec3;
 
     private amplitude:number;
+    
+    @property
+    private oriRopeLength:number = 80;
 
     //状态参数
     private isHookOut:boolean = false;
@@ -62,9 +76,19 @@ export class Hook extends Component {
         this.originalAngle=this.node.angle;
         this.originalPos = this.node.getPosition();
 
+        this.hookNodeOriPos = this.hookNode.getPosition();
+
         let rope = this.node.getChildByName("rope");
         this.ropeSprite = rope.getComponent(Sprite);
+        this.ropeSprite.fillRange=(this.oriRopeLength)/this.ropeLength;
         
+        
+        this.TNTText.enabled = false;
+
+        //开局技能的开关
+        if(GameManager.getStrengthen){
+            this.hookoutSpeed*=this.affectOfStrengthenDose;
+        }
     }
 
 
@@ -91,9 +115,15 @@ export class Hook extends Component {
             if(!this.isSettlingore && this.getHookDistance()<=20 && this.isBack){
                 
                 this.isSettlingore = true;
+                this.TNTText.enabled = false;
+
                 //钩子不动
-                this.node.setPosition(this.originalPos);
                 this.stretchVec.multiplyScalar(0);
+                
+                this.hookNode.setPosition(this.hookNodeOriPos);
+                this.ropeSprite.fillRange=(this.oriRopeLength)/this.ropeLength;
+                this.node.setPosition(this.originalPos);
+
                 this.settleore();
             }
         }
@@ -113,20 +143,23 @@ export class Hook extends Component {
     }
 
 
+
     //返回钩子下降高度，更新绳子长度，还可以根据距离更新钩子速度
     getHookDistance():number{
         let offset:Vec3=new Vec3(0,0,0);
         Vec3.subtract(offset,this.originalPos,this.node.getPosition());
         let len:number=offset.length();
 
-        this.ropeSprite.fillRange=len/this.ropeLength;
+        this.ropeSprite.fillRange=(len+this.oriRopeLength)/this.ropeLength;
         
         return len;
     }
 
     //由按钮调用出钩函数
     hookDown(event:Event,args){
+
         if(!this.isHookOut){
+
             this.hookButton.spriteFrame = this.UseTNTImg;
             this.isHookOut = true;
             this.isBack = false;
@@ -135,21 +168,50 @@ export class Hook extends Component {
             this.stretchVec = new Vec3(Math.cos(toward),Math.sin(toward),0);
             
             this.stretchVec.multiplyScalar(this.hookoutSpeed);
+
+            //处理炸药
+            this.TNTText.enabled = true;
+            let tnt = GameManager.getTNTNum();
+
+            if(tnt <= 0) this.TNTText.color = Color.RED;
+            else this.TNTText.color = Color.WHITE;
+
+            this.TNTText.string = "剩余炸药:"+tnt.toString();
+
         }else if(!this.isSettlingore){
             //鞭炮技能，向GameManager要数据
             let tnt=GameManager.getTNTNum();
             if(tnt>0){
                 //炸毁物体
-                this.ore=0;
-                //this.oreData=null;
+                if(this.ore<=0) return;
+                this.destroyOre();
+
+                //生成动画
+                let tempBomb:Node = instantiate(this.bombPrefab);
+                tempBomb.parent = this.node.parent;
+                tempBomb.setPosition(this.node.getPosition());
+                this.scheduleOnce(()=>{
+                    tempBomb.destroy();
+                },0.6);
+
+
                 GameManager.setTNTNum(tnt-1);
+                this.TNTText.string = "剩余炸药:"+GameManager.getTNTNum().toString();
 
                 //快速返回
                 if(!this.isBack) this.stretchVec.multiplyScalar(-1);
-                this.stretchVec.multiplyScalar(2);
+                this.stretchVec.normalize().multiplyScalar(this.hookoutSpeed);
+                this.isBack = true;
 
             }else{
-
+                //炸药不足提示
+                this.hookButton.color = Color.RED;
+                let count=0;
+                this.schedule(function(){
+                    count++;
+                    this.hookButton.color = count%2==0? Color.RED : Color.WHITE;
+                },0.1,6);
+                
             }
         }
     }
@@ -166,9 +228,17 @@ export class Hook extends Component {
         }else if(other.tag == 1){
             //碰矿物，粘连带走
             this.oreNode=other.node;
-            //let oreData=this.oreNode.getComponent(OreData);
-            //this.stretchVec.multiplyScalar(oreData.dragForce);
-            //this.ore=oreData.value;
+            let oreData=this.oreNode.getComponent(OreData);
+            
+            this.stretchVec.multiplyScalar(oreData.dragForce);
+
+            this.ore=oreData.value;
+
+            //钻石涨价技能
+            if(oreData.isDiamond && GameManager.getDiamondPolish()){
+                this.ore*=1.5;
+            }
+
             this.oreOffset=new Vec3(0,0,0);
             Vec3.subtract(this.oreOffset,this.oreNode.getPosition(),this.node.getPosition());
         }
@@ -176,18 +246,25 @@ export class Hook extends Component {
         this.isBack = true;
     }
 
+    destroyOre(){
+        if(this.oreNode!=null){
+            this.oreNode.destroy();
+            this.oreNode=null;
+        }
+        this.ore=0;
+    }
+
     //获得矿物，分数增长
     settleore(){
         //先加上钱再说，防止在显摆成果时去世
         GameManager.setProfit(this.ore);
-        
         //展示矿物和金钱
         if(this.ore>0){
-
+            //销毁矿物
+            this.destroyOre();
         }
         
         this.scheduleOnce(function(){
-            //销毁矿物
             this.isHookOut = false;
             this.isSettlingore = false;
             this.isBack = false;

@@ -1,4 +1,4 @@
-import { Component, _decorator } from 'cc';
+import { Component, director,_decorator } from 'cc';
 import { UIController } from './UIController';
 const { ccclass, property } = _decorator;
 
@@ -9,6 +9,8 @@ export class GameManager extends Component{
     @property
     private totalTime:number = 120;
     
+    private leftTime:number;
+
     @property({group:{name:"关卡设计"},type:Array})
 
     private score:number;
@@ -17,6 +19,10 @@ export class GameManager extends Component{
     
     //技能数据
     private TNTNum:number;
+    private isDiamondPolish:boolean;
+    private isStrengthen:boolean;
+    private isLucky:boolean;
+    private isRockAppreciate:boolean;
 
     private static instance:GameManager = null;
 
@@ -26,14 +32,21 @@ export class GameManager extends Component{
             //重开新游戏
             this.score=0;
             this.level=1;
-            this.TNTNum=10;
-
+            this.TNTNum=5;
+            this.isDiamondPolish=false;
+            this.isLucky=false;
+            this.isStrengthen=false;
+            this.isRockAppreciate=false;
             GameManager.instance = this;
         }else{
-            //进入下一关
-            this.level+=1;
-
+            //进入下一关，关卡开始时进行技能使用
+            GameManager.instance.level+=1;
         }
+        //等待任务发布的时间后开始游戏
+        GameManager.instance.leftTime=GameManager.instance.totalTime;
+        UIController.setTime(GameManager.instance.totalTime);
+
+        GameManager.instance.schedule(GameManager.instance.setTime,1);
         
     }
 
@@ -44,6 +57,16 @@ export class GameManager extends Component{
     //继承上一关的分数
     public static getScore():number{
         return GameManager.instance.score;
+    }
+
+    private setTime(){
+        GameManager.instance.leftTime--;
+        if(GameManager.instance.leftTime <= 0){
+            this.unschedule(this.setTime);
+            GameManager.gameOver();
+            return;
+        }
+        UIController.setTime(GameManager.instance.leftTime);
     }
 
     public static setProfit(profit:number){
@@ -64,9 +87,43 @@ export class GameManager extends Component{
         GameManager.instance.TNTNum=num;
     }
 
+    public static setDiamondPolish(){
+        GameManager.instance.isDiamondPolish = true;
+    }
 
-    update(deltaTime: number) {
+    
+    public static getDiamondPolish():boolean{
+        return GameManager.instance.isDiamondPolish;
+    }
 
+    public static setLucky(){
+        GameManager.instance.isLucky = true;
+    }
+
+    
+    public static getLucky():boolean{
+        return GameManager.instance.isLucky;
+    }
+    
+    public static setRockAppreciate(){
+        GameManager.instance.isRockAppreciate = true;
+    }
+
+    public static getRockAppreciate():boolean{
+        return GameManager.instance.isRockAppreciate;
+    }
+
+    public static setStrengthen(){
+        GameManager.instance.isStrengthen = true;
+    }
+    
+    public static getStrengthen():boolean{
+        return GameManager.instance.isStrengthen;
+    }
+
+    //查看水产介绍，停止计时
+    private seeIntroduction(event,args){
+        director.pause();
     }
 }
 

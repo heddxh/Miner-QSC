@@ -15,6 +15,25 @@
     {
       "name": "Miner",
       "value": 524288
+    },
+    {
+      "name": "BackGround",
+      "value": 262144
     }
-  ]
+  ],
+  "sorting-layer": {
+    "layers": [
+      {
+        "id": 0,
+        "name": "default",
+        "value": 0
+      },
+      {
+        "id": 1,
+        "name": "bg",
+        "value": 1
+      }
+    ],
+    "increaseId": 1
+  }
 }
