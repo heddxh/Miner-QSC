@@ -81,7 +81,7 @@ export class OreData extends Component {
 
         //左右来回移动
         if(this.isMoving){
-            this.schedule(this.movingAround,0.2);
+            this.schedule(this.movingAround,0.1);
         }
     }
     
@@ -131,7 +131,6 @@ export class OreData extends Component {
 
                 this.explodeInCircle(killList,allMines,tntPos);
                 
-                console.log(killList);
 
                 for(let q in killList) killList[q].destroy();
 
