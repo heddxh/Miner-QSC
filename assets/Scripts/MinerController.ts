@@ -1,6 +1,7 @@
 import { _decorator, Component, Node , Sprite, Vec3, view, Collider2D, Contact2DType, SpriteFrame, Label, Color, instantiate, Prefab} from 'cc';
 import { GameManager } from './GameManager';
 import { OreData } from './OreData';
+import { UIController } from './UIController';
 
 const { ccclass, property } = _decorator;
 
@@ -22,9 +23,17 @@ export class MineController extends Component {
     @property
     private affectOfStrengthenDose:number =2;
     
-    @property(Node)
+
+    @property({group: { name: "钩子相关" },type:Node})
     private hookNode:Node;
+
     private hookNodeOriPos:Vec3;
+
+    @property({group: { name: "钩子相关" },type:SpriteFrame})
+    private hookHangingImg:SpriteFrame;
+    @property({group: { name: "钩子相关" },type:SpriteFrame})
+    private hookClosingImg:SpriteFrame;
+    
 
     @property(Prefab)
     private bombPrefab:Prefab;
@@ -55,7 +64,6 @@ export class MineController extends Component {
     private ore:number = 0;
     private oreNode:Node;
     private oreOffset:Vec3;
-    //private oreData:OreData;
     
     private isSettlingore:boolean = false;
     //true表示逆时针转动，false顺时针
@@ -106,7 +114,7 @@ export class MineController extends Component {
             );
             
             //如果返回且携带矿物
-            if(this.isBack && this.ore!=0 && this.oreNode!=null){
+            if(this.isBack && this.oreNode!=null){
                 this.oreNode.setPosition(
                     this.node.getPosition().add(this.oreOffset));
             }
@@ -124,6 +132,7 @@ export class MineController extends Component {
                 this.ropeSprite.fillRange=(this.oriRopeLength)/this.ropeLength;
                 this.node.setPosition(this.originalPos);
 
+                //结算
                 this.settleore();
             }
         }
@@ -183,7 +192,7 @@ export class MineController extends Component {
             let tnt=GameManager.getTNTNum();
             if(tnt>0){
                 //炸毁物体
-                if(this.ore<=0) return;
+                if(this.oreNode == null) return;
                 this.destroyOre();
 
                 //生成动画
@@ -192,7 +201,7 @@ export class MineController extends Component {
                 tempBomb.setPosition(this.node.getPosition());
                 this.scheduleOnce(()=>{
                     tempBomb.destroy();
-                },0.6);
+                },0.5);
 
 
                 GameManager.setTNTNum(tnt-1);
@@ -232,12 +241,11 @@ export class MineController extends Component {
             
             this.stretchVec.multiplyScalar(oreData.dragForce);
 
+            //矿物被抓到的反应
+            oreData.getCaught();
+            this.hookNode.getComponent(Sprite).spriteFrame = this.hookClosingImg;
+            
             this.ore=oreData.value;
-
-            //钻石涨价技能
-            if(oreData.isDiamond && GameManager.getDiamondPolish()){
-                this.ore*=1.5;
-            }
 
             this.oreOffset=new Vec3(0,0,0);
             Vec3.subtract(this.oreOffset,this.oreNode.getPosition(),this.node.getPosition());
@@ -257,12 +265,14 @@ export class MineController extends Component {
     //获得矿物，分数增长
     settleore(){
         //先加上钱再说，防止在显摆成果时去世
-        GameManager.setProfit(this.ore);
-        //展示矿物和金钱
-        if(this.ore>0){
+        if(this.oreNode!=null){
+            UIController.setScoreAni(this.ore);
             //销毁矿物
             this.destroyOre();
         }
+
+        this.hookNode.getComponent(Sprite).spriteFrame = this.hookHangingImg;
+        //展示矿物和金钱
         
         this.scheduleOnce(function(){
             this.isHookOut = false;
@@ -270,7 +280,8 @@ export class MineController extends Component {
             this.isBack = false;
             this.hookButton.spriteFrame = this.HookDownImg;
             
-        },this.refreshDelay);
+        },this.oreNode?this.refreshDelay:0);
+
         
     }
 

@@ -17,8 +17,12 @@
       "value": 524288
     },
     {
-      "name": "BackGround",
+      "name": "Ores",
       "value": 262144
+    },
+    {
+      "name": "BackGroundColor",
+      "value": 131072
     }
   ],
   "sorting-layer": {

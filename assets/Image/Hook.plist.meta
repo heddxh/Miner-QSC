@@ -1,0 +1,109 @@
+{
+  "ver": "1.0.8",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "58991852-6f35-4000-a903-3e7c3496f0c4",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {
+    "73ab3": {
+      "importer": "sprite-frame",
+      "uuid": "58991852-6f35-4000-a903-3e7c3496f0c4@73ab3",
+      "displayName": "",
+      "id": "73ab3",
+      "name": "Hook1",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 0,
+        "width": 222,
+        "height": 183,
+        "rawWidth": 222,
+        "rawHeight": 183,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "6130ff41-5037-4470-b59b-d1874b2fa0aa@6c48a",
+        "atlasUuid": "58991852-6f35-4000-a903-3e7c3496f0c4"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f4f6a": {
+      "importer": "sprite-frame",
+      "uuid": "58991852-6f35-4000-a903-3e7c3496f0c4@f4f6a",
+      "displayName": "",
+      "id": "f4f6a",
+      "name": "Hook2",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 222,
+        "trimY": 0,
+        "width": 222,
+        "height": 183,
+        "rawWidth": 222,
+        "rawHeight": 183,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "6130ff41-5037-4470-b59b-d1874b2fa0aa@6c48a",
+        "atlasUuid": "58991852-6f35-4000-a903-3e7c3496f0c4"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "Hook.png",
+    "format": 2,
+    "uuid": "58991852-6f35-4000-a903-3e7c3496f0c4",
+    "textureUuid": "6130ff41-5037-4470-b59b-d1874b2fa0aa@6c48a"
+  }
+}

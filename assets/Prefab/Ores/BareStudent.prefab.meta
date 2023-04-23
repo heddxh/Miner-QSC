@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "f2aad539-e5c2-48f2-bd58-10c694a43b6f",
+  "uuid": "5ce992aa-f25f-4f13-9412-ff23e0ec8bbd",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "GptDiamond"
+    "syncNodeName": "BareStudent"
   }
 }

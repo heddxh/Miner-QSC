@@ -148,13 +148,16 @@
     },
     "value": 2,
     "dragForce": 1,
-    "isRamdonBag": false,
-    "isDiamond": false,
-    "isBomb": true,
+    "type": 2,
     "isMultiImgs": false,
     "imgs": [],
     "isRotate": false,
     "isZoom": false,
+    "isMoving": false,
+    "bombPrefab": {
+      "__uuid__": "1941638d-6da2-4798-95f6-e2547010cbc1",
+      "__expectedType__": "cc.Prefab"
+    },
     "_id": ""
   },
   {
@@ -235,6 +238,7 @@
       "__id__": 0
     },
     "fileId": "30VvKPBSVH2LaXhwbbbSBX",
+    "instance": null,
     "targetOverrides": null
   }
 ]

@@ -1,4 +1,4 @@
-import { Component, director,_decorator } from 'cc';
+import { Component, director,game,Game,_decorator } from 'cc';
 import { UIController } from './UIController';
 const { ccclass, property } = _decorator;
 
@@ -25,7 +25,6 @@ export class GameManager extends Component{
     private isRockAppreciate:boolean;
 
     private static instance:GameManager = null;
-
     
     onLoad() {
         if(GameManager.instance==null){
@@ -38,6 +37,7 @@ export class GameManager extends Component{
             this.isStrengthen=false;
             this.isRockAppreciate=false;
             GameManager.instance = this;
+            
         }else{
             //进入下一关，关卡开始时进行技能使用
             GameManager.instance.level+=1;
@@ -72,11 +72,6 @@ export class GameManager extends Component{
     public static setProfit(profit:number){
         GameManager.instance.score+=profit;
         UIController.setScore(GameManager.instance.score);
-    }
-
-    //游戏结束，总分结算
-    public static gameOver(){
-
     }
 
     public static getTNTNum():number{
@@ -124,6 +119,13 @@ export class GameManager extends Component{
     //查看水产介绍，停止计时
     private seeIntroduction(event,args){
         director.pause();
+    }
+
+    //游戏结束，总分结算
+    public static gameOver(){
+        //先等动画完成后再pause，此处先禁用玩家下钩等操作
+
+        UIController.ShowFinalScore(GameManager.instance.score);
     }
 }
 
