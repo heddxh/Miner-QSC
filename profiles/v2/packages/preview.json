@@ -2,10 +2,10 @@
   "__version__": "1.0.1",
   "preview": {
     "current": {
-      "platform": "browser"
+      "platform": "gameView"
     }
   },
   "general": {
-    "start_scene": "e6dce434-f6b8-4689-ad67-d5a00b1382d3"
+    "start_scene": "add39862-a51d-46af-a894-00d524a899d3"
   }
 }

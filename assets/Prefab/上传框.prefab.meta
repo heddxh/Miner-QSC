@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "f2aad539-e5c2-48f2-bd58-10c694a43b6f",
+  "uuid": "3e42fe3d-35ae-4e68-962b-4b1f194b7919",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "gptDiamond"
+    "syncNodeName": "上传框"
   }
 }
