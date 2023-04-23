@@ -1,0 +1,8 @@
+{
+  "__version__": "1.0.1",
+  "builder": {
+    "common": {
+      "startScene": "a64f443a-a1f7-4239-8675-e84e89edd509"
+    }
+  }
+}

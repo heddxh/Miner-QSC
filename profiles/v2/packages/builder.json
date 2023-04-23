@@ -1,6 +1,9 @@
 {
   "__version__": "1.3.4",
   "log": {
-    "level": 4
+    "level": 1
+  },
+  "common": {
+    "startScene": "a64f443a-a1f7-4239-8675-e84e89edd509"
   }
 }

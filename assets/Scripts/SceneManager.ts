@@ -1,9 +1,18 @@
-import { director } from "cc";
+import { _decorator, Component,director, Node } from 'cc';
+const { ccclass, property } = _decorator;
 
-export class SceneManager{
-    showXXX(){
-        director.loadScene('XXX', (_, scenes) => {
-            // init
-        })
+@ccclass('SceneManager')
+export class SceneManager extends Component {
+    start() {
+
+    }
+
+    update(deltaTime: number) {
+        
+    }
+    
+    Start(event: Event){
+        director.loadScene("GameScene");
     }
 }
+
