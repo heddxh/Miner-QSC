@@ -32,16 +32,19 @@
         "__id__": 8
       },
       {
+        "__id__": 12
+      },
+      {
         "__id__": 10
       }
     ],
     "_prefab": {
-      "__id__": 12
+      "__id__": 14
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -227.529,
-      "y": 35.579,
+      "x": -80.435,
+      "y": -384.842,
       "z": 0
     },
     "_lrot": {
@@ -116,7 +119,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "899a87b4-2427-4bdc-96dd-f0982fecb2b2@f9941",
+      "__uuid__": "a80ffa08-a052-434b-b6ed-dc3619e01e41@8a762",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -131,7 +134,10 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_useGrayscale": false,
-    "_atlas": null,
+    "_atlas": {
+      "__uuid__": "a80ffa08-a052-434b-b6ed-dc3619e01e41",
+      "__expectedType__": "cc.SpriteAtlas"
+    },
     "_id": ""
   },
   {
@@ -151,8 +157,8 @@
     },
     "tag": 1,
     "_group": 1,
-    "_density": 1,
-    "_sensor": false,
+    "_density": 0,
+    "_sensor": true,
     "_friction": 0.2,
     "_restitution": 0,
     "_offset": {
@@ -222,15 +228,47 @@
     "isRotate": false,
     "isZoom": false,
     "isMoving": true,
-    "startX": -400,
-    "endX": -85,
+    "moveLeftX": -50,
+    "moveRightX": 100,
     "movingSpeed": 10,
+    "ani": {
+      "__id__": 10
+    },
     "bombPrefab": null,
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "fa+39C0wFGJ5kNC4Vl1FWE"
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 11
+    },
+    "playOnLoad": true,
+    "_clips": [
+      {
+        "__uuid__": "3d4428f4-f108-4212-8ba6-7043d41001f7",
+        "__expectedType__": "cc.AnimationClip"
+      }
+    ],
+    "_defaultClip": {
+      "__uuid__": "3d4428f4-f108-4212-8ba6-7043d41001f7",
+      "__expectedType__": "cc.AnimationClip"
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "20eO2hn/pJLJRTaKrm19rf"
   },
   {
     "__type__": "cc.RigidBody2D",
@@ -242,7 +280,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 11
+      "__id__": 13
     },
     "enabledContactListener": false,
     "bullet": false,
@@ -251,7 +289,7 @@
     "_type": 3,
     "_allowSleep": true,
     "_gravityScale": 0,
-    "_linearDamping": 0,
+    "_linearDamping": 0.2,
     "_angularDamping": 0,
     "_linearVelocity": {
       "__type__": "cc.Vec2",
@@ -275,6 +313,6 @@
       "__id__": 0
     },
     "fileId": "b367I6IuxAsqMj9cWBxKDh",
-    "targetOverrides": null
+    "targetOverrides": []
   }
 ]

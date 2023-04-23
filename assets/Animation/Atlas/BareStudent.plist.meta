@@ -1,0 +1,201 @@
+{
+  "ver": "1.0.8",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "a80ffa08-a052-434b-b6ed-dc3619e01e41",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {
+    "8a762": {
+      "importer": "sprite-frame",
+      "uuid": "a80ffa08-a052-434b-b6ed-dc3619e01e41@8a762",
+      "displayName": "",
+      "id": "8a762",
+      "name": "大学生悲-0",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 4,
+        "offsetY": -5,
+        "trimX": 433,
+        "trimY": 1,
+        "width": 204,
+        "height": 167,
+        "rawWidth": 382,
+        "rawHeight": 363,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "bfd699f8-991c-4f7b-ae56-901ddde03b23@6c48a",
+        "atlasUuid": "a80ffa08-a052-434b-b6ed-dc3619e01e41"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "5b174": {
+      "importer": "sprite-frame",
+      "uuid": "a80ffa08-a052-434b-b6ed-dc3619e01e41@5b174",
+      "displayName": "",
+      "id": "5b174",
+      "name": "大学生悲-1",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 7,
+        "offsetY": -7,
+        "trimX": 223,
+        "trimY": 1,
+        "width": 208,
+        "height": 171,
+        "rawWidth": 382,
+        "rawHeight": 363,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "bfd699f8-991c-4f7b-ae56-901ddde03b23@6c48a",
+        "atlasUuid": "a80ffa08-a052-434b-b6ed-dc3619e01e41"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f857b": {
+      "importer": "sprite-frame",
+      "uuid": "a80ffa08-a052-434b-b6ed-dc3619e01e41@f857b",
+      "displayName": "",
+      "id": "f857b",
+      "name": "大学生悲-2",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 7,
+        "offsetY": -9,
+        "trimX": 639,
+        "trimY": 1,
+        "width": 204,
+        "height": 167,
+        "rawWidth": 382,
+        "rawHeight": 363,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "bfd699f8-991c-4f7b-ae56-901ddde03b23@6c48a",
+        "atlasUuid": "a80ffa08-a052-434b-b6ed-dc3619e01e41"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "b0965": {
+      "importer": "sprite-frame",
+      "uuid": "a80ffa08-a052-434b-b6ed-dc3619e01e41@b0965",
+      "displayName": "",
+      "id": "b0965",
+      "name": "大学生悲-3",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 12,
+        "offsetY": -9,
+        "trimX": 1,
+        "trimY": 1,
+        "width": 220,
+        "height": 167,
+        "rawWidth": 382,
+        "rawHeight": 363,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "bfd699f8-991c-4f7b-ae56-901ddde03b23@6c48a",
+        "atlasUuid": "a80ffa08-a052-434b-b6ed-dc3619e01e41"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "BareStudent.png",
+    "format": 3,
+    "uuid": "a80ffa08-a052-434b-b6ed-dc3619e01e41",
+    "textureUuid": "bfd699f8-991c-4f7b-ae56-901ddde03b23@6c48a"
+  }
+}

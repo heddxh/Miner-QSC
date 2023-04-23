@@ -1,0 +1,247 @@
+{
+  "ver": "1.0.8",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "78b82237-f4b7-478b-b286-c928a673fddc",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {
+    "20847": {
+      "importer": "sprite-frame",
+      "uuid": "78b82237-f4b7-478b-b286-c928a673fddc@20847",
+      "displayName": "",
+      "id": "20847",
+      "name": "矿工大学生-0",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 7,
+        "offsetY": 41,
+        "trimX": 1,
+        "trimY": 1,
+        "width": 263,
+        "height": 221,
+        "rawWidth": 385,
+        "rawHeight": 363,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "324a7036-caaa-4e43-96f5-657cd6200987@6c48a",
+        "atlasUuid": "78b82237-f4b7-478b-b286-c928a673fddc"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "76af0": {
+      "importer": "sprite-frame",
+      "uuid": "78b82237-f4b7-478b-b286-c928a673fddc@76af0",
+      "displayName": "",
+      "id": "76af0",
+      "name": "矿工大学生-1",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 7,
+        "offsetY": 40,
+        "trimX": 266,
+        "trimY": 1,
+        "width": 263,
+        "height": 221,
+        "rawWidth": 385,
+        "rawHeight": 363,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "324a7036-caaa-4e43-96f5-657cd6200987@6c48a",
+        "atlasUuid": "78b82237-f4b7-478b-b286-c928a673fddc"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "1f353": {
+      "importer": "sprite-frame",
+      "uuid": "78b82237-f4b7-478b-b286-c928a673fddc@1f353",
+      "displayName": "",
+      "id": "1f353",
+      "name": "矿工大学生-2",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 7,
+        "offsetY": 39,
+        "trimX": 531,
+        "trimY": 1,
+        "width": 263,
+        "height": 221,
+        "rawWidth": 385,
+        "rawHeight": 363,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "324a7036-caaa-4e43-96f5-657cd6200987@6c48a",
+        "atlasUuid": "78b82237-f4b7-478b-b286-c928a673fddc"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "4396e": {
+      "importer": "sprite-frame",
+      "uuid": "78b82237-f4b7-478b-b286-c928a673fddc@4396e",
+      "displayName": "",
+      "id": "4396e",
+      "name": "矿工大学生-3",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 7,
+        "offsetY": 38,
+        "trimX": 796,
+        "trimY": 1,
+        "width": 263,
+        "height": 221,
+        "rawWidth": 385,
+        "rawHeight": 363,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "324a7036-caaa-4e43-96f5-657cd6200987@6c48a",
+        "atlasUuid": "78b82237-f4b7-478b-b286-c928a673fddc"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "5a8f4": {
+      "importer": "sprite-frame",
+      "uuid": "78b82237-f4b7-478b-b286-c928a673fddc@5a8f4",
+      "displayName": "",
+      "id": "5a8f4",
+      "name": "矿工大学生-4",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 7,
+        "offsetY": 37,
+        "trimX": 1061,
+        "trimY": 1,
+        "width": 263,
+        "height": 221,
+        "rawWidth": 385,
+        "rawHeight": 363,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "324a7036-caaa-4e43-96f5-657cd6200987@6c48a",
+        "atlasUuid": "78b82237-f4b7-478b-b286-c928a673fddc"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "MinerBoy.png",
+    "format": 3,
+    "uuid": "78b82237-f4b7-478b-b286-c928a673fddc",
+    "textureUuid": "324a7036-caaa-4e43-96f5-657cd6200987@6c48a"
+  }
+}

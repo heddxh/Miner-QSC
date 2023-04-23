@@ -1,4 +1,4 @@
-import { _decorator, Component, Node , Sprite, Vec3, view, Collider2D, Contact2DType, SpriteFrame, Label, Color, instantiate, Prefab} from 'cc';
+import { _decorator, Component, Node , Sprite, Vec3, view, Collider2D, Contact2DType, SpriteFrame, Label, Color, instantiate, Prefab, AnimationComponent} from 'cc';
 import { GameManager } from './GameManager';
 import { OreData } from './OreData';
 import { UIController } from './UIController';
@@ -55,6 +55,9 @@ export class MineController extends Component {
     
     @property
     private oriRopeLength:number = 80;
+
+    @property(AnimationComponent)
+    private MinerBoyAni:Animation;
 
     //状态参数
     private isHookOut:boolean = false;
@@ -238,6 +241,8 @@ export class MineController extends Component {
             //碰矿物，粘连带走
             this.oreNode=other.node;
             let oreData=this.oreNode.getComponent(OreData);
+
+            this.MinerBoyAni.play();
             
             this.stretchVec.multiplyScalar(oreData.dragForce);
 
@@ -271,6 +276,7 @@ export class MineController extends Component {
             this.destroyOre();
         }
 
+        this.MinerBoyAni.pause();
         this.hookNode.getComponent(Sprite).spriteFrame = this.hookHangingImg;
         //展示矿物和金钱
         

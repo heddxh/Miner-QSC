@@ -1,4 +1,4 @@
-import {Color, Component, Label,  Sprite,  tween, Vec3,  _decorator,Node,director} from 'cc';
+import {Color, Component, Label,  Sprite,  tween, Vec3,  _decorator,Node,director, easing} from 'cc';
 import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
@@ -93,7 +93,7 @@ export class UIController extends Component {
         UIController.instance.FinalScore.string = finalScore.toString();
 
         tween().target(UIController.instance.FinalScoreBoard)
-        .to(0.5,{position:new Vec3(525,838,0)})
+        .to(0.5,{position:new Vec3(525,838,0)},{easing:'cubicOut'})
         .call(()=>{
             //还需要UI交互
             director.pause();

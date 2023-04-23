@@ -1,0 +1,201 @@
+{
+  "ver": "1.0.8",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "feb11252-45d6-41ad-8a2c-8df8c5623feb",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {
+    "85658": {
+      "importer": "sprite-frame",
+      "uuid": "feb11252-45d6-41ad-8a2c-8df8c5623feb@85658",
+      "displayName": "",
+      "id": "85658",
+      "name": "gpt大学生-3",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 5,
+        "offsetY": -6,
+        "trimX": 1,
+        "trimY": 1,
+        "width": 234,
+        "height": 167,
+        "rawWidth": 420,
+        "rawHeight": 411,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "d871c0f2-968e-4ba6-839a-c73e0e20170b@6c48a",
+        "atlasUuid": "feb11252-45d6-41ad-8a2c-8df8c5623feb"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "de8a0": {
+      "importer": "sprite-frame",
+      "uuid": "feb11252-45d6-41ad-8a2c-8df8c5623feb@de8a0",
+      "displayName": "",
+      "id": "de8a0",
+      "name": "gpt大学生-0",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": -6,
+        "offsetY": -6,
+        "trimX": 455,
+        "trimY": 1,
+        "width": 214,
+        "height": 167,
+        "rawWidth": 420,
+        "rawHeight": 411,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "d871c0f2-968e-4ba6-839a-c73e0e20170b@6c48a",
+        "atlasUuid": "feb11252-45d6-41ad-8a2c-8df8c5623feb"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "672c7": {
+      "importer": "sprite-frame",
+      "uuid": "feb11252-45d6-41ad-8a2c-8df8c5623feb@672c7",
+      "displayName": "",
+      "id": "672c7",
+      "name": "gpt大学生-1",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": -5,
+        "offsetY": -6,
+        "trimX": 237,
+        "trimY": 1,
+        "width": 216,
+        "height": 167,
+        "rawWidth": 420,
+        "rawHeight": 411,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "d871c0f2-968e-4ba6-839a-c73e0e20170b@6c48a",
+        "atlasUuid": "feb11252-45d6-41ad-8a2c-8df8c5623feb"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "d517e": {
+      "importer": "sprite-frame",
+      "uuid": "feb11252-45d6-41ad-8a2c-8df8c5623feb@d517e",
+      "displayName": "",
+      "id": "d517e",
+      "name": "gpt大学生-2",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": -6,
+        "offsetY": -6,
+        "trimX": 671,
+        "trimY": 1,
+        "width": 214,
+        "height": 167,
+        "rawWidth": 420,
+        "rawHeight": 411,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "d871c0f2-968e-4ba6-839a-c73e0e20170b@6c48a",
+        "atlasUuid": "feb11252-45d6-41ad-8a2c-8df8c5623feb"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "GPTStudent.png",
+    "format": 3,
+    "uuid": "feb11252-45d6-41ad-8a2c-8df8c5623feb",
+    "textureUuid": "d871c0f2-968e-4ba6-839a-c73e0e20170b@6c48a"
+  }
+}
