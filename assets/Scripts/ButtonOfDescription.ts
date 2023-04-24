@@ -3,17 +3,11 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Description')
 export class Description extends Component {
-    start() {
-
-    }
-
-    update(deltaTime: number) {
-        
-    }
 
     ClosePage(event:Event){
-        director.resume;
-        this.node.destroy();
+        director.resume();
+        let scene=director.getScene();        
+        this.node.parent=scene;
     }
 }
 

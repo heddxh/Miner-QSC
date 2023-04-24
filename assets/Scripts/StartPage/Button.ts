@@ -1,10 +1,13 @@
-import { _decorator, Component, Node ,director,Button,input, EditBox,log, Prefab,instantiate} from 'cc';
+import { _decorator, Component, Node ,director,Button,input, EditBox,log, Prefab,instantiate,find} from 'cc';
 const { ccclass, property } = _decorator;
 
 let username:string
 
 @ccclass('StartPage')
 export class StartPage extends Component {
+
+    @property({type:Node})
+    private PD:Node=null
 
     @property({type:Prefab})
     private description: Prefab = null;
@@ -37,10 +40,12 @@ export class StartPage extends Component {
     }
 
     EnterGame(event:Event){
+        
         this.node.getChildByName("上传框").destroy();
         this.node.getChildByName("半透灰").destroy();
         this.node.getChildByName("StartPagePerson").getChildByName("Start").getComponent(Button).interactable = true;
         username=this.UsernameNode.getComponent(EditBox).string
+        this.PD.getComponent("PlayerData").UserName=username
         console.log('username:',username)
     }
 

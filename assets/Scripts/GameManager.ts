@@ -1,10 +1,14 @@
-import { Component, director,game,Game,_decorator,instantiate,Prefab } from 'cc';
+import { Component, director,game,Game,_decorator,instantiate,Prefab,find,Node, Label} from 'cc';
 import { UIController } from './UIController';
 const { ccclass, property } = _decorator;
 
 
 @ccclass('GameManager')
 export class GameManager extends Component{
+    
+    //获取常驻节点和节点上的脚本
+    private PlayerDataNode=find("PlayerData");
+    
 
     @property({type:Prefab})
     private description: Prefab = null;
@@ -21,24 +25,26 @@ export class GameManager extends Component{
     private level:number;
     
     //技能数据
-    private TNTNum:number;
-    private isDiamondPolish:boolean;
-    private isStrengthen:boolean;
-    private isLucky:boolean;
-    private isRockAppreciate:boolean;
+    public TNTNum:number;
+    public isDiamondPolish:boolean;
+    public isStrengthen:boolean;
+    public isLucky:boolean;
+    public isRockAppreciate:boolean;
 
     private static instance:GameManager = null;
-    
+
     onLoad() {
+        let PD=this.PlayerDataNode.getComponent("PlayerData")
+        this.setUserName();
         if(GameManager.instance==null){
             //重开新游戏
             this.score=0;
             this.level=1;
-            this.TNTNum=5;
-            this.isDiamondPolish=false;
-            this.isLucky=false;
-            this.isStrengthen=false;
-            this.isRockAppreciate=false;
+            this.TNTNum=PD.TNTNum;
+            this.isDiamondPolish=PD.isDiamondPolish;
+            this.isLucky=PD.isLucky;
+            this.isStrengthen=PD.isStrengthen;
+            this.isRockAppreciate=PD.isRockAppreciate;
             GameManager.instance = this;
             
         }else{
@@ -51,6 +57,13 @@ export class GameManager extends Component{
 
         GameManager.instance.schedule(GameManager.instance.setTime,1);
         
+    }
+
+    setUserName(){
+        let PD=this.PlayerDataNode.getComponent("PlayerData")
+        let scene=director.getScene();
+        let node=scene.getChildByName("Canvas").getChildByName("UIDashBoard").getChildByName("IdBoard").getChildByName("Id");
+        node.getComponent(Label).string=PD.UserName;
     }
 
     public static getTotalTime():number{
@@ -131,6 +144,9 @@ export class GameManager extends Component{
         director.pause();
     }
 
+    private continueGame(event,args){
+        director.resume();
+    }
     //游戏结束，总分结算
     public static gameOver(){
         //先等动画完成后再pause，此处先禁用玩家下钩等操作

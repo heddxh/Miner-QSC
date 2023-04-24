@@ -1,4 +1,5 @@
-import { _decorator, Component, director, Node,instantiate ,Button, Label, Sprite,resources, SpriteFrame} from 'cc';
+import { _decorator, Component, director, Node,instantiate ,Button, Label, Sprite,resources, SpriteFrame,find} from 'cc';
+import { GameManager } from '../GameManager';
 const { ccclass, property } = _decorator;
 
 //前面是用户的道具数量，后者
@@ -12,6 +13,10 @@ let username:string="tomato"; //用户名
 
 @ccclass('ShopPage')
 export class ShopPage extends Component {
+
+    //获取常驻节点和节点上的脚本
+    private PlayerDataNode=find('PlayerData');
+    private PD=this.PlayerDataNode.getComponent("PlayerData")
 
     //商品
     @property({type:Node})
@@ -66,7 +71,7 @@ export class ShopPage extends Component {
             this.msg.getComponent(Label).string="“你会打开哪个柜门？恭喜你，拥有交换价值的权利”石头将有三次机遇会变成相当有价值的物品。"
           }, this)  
         
-        this.user_name.getComponent(Label).string=username
+        this.user_name.getComponent(Label).string=this.PD.UserName
         director.preloadScene("GameScene")
         
     }
@@ -87,7 +92,8 @@ export class ShopPage extends Component {
             case '1' :
                 if(coin>=50){
                     zdty++;
-                    console.log('zdty:',zdty);
+                    this.PD.TNTNum=zdty
+                    console.log('zdty:',this.PD.TNTNum);
                     coin=coin-50;
                     this.target1.getChildByName("浙大体艺").getComponent(Sprite).spriteFrame=this.sold_out
                     break; 
@@ -95,8 +101,8 @@ export class ShopPage extends Component {
                      console.log('Not enough money')
                  }
             case '2' :
-                if(coin>=50){
-                    qsc++;
+                if(coin>=50 && !(this.PD.isDiamondPolish)){
+                    this.PD.isDiamondPolish=true
                     console.log('qsc:',qsc);
                     coin=coin-50;
                     this.target2.getChildByName("DiamondPolish").getComponent(Sprite).spriteFrame=this.sold_out
@@ -105,8 +111,8 @@ export class ShopPage extends Component {
                      console.log('Not enough money')
                  }
             case '3' :
-                if(coin>=75){
-                    kyj++;
+                if(coin>=75 && !(this.PD.isStrengthen)){
+                    this.PD.isStrengthen=true;
                     console.log('kyj:',kyj);
                     coin=coin-75;
                     this.target3.getChildByName("Strengthen").getComponent(Sprite).spriteFrame=this.sold_out
@@ -115,8 +121,8 @@ export class ShopPage extends Component {
                      console.log('Not enough money')
                  }
             case '4' :
-                if(coin>=50){
-                    shxj++;
+                if(coin>=50 && !(this.PD.isLucky)){
+                    this.PD.isLucky=true;
                     console.log('shxj:',shxj);
                     coin=coin-50;
                     this.target4.getChildByName("Lucky").getComponent(Sprite).spriteFrame=this.sold_out
@@ -125,8 +131,8 @@ export class ShopPage extends Component {
                      console.log('Not enough money')
                  }
             case '5' :
-                if(coin>=75){
-                    wmg++;
+                if(coin>=75 && !(this.PD.isRockAppreciate)){
+                    this.PD.isRockAppreciate=true;
                     console.log('wmg:',wmg);
                     coin=coin-75
                     this.target5.getChildByName("RockAppreciate").getComponent(Sprite).spriteFrame=this.sold_out

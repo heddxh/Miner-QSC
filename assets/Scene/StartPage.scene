@@ -18,13 +18,16 @@
         "__id__": 2
       },
       {
+        "__id__": 71
+      },
+      {
         "__id__": 69
       }
     ],
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 71
+      "__id__": 73
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -55,7 +58,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 72
+      "__id__": 74
     },
     "_id": "add39862-a51d-46af-a894-00d524a899d3"
   },
@@ -1884,6 +1887,9 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "PD": {
+      "__id__": 69
+    },
     "description": {
       "__uuid__": "aa6d1b02-cbf3-4525-8df7-d5e797f7282d",
       "__expectedType__": "cc.Prefab"
@@ -1892,7 +1898,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "SceneManager",
+    "_name": "PlayerData",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -1932,6 +1938,68 @@
       "y": 0,
       "z": 0
     },
+    "_id": "bfafpZ53dKtKL3jDN7H/V0"
+  },
+  {
+    "__type__": "482bai36RlJhZt7DDeG5K5E",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 69
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "UserName": "tomato",
+    "money": 0,
+    "TNTNum": 3,
+    "isDiamondPolish": false,
+    "isStrengthen": false,
+    "isLucky": false,
+    "isRockAppreciate": false,
+    "_id": "89Xo3m5TdBeruJiQVltTOX"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "SceneManager",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 72
+      }
+    ],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
     "_id": "a4wkYo+bxGQLrlMgsa7iRp"
   },
   {
@@ -1939,7 +2007,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 69
+      "__id__": 71
     },
     "_enabled": true,
     "__prefab": null,
@@ -1961,22 +2029,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 73
-    },
-    "shadows": {
-      "__id__": 74
-    },
-    "_skybox": {
       "__id__": 75
     },
-    "fog": {
+    "shadows": {
       "__id__": 76
     },
-    "octree": {
+    "_skybox": {
       "__id__": 77
     },
-    "lightProbeInfo": {
+    "fog": {
       "__id__": 78
+    },
+    "octree": {
+      "__id__": 79
+    },
+    "lightProbeInfo": {
+      "__id__": 80
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false
