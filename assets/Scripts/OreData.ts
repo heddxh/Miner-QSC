@@ -1,4 +1,4 @@
-import { _decorator, Component, CCInteger, SpriteFrame, Sprite, Enum, Collider2D, find, Vec3, Prefab, instantiate,Node, Contact2DType, Animation, AnimationComponent} from 'cc';
+import { _decorator, Component, CCInteger, SpriteFrame, Sprite, Enum, Collider2D, find, Vec3, Prefab, instantiate,Node, Contact2DType, Animation, AnimationComponent } from 'cc';
 import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
@@ -53,11 +53,20 @@ export class OreData extends Component {
     private randomMaxValue:number = 600;
     
     private explodeRadium:number = 300;
+
+    private _count: number = 0;
+    private _timeWaitDirectionChange: number = 10;
+    private _direction: number = 0;
+    private _deltaPos: Vec3 = new Vec3(0, 0, 0);
     
     @property(Prefab)
     private bombPrefab:Prefab;
 
     start(){
+        // 检测大学生碰撞
+        let collider = this.getComponent(Collider2D);
+        collider.on(Contact2DType.BEGIN_CONTACT, this.studentCollide, this);
+
         //为多图矿物随机分配图片
         if(this.isMultiImgs){
             let ran:number=Math.floor(Math.random()*this.imgs.length);
@@ -82,18 +91,63 @@ export class OreData extends Component {
             this.node.setScale(ori);
         }
 
-        //左右来回移动
+        // 全图随机移动
         if(this.isMoving){
             let ani:Animation = this.getComponent(AnimationComponent);
             
             if(ani!=null) ani.play();
             
             this.moveOriX = this.node.getPosition().x;
+            // this.schedule(this.movingLeftRight,0.1);
             this.schedule(this.movingAround,0.1);
         }
     }
     
-    public movingAround(){
+    studentCollide(selfCollider: Collider2D, otherCollider: Collider2D, contact: null): boolean {
+        if (otherCollider.tag == 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public movingAround() {
+        this.lastPosition = this.node.getPosition(); // 为什么这里必须调用返回值而不是传参（哭）
+        console.log(this.lastPosition);
+        if (this.studentCollide) {
+            console.log("碰撞了");
+            this._direction = - Math.PI + this._direction;
+            if (this._direction > 2 * Math.PI) {
+                this._direction -= 2 * Math.PI;
+            } else if (this._direction < 0) {
+                this._direction += 2 * Math.PI;
+            }
+        } else {
+            if (this._count > this._timeWaitDirectionChange) {
+                this._direction = randomDirection(this._direction);
+                this._count = 0;
+            } else {
+                this._count ++;
+            }
+        }        
+        this._deltaPos.x = Math.cos(this._direction) * this.movingSpeed;
+        this._deltaPos.y = Math.sin(this._direction) * this.movingSpeed;
+        Vec3.add(this.lastPosition, this.lastPosition, this._deltaPos);
+        this.node.setPosition(this.lastPosition);        
+
+        function randomDirection(curDirection: number): number {
+            // 角度变换范围在 -PI/4~PI/4 随机
+            let direction: number = curDirection + Math.random() * 0.5 * Math.PI - 0.25 * Math.PI;
+            if (direction > 2 * Math.PI) {
+                direction -= 2 * Math.PI;
+            } else if (direction < 0) {
+                direction += 2 * Math.PI;
+            }
+            return direction;
+        }
+    }
+
+    public movingLeftRight(){
         this.lastPosition = this.node.getPosition();
 
         if(this.lastPosition.x>this.moveOriX+this.moveRightX){
