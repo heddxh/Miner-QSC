@@ -1,5 +1,6 @@
 import { _decorator, Component, Node ,director,Button,input, EditBox,log} from 'cc';
 const { ccclass, property } = _decorator;
+
 let username:string
 
 @ccclass('StartPage')
@@ -16,7 +17,7 @@ export class StartPage extends Component {
     }
 
     start() {
-
+        director.preloadScene("Shop")
     }
 
     update(deltaTime: number) {
