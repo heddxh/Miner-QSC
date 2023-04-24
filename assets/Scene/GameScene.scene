@@ -2795,6 +2795,10 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "description": {
+      "__uuid__": "aa6d1b02-cbf3-4525-8df7-d5e797f7282d",
+      "__expectedType__": "cc.Prefab"
+    },
     "totalTime": 30,
     "_id": "5bNw4WRRtCW50wTFXVbA+p"
   },

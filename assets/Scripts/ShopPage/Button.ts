@@ -1,11 +1,12 @@
-import { _decorator, Component, director, Node,instantiate ,Button, Label} from 'cc';
+import { _decorator, Component, director, Node,instantiate ,Button, Label, Sprite,resources, SpriteFrame} from 'cc';
 const { ccclass, property } = _decorator;
 
-let zdty:number=0; //浙大体艺
-let shxj:number=0; //三花学姐
-let wmg:number=0;  //外卖柜
-let qsc:number=0; //求是潮
-let kyj:number=0; //烤鸭卷
+//前面是用户的道具数量，后者
+let zdty:number=0; let num_zdty:number=2;  //浙大体艺
+let shxj:number=0; let num_shxj:number=2;  //三花学姐
+let wmg:number=0;  let num_wmg:number=2;  //外卖柜
+let qsc:number=0;  let num_qsc:number=2;  //求是潮
+let kyj:number=0;  let num_kyj:number=2;  //烤鸭卷
 let coin:number=500; //金钱
 let username:string="tomato"; //用户名
 
@@ -23,6 +24,10 @@ export class ShopPage extends Component {
     private target4: Node = null;
     @property({type:Node})
     private target5: Node = null;
+
+    //已售罄图标
+    @property({type:SpriteFrame})
+    private sold_out:SpriteFrame=null;
 
     @property({type:Node})
     private money: Node = null;
@@ -67,7 +72,8 @@ export class ShopPage extends Component {
     }
 
     update(deltaTime: number) {
-        this.money.getComponent(Label).string=<string>coin //显示金钱
+        this.money.getComponent(Label).string=<string><unknown>coin //显示金钱
+ //显示金钱
     }
 
     StartGame(event:Event){
@@ -83,6 +89,7 @@ export class ShopPage extends Component {
                     zdty++;
                     console.log('zdty:',zdty);
                     coin=coin-50;
+                    this.target1.getChildByName("浙大体艺").getComponent(Sprite).spriteFrame=this.sold_out
                     break; 
                  }else{
                      console.log('Not enough money')
@@ -92,6 +99,7 @@ export class ShopPage extends Component {
                     qsc++;
                     console.log('qsc:',qsc);
                     coin=coin-50;
+                    this.target2.getChildByName("DiamondPolish").getComponent(Sprite).spriteFrame=this.sold_out
                     break; 
                  }else{
                      console.log('Not enough money')
@@ -101,6 +109,7 @@ export class ShopPage extends Component {
                     kyj++;
                     console.log('kyj:',kyj);
                     coin=coin-75;
+                    this.target3.getChildByName("Strengthen").getComponent(Sprite).spriteFrame=this.sold_out
                     break; 
                  }else{
                      console.log('Not enough money')
@@ -110,6 +119,7 @@ export class ShopPage extends Component {
                     shxj++;
                     console.log('shxj:',shxj);
                     coin=coin-50;
+                    this.target4.getChildByName("Lucky").getComponent(Sprite).spriteFrame=this.sold_out
                     break; 
                  }else{
                      console.log('Not enough money')
@@ -119,6 +129,7 @@ export class ShopPage extends Component {
                     wmg++;
                     console.log('wmg:',wmg);
                     coin=coin-75
+                    this.target5.getChildByName("RockAppreciate").getComponent(Sprite).spriteFrame=this.sold_out
                     break; 
                  }else{
                      console.log('Not enough money')

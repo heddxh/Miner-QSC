@@ -1,10 +1,13 @@
-import { Component, director,game,Game,_decorator } from 'cc';
+import { Component, director,game,Game,_decorator,instantiate,Prefab } from 'cc';
 import { UIController } from './UIController';
 const { ccclass, property } = _decorator;
 
 
 @ccclass('GameManager')
 export class GameManager extends Component{
+
+    @property({type:Prefab})
+    private description: Prefab = null;
 
     @property
     private totalTime:number = 120;
@@ -118,13 +121,19 @@ export class GameManager extends Component{
 
     //查看水产介绍，停止计时
     private seeIntroduction(event,args){
+        let scene = director.getScene();
+        let parentnode=scene.getChildByName("Canvas")
+        let node = instantiate(GameManager.instance.description);
+
+        scene.addChild(node);
+        node.setPosition(0,0);
+        node.parent=parentnode
         director.pause();
     }
 
     //游戏结束，总分结算
     public static gameOver(){
         //先等动画完成后再pause，此处先禁用玩家下钩等操作
-
         UIController.ShowFinalScore(GameManager.instance.score);
     }
 }

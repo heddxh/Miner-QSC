@@ -1,10 +1,13 @@
-import { _decorator, Component, Node ,director,Button,input, EditBox,log} from 'cc';
+import { _decorator, Component, Node ,director,Button,input, EditBox,log, Prefab,instantiate} from 'cc';
 const { ccclass, property } = _decorator;
 
 let username:string
 
 @ccclass('StartPage')
 export class StartPage extends Component {
+
+    @property({type:Prefab})
+    private description: Prefab = null;
 
     UsernameNode=null
 
@@ -39,6 +42,16 @@ export class StartPage extends Component {
         this.node.getChildByName("StartPagePerson").getChildByName("Start").getComponent(Button).interactable = true;
         username=this.UsernameNode.getComponent(EditBox).string
         console.log('username:',username)
+    }
+
+    Description(event:Event){
+        let scene = director.getScene();
+        let parentnode=scene.getChildByName("Canvas")
+        let node = instantiate(this.description);
+
+        scene.addChild(node);
+        node.setPosition(0,0);
+        node.parent=parentnode
     }
 
 }
