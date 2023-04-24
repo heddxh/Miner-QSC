@@ -98,12 +98,12 @@ export class OreData extends Component {
             if(ani!=null) ani.play();
             
             this.moveOriX = this.node.getPosition().x;
-            // this.schedule(this.movingLeftRight,0.1);
-            this.schedule(this.movingAround,0.1);
+            this.schedule(this.movingLeftRight,0.1);
+            // this.schedule(this.movingAround,0.1);
         }
     }
     
-    studentCollide(selfCollider: Collider2D, otherCollider: Collider2D, contact: null): boolean {
+    studentCollide(selfCollider: Collider2D, otherCollider: Collider2D, contact): boolean {
         if (otherCollider.tag == 2) {
             return true;
         } else {

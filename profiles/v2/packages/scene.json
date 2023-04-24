@@ -40,62 +40,8 @@
   "camera-infos": {
     "c77ecaa8-c936-46c4-a5b0-98692673ed87": {
       "position": {
-        "x": 187.5,
-        "y": 333.5,
-        "z": 5000
-      },
-      "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "viewCenter": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
-    },
-    "add39862-a51d-46af-a894-00d524a899d3": {
-      "position": {
-        "x": 187.5,
-        "y": 333.5,
-        "z": 5000
-      },
-      "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "viewCenter": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
-    },
-    "b1275fe4-3522-4d66-b2fb-52501a33a579": {
-      "position": {
-        "x": 187.5,
-        "y": 333.5,
-        "z": 5000
-      },
-      "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "viewCenter": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
-    },
-    "9975327f-c8dd-4da2-8ce1-80f74012f83c": {
-      "position": {
-        "x": 624.9400182995316,
-        "y": 952.7639242188916,
+        "x": 144,
+        "y": 256.5,
         "z": 5000
       },
       "rotation": {
@@ -112,8 +58,8 @@
     },
     "0d972fe8-dc46-4193-bf9b-f52a43030c77": {
       "position": {
-        "x": 437.4755611104815,
-        "y": 701.1574257263678,
+        "x": 805.7532579571441,
+        "y": 552.1828941136871,
         "z": 5000
       },
       "rotation": {
@@ -133,24 +79,8 @@
     "b1275fe4-3522-4d66-b2fb-52501a33a579"
   ],
   "game-view": {
-    "devicesInfo": {
-      "name": "iPhone SE",
-      "type": "device",
-      "width": 375,
-      "height": 667
-    }
-  },
-  "float-window": {
-    "position": {
-      "cc": {
-        "Camera": {
-          "dock": false,
-          "top": null,
-          "bottom": 10,
-          "left": null,
-          "right": 10
-        }
-      }
-    }
+    "scaleValue": 26,
+    "sliderValue": 8,
+    "fullScreen": true
   }
 }
