@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "f2aad539-e5c2-48f2-bd58-10c694a43b6f",
+  "uuid": "6e447c8d-f277-41ce-8966-edb55d79687b",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "gptDiamond"
+    "syncNodeName": "RandomBag"
   }
 }
