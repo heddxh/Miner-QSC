@@ -1,4 +1,4 @@
-import { _decorator, Component, CCInteger, SpriteFrame, Sprite, Enum, Collider2D, find, Vec3, Prefab, instantiate,Node, Contact2DType, Animation, AnimationComponent } from 'cc';
+import { _decorator, Component, CCInteger, SpriteFrame, Sprite, Enum, Collider2D, find, Vec3, Prefab, instantiate,Node, Contact2DType, Animation, AnimationComponent, isCCObject, UITransform } from 'cc';
 import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
@@ -33,7 +33,7 @@ export class OreData extends Component {
 
 
     @property({group:{name:"运动方案"},tooltip:"Modify the Start and End as well Add RigidBody2D if You want to move this node"})
-    private isMoving:boolean = false;
+    public isMoving:boolean = false;
     
     @property({group:{name:"运动方案"},tooltip:"向左移动的最大距离"})
     private moveLeftX:number =0;
@@ -54,19 +54,21 @@ export class OreData extends Component {
     
     private explodeRadium:number = 300;
 
+    private MineMap: Node;
+
     private _count: number = 0;
     private _timeWaitDirectionChange: number = 10;
     private _direction: number = 0;
     private _deltaPos: Vec3 = new Vec3(0, 0, 0);
+
+    private _isCollide:boolean = false;
+    public isStartMoving:boolean = false;
+    public contentSize: { width: number, height: number } = { width: 0, height: 0 };
     
     @property(Prefab)
     private bombPrefab:Prefab;
 
     start(){
-        // 检测大学生碰撞
-        let collider = this.getComponent(Collider2D);
-        collider.on(Contact2DType.BEGIN_CONTACT, this.studentCollide, this);
-
         //为多图矿物随机分配图片
         if(this.isMultiImgs){
             let ran:number=Math.floor(Math.random()*this.imgs.length);
@@ -94,29 +96,27 @@ export class OreData extends Component {
         // 全图随机移动
         if(this.isMoving){
             let ani:Animation = this.getComponent(AnimationComponent);
-            
             if(ani!=null) ani.play();
+
+            this.isStartMoving = true;
+            // this.moveOriX = this.node.getPosition().x;
+            // this.schedule(this.movingLeftRight,0.1);
             
-            this.moveOriX = this.node.getPosition().x;
-            this.schedule(this.movingLeftRight,0.1);
-            // this.schedule(this.movingAround,0.1);
-        }
-    }
-    
-    studentCollide(selfCollider: Collider2D, otherCollider: Collider2D, contact): boolean {
-        if (otherCollider.tag == 2) {
-            return true;
-        } else {
-            return false;
         }
     }
 
-    public movingAround() {
+    update(deltaTime: number) {
+        
+    }
+
+    
+    public movingAround(deltaTime: number) {
         this.lastPosition = this.node.getPosition(); // 为什么这里必须调用返回值而不是传参（哭）
-        console.log(this.lastPosition);
-        if (this.studentCollide) {
+        if (this.isStudentCollison(this.lastPosition)) {
             console.log("碰撞了");
-            this._direction = - Math.PI + this._direction;
+            // FIXME:
+            // this._direction = - Math.PI + this._direction;
+            this.node.setPosition(0, 0, 0);
             if (this._direction > 2 * Math.PI) {
                 this._direction -= 2 * Math.PI;
             } else if (this._direction < 0) {
@@ -127,11 +127,11 @@ export class OreData extends Component {
                 this._direction = randomDirection(this._direction);
                 this._count = 0;
             } else {
-                this._count ++;
+                this._count++;
             }
         }        
-        this._deltaPos.x = Math.cos(this._direction) * this.movingSpeed;
-        this._deltaPos.y = Math.sin(this._direction) * this.movingSpeed;
+        this._deltaPos.x = Math.cos(this._direction) * this.movingSpeed * deltaTime * 10;
+        this._deltaPos.y = Math.sin(this._direction) * this.movingSpeed * deltaTime * 10;
         Vec3.add(this.lastPosition, this.lastPosition, this._deltaPos);
         this.node.setPosition(this.lastPosition);        
 
@@ -146,6 +146,16 @@ export class OreData extends Component {
             return direction;
         }
     }
+    
+    
+    private isStudentCollison(curPos: Vec3) {
+        let MineMap: Node = this.node.parent;
+        this.contentSize = MineMap.getComponent(UITransform).contentSize;
+        if (curPos.x < 10 || curPos.x > this.contentSize.width - 10 || curPos.y < 10 || curPos.y > this.contentSize.height - 10) {
+            return true;
+        } else return false;
+    } 
+        
 
     public movingLeftRight(){
         this.lastPosition = this.node.getPosition();
@@ -166,7 +176,8 @@ export class OreData extends Component {
     public getCaught(){
         //停止乱动
         if(this.isMoving){
-            this.unschedule(this.movingAround);
+            //this.unschedule(this.movingAround);
+            this.isStartMoving = false;
             let ani:Animation = this.getComponent(AnimationComponent);
             if(ani) ani.pause();
         }
