@@ -26,13 +26,16 @@ export class MineController extends Component {
     };
 
 
-    private _contentSize: { width: number, height: number } = { width: 0, height: 0 };
+    public contentSize: { width: number, height: number } = { width: 0, height: 0 };
+
     private _mapGrid: boolean[][] = [];
     private _gridWidth: number = 0;
     private _gridHeight: number = 0;
     private _posOffsetRange: { x: number, y: number } = { x: 0, y: 0 };
     private _columnCount: number = 4;
     private _rowCount: number = 4;  
+    private _oreNodes: Node[] = [];
+    private _movingOreNodes: Node[] = [];
 
     start() {
         this.init();
@@ -44,18 +47,32 @@ export class MineController extends Component {
             this._spawnedOres[this.orePrefabs[oreIndex].name]--;
             this.spawnOre(instantiate(this.orePrefabs[oreIndex]));
         }
-        
+        /* 获取会运动的矿物
+        this._oreNodes = this.node.children;
+        for (let i = 0; i < this._oreNodes.length; i++) {
+            let oreData: OreData = this._oreNodes[i].getComponent(OreData);
+            if (oreData.isMoving) {
+                this._movingOreNodes.push(this._oreNodes[i]);
+            }
+        } */
     }
 
     update(deltaTime: number) {
-        
+        /*
+        for (let i = 0; i < this._movingOreNodes.length; i++) {
+            let oreData: OreData = this._movingOreNodes[i].getComponent(OreData);
+            if (oreData.isStartMoving) {
+                oreData.movingAround();
+            }
+            
+        } */    
     }
 
     init() {
         // 获取边界，生成网格
-        this._contentSize = this.node.getComponent(UITransform).contentSize;
-        this._gridWidth = this._contentSize.width / this._columnCount;
-        this._gridHeight = this._contentSize.height / this._rowCount;
+        this.contentSize = this.node.getComponent(UITransform).contentSize;
+        this._gridWidth = this.contentSize.width / this._columnCount;
+        this._gridHeight = this.contentSize.height / this._rowCount;
         this._posOffsetRange = { x: this._gridWidth / 4, y: this._gridHeight / 4 };
         for (let i = 0; i < this._rowCount; i++) {
             this._mapGrid.push([]);
@@ -82,5 +99,6 @@ export class MineController extends Component {
         ore.setPosition((randomColumn + 0.5) * this._gridWidth + posOffset.x, (randomRow + 0.5) * this._gridHeight + posOffset.y, 0);
         return [randomRow, randomColumn];
     }
+
 }
 
