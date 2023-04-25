@@ -230,7 +230,7 @@
     "isMoving": true,
     "moveLeftX": -50,
     "moveRightX": 100,
-    "movingSpeed": 100,
+    "movingSpeed": 10,
     "bombPrefab": null,
     "_id": ""
   },

@@ -106,6 +106,9 @@ export class OreData extends Component {
     }
 
     update(deltaTime: number) {
+        if (this.isStartMoving) {
+            this.movingAround(deltaTime);
+        }
         
     }
 
@@ -115,8 +118,8 @@ export class OreData extends Component {
         if (this.isStudentCollison(this.lastPosition)) {
             console.log("碰撞了");
             // FIXME:
-            // this._direction = - Math.PI + this._direction;
-            this.node.setPosition(0, 0, 0);
+            this._direction = - Math.PI + this._direction;
+            // this.node.setPosition(200, 200, 0);            
             if (this._direction > 2 * Math.PI) {
                 this._direction -= 2 * Math.PI;
             } else if (this._direction < 0) {
