@@ -247,9 +247,12 @@ export class MineController extends Component {
 
         if (other.tag == 2) {
             //碰墙,直接返回
+            this.stretchVec.multiplyScalar(-1);
+            this.isBack = true;
         } else if (other.tag == 1) {
             //碰矿物，粘连带走
             this.oreNode = other.node;
+            console.log("抓到了：", this.oreNode.name);
             let oreData = this.oreNode.getComponent(OreData);
 
             this.MinerBoyAni.play();
@@ -270,8 +273,6 @@ export class MineController extends Component {
                 this.node.getPosition()
             );
         }
-        this.stretchVec.multiplyScalar(-1);
-        this.isBack = true;
     }
 
     destroyOre() {
