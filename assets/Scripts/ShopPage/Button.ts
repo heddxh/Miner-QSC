@@ -1,5 +1,6 @@
 import { _decorator, Component, director, Node,instantiate ,Button, Label, Sprite,resources, SpriteFrame,find} from 'cc';
 import { GameManager } from '../GameManager';
+import { PlayerData } from '../PlayerData';
 const { ccclass, property } = _decorator;
 
 //前面是用户的道具数量，后者
@@ -16,7 +17,7 @@ export class ShopPage extends Component {
 
     //获取常驻节点和节点上的脚本
     private PlayerDataNode=find('PlayerData');
-    private PD=this.PlayerDataNode.getComponent("PlayerData")
+    private PD=this.PlayerDataNode.getComponent(PlayerData);
 
     //商品
     @property({type:Node})

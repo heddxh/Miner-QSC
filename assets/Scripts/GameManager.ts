@@ -1,5 +1,6 @@
 import { Component, director,game,Game,_decorator,instantiate,Prefab,find,Node, Label} from 'cc';
 import { UIController } from './UIController';
+import { PlayerData } from './PlayerData';
 const { ccclass, property } = _decorator;
 
 
@@ -34,7 +35,7 @@ export class GameManager extends Component{
     private static instance:GameManager = null;
 
     onLoad() {
-        let PD=this.PlayerDataNode.getComponent("PlayerData")
+        let PD=this.PlayerDataNode.getComponent(PlayerData);
         this.setUserName();
         if(GameManager.instance==null){
             //重开新游戏
@@ -60,7 +61,7 @@ export class GameManager extends Component{
     }
 
     setUserName(){
-        let PD=this.PlayerDataNode.getComponent("PlayerData")
+        let PD=this.PlayerDataNode.getComponent(PlayerData)
         let scene=director.getScene();
         let node=scene.getChildByName("Canvas").getChildByName("UIDashBoard").getChildByName("IdBoard").getChildByName("Id");
         node.getComponent(Label).string=PD.UserName;

@@ -1,4 +1,5 @@
 import { _decorator, Component, Node ,director,Button,input, EditBox,log, Prefab,instantiate,find} from 'cc';
+import { PlayerData } from '../PlayerData';
 const { ccclass, property } = _decorator;
 
 let username:string
@@ -45,7 +46,7 @@ export class StartPage extends Component {
         this.node.getChildByName("半透灰").destroy();
         this.node.getChildByName("StartPagePerson").getChildByName("Start").getComponent(Button).interactable = true;
         username=this.UsernameNode.getComponent(EditBox).string
-        this.PD.getComponent("PlayerData").UserName=username
+        this.PD.getComponent(PlayerData).UserName=username
         console.log('username:',username)
     }
 

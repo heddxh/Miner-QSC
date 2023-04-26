@@ -1,5 +1,5 @@
-import { Component, _decorator, Prefab, Node, instantiate, UITransform, Vec3, CCInteger } from 'cc';
-import { OreData } from './OreData';
+import { Component, _decorator, Prefab, Node, instantiate, UITransform, Vec3, find } from 'cc';
+import { PlayerData } from './PlayerData';
 const { ccclass, property } = _decorator;
 
 @ccclass('MineMap')
@@ -10,7 +10,9 @@ export class MineController extends Component {
 
     @property
     public oreCount: number = 12;
-    
+
+    private PlayerDataNode: Node | null = null;
+
     // 矿物数量限制
     private _spawnedOres: { [key: string]: number } = {
         "BareStudent": 1,
@@ -22,7 +24,7 @@ export class MineController extends Component {
         "GptDiamond": 1,
         "GptStudent": 1,
         "RandomBag": 1,
-        "TNT": 10
+        "TNT": 0
     };
 
 
@@ -33,9 +35,7 @@ export class MineController extends Component {
     private _gridHeight: number = 0;
     private _posOffsetRange: { x: number, y: number } = { x: 0, y: 0 };
     private _columnCount: number = 4;
-    private _rowCount: number = 4;  
-    private _oreNodes: Node[] = [];
-    private _movingOreNodes: Node[] = [];
+    private _rowCount: number = 4;
 
     start() {
         this.init();
@@ -47,25 +47,10 @@ export class MineController extends Component {
             this._spawnedOres[this.orePrefabs[oreIndex].name]--;
             this.spawnOre(instantiate(this.orePrefabs[oreIndex]));
         }
-        /* 获取会运动的矿物
-        this._oreNodes = this.node.children;
-        for (let i = 0; i < this._oreNodes.length; i++) {
-            let oreData: OreData = this._oreNodes[i].getComponent(OreData);
-            if (oreData.isMoving) {
-                this._movingOreNodes.push(this._oreNodes[i]);
-            }
-        } */
     }
 
     update(deltaTime: number) {
-        /*
-        for (let i = 0; i < this._movingOreNodes.length; i++) {
-            let oreData: OreData = this._movingOreNodes[i].getComponent(OreData);
-            if (oreData.isStartMoving) {
-                oreData.movingAround();
-            }
-            
-        } */    
+
     }
 
     init() {
@@ -80,6 +65,9 @@ export class MineController extends Component {
                 this._mapGrid[i].push(false);
             }
         }
+
+        this.PlayerDataNode = find("PlayerData");
+        this._spawnedOres["TNT"] = this.PlayerDataNode.getComponent(PlayerData).TNTNum;
     }
     
     spawnOre(ore: Node): [number, number] {
@@ -92,6 +80,7 @@ export class MineController extends Component {
         }
         this._mapGrid[randomRow][randomColumn] = true;
         this.node.addChild(ore);
+
         // 位置偏移
         let posOffset = new Vec3(Math.random() * this._posOffsetRange.x, Math.random() * this._posOffsetRange.y, 0);
         posOffset.x = Math.random() > 0.5 ? posOffset.x : -posOffset.x;

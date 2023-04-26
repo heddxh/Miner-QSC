@@ -116,10 +116,7 @@ export class OreData extends Component {
     public movingAround(deltaTime: number) {
         this.lastPosition = this.node.getPosition(); // 为什么这里必须调用返回值而不是传参（哭）
         if (this.isStudentCollison(this.lastPosition)) {
-            console.log("碰撞了");
-            // FIXME:
             this._direction = - Math.PI + this._direction;
-            // this.node.setPosition(200, 200, 0);            
             if (this._direction > 2 * Math.PI) {
                 this._direction -= 2 * Math.PI;
             } else if (this._direction < 0) {
@@ -154,7 +151,7 @@ export class OreData extends Component {
     private isStudentCollison(curPos: Vec3) {
         let MineMap: Node = this.node.parent;
         this.contentSize = MineMap.getComponent(UITransform).contentSize;
-        if (curPos.x < 10 || curPos.x > this.contentSize.width - 10 || curPos.y < 10 || curPos.y > this.contentSize.height - 10) {
+        if (curPos.x < 30 || curPos.x > this.contentSize.width - 30 || curPos.y < 30 || curPos.y > this.contentSize.height - 30) {
             return true;
         } else return false;
     } 

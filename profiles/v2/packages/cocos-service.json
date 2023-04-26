@@ -5,11 +5,20 @@
       "web-desktop": {
         "configID": "23d967",
         "services": []
+      },
+      "web-mobile": {
+        "configID": "23d967",
+        "services": []
+      },
+      "android": {
+        "configID": "23d967",
+        "services": []
       }
     }
   },
   "builder-options": {
     "configID": "23d967",
-    "services": []
+    "services": [],
+    "__version__": "3.0.6"
   }
 }

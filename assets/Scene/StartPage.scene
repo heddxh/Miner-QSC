@@ -111,7 +111,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 540,
-      "y": 960,
+      "y": 960.0000000000002,
       "z": 0
     },
     "_lrot": {
@@ -194,7 +194,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 960,
+    "_orthoHeight": 960.0000000000001,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -1031,7 +1031,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 329.6,
-      "y": -726,
+      "y": -726.0000000000001,
       "z": 0
     },
     "_lrot": {
@@ -1862,8 +1862,8 @@
     "_target": null,
     "_left": 0,
     "_right": 0,
-    "_top": 5.684341886080802e-14,
-    "_bottom": 5.684341886080802e-14,
+    "_top": 1.7053025658242404e-13,
+    "_bottom": 1.7053025658242404e-13,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
     "_isAbsLeft": true,
@@ -1956,6 +1956,7 @@
     "isStrengthen": false,
     "isLucky": false,
     "isRockAppreciate": false,
+    "score": 0,
     "_id": "89Xo3m5TdBeruJiQVltTOX"
   },
   {
