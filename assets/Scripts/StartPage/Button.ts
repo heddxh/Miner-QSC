@@ -1,64 +1,78 @@
-import { _decorator, Component, Node ,director,Button,input, EditBox,log, Prefab,instantiate,find} from 'cc';
-import { PlayerData } from '../PlayerData';
+import {
+    _decorator,
+    Component,
+    Node,
+    director,
+    Button,
+    input,
+    EditBox,
+    log,
+    Prefab,
+    instantiate,
+    find,
+} from "cc";
+import { PlayerData } from "../PlayerData";
 const { ccclass, property } = _decorator;
 
-let username:string
+let username: string;
 
-@ccclass('StartPage')
+@ccclass("StartPage")
 export class StartPage extends Component {
+    @property({ type: Node })
+    private PD: Node = null;
 
-    @property({type:Node})
-    private PD:Node=null
-
-    @property({type:Prefab})
+    @property({ type: Prefab })
     private description: Prefab = null;
 
-    UsernameNode=null
+    UsernameNode = null;
 
-    onLoad(){
-        let scene=director.getScene().name;
-        if (scene=="StartPage"){
+    onLoad() {
+        let scene = director.getScene().name;
+        if (scene == "StartPage") {
             this.ShowInputbox();
         }
-        this.UsernameNode=this.node.getChildByName("上传框").getChildByName("输入框")
+        this.UsernameNode = this.node
+            .getChildByName("上传框")
+            .getChildByName("输入框");
     }
 
     start() {
-        director.preloadScene("Shop")
+        director.preloadScene("Shop");
     }
 
-    update(deltaTime: number) {
+    update(deltaTime: number) {}
 
-    }
-
-    GoShop(event: Event){
+    GoShop(event: Event) {
         director.loadScene("Shop");
-        
     }
 
-    ShowInputbox(){
-        this.node.getChildByName("StartPagePerson").getChildByName("Start").getComponent(Button).interactable = false;
+    ShowInputbox() {
+        this.node
+            .getChildByName("StartPagePerson")
+            .getChildByName("Start")
+            .getComponent(Button).interactable = false;
     }
 
-    EnterGame(event:Event){
-        
+    EnterGame(event: Event) {
         this.node.getChildByName("上传框").destroy();
         this.node.getChildByName("半透灰").destroy();
-        this.node.getChildByName("StartPagePerson").getChildByName("Start").getComponent(Button).interactable = true;
-        username=this.UsernameNode.getComponent(EditBox).string
-        this.PD.getComponent(PlayerData).UserName=username
-        console.log('username:',username)
+        this.node
+            .getChildByName("StartPagePerson")
+            .getChildByName("Start")
+            .getComponent(Button).interactable = true;
+        username = this.UsernameNode.getComponent(EditBox).string;
+        if (username == "") username = "tomato";
+        this.PD.getComponent(PlayerData).UserName = username;
+        console.log("username:", username);
     }
 
-    Description(event:Event){
+    Description(event: Event) {
         let scene = director.getScene();
-        let parentnode=scene.getChildByName("Canvas")
+        let parentnode = scene.getChildByName("Canvas");
         let node = instantiate(this.description);
 
         scene.addChild(node);
-        node.setPosition(0,0);
-        node.parent=parentnode
+        node.setPosition(0, 0);
+        node.parent = parentnode;
     }
-
 }
-
