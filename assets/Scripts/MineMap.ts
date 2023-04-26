@@ -19,6 +19,9 @@ export class MineController extends Component {
     @property
     public oreCount: number = 12;
 
+    @property
+    public BombNum: number = 3;
+
     private PlayerDataNode: Node | null = null;
 
     // 矿物数量限制
@@ -77,9 +80,7 @@ export class MineController extends Component {
             }
         }
 
-        this.PlayerDataNode = find("PlayerData");
-        this._spawnedOres["TNT"] =
-            this.PlayerDataNode.getComponent(PlayerData).TNTNum;
+        this._spawnedOres["TNT"] = this.BombNum;
     }
 
     spawnOre(ore: Node): [number, number] {

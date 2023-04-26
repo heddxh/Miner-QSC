@@ -77,7 +77,6 @@ export class MineController extends Component {
     //抓到了价值多少的矿物，用于结算(同时用于判断是否携带矿物)
     private ore: number = 0;
     private oreNode: Node;
-    private oreOffset: Vec3;
 
     private isSettlingore: boolean = false;
     //true表示逆时针转动，false顺时针
@@ -87,6 +86,7 @@ export class MineController extends Component {
 
     private colli: Collider2D;
     private ropeSprite: Sprite;
+
 
     start() {
         this.colli = this.getComponentInChildren(Collider2D);
@@ -112,6 +112,10 @@ export class MineController extends Component {
     }
 
     update(deltaTime: number) {
+         if(GameManager.getIsGameOver()){
+             return;
+        }
+
         if (!this.isHookOut) {
             this.node.angle =
                 this.node.angle + this.getAngularSpeed() * deltaTime;
@@ -124,7 +128,7 @@ export class MineController extends Component {
             //如果返回且携带矿物
             if (this.isBack && this.oreNode != null) {
                 this.oreNode.setPosition(
-                    this.node.getPosition().add(this.oreOffset)
+                    this.oreNode.getPosition().add(this.tempVec)
                 );
             }
 
@@ -181,6 +185,8 @@ export class MineController extends Component {
 
     //由按钮调用出钩函数
     hookDown(event: Event, args) {
+        if(GameManager.getIsGameOver())
+            return;
         if (!this.isHookOut) {
             this.hookButton.spriteFrame = this.UseTNTImg;
             this.isHookOut = true;
@@ -247,17 +253,19 @@ export class MineController extends Component {
 
         if (other.tag == 2) {
             //碰墙,直接返回
+            //console.log("碰墙");
             this.stretchVec.multiplyScalar(-1);
             this.isBack = true;
-        } else if (other.tag == 1) {
+        } else if (!this.isBack && other.tag == 1) {
             //碰矿物，粘连带走
             this.oreNode = other.node;
-            console.log("抓到了：", this.oreNode.name);
+            //console.log("抓到了：", this.oreNode.name);
             let oreData = this.oreNode.getComponent(OreData);
 
             this.MinerBoyAni.play();
-
-            this.stretchVec.multiplyScalar(oreData.dragForce);
+            //注意负号，表示乘上阻力后返回
+            this.stretchVec.multiplyScalar(-oreData.dragForce);
+            this.isBack = true;
 
             //矿物被抓到的反应
             oreData.getCaught();
@@ -266,12 +274,6 @@ export class MineController extends Component {
 
             this.ore = oreData.value;
 
-            this.oreOffset = new Vec3(0, 0, 0);
-            Vec3.subtract(
-                this.oreOffset,
-                this.oreNode.getPosition(),
-                this.node.getPosition()
-            );
         }
     }
 

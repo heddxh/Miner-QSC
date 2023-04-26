@@ -96,7 +96,7 @@ export class UIController extends Component {
         .to(0.5,{position:new Vec3(525,838,0)},{easing:'cubicOut'})
         .call(()=>{
             //还需要UI交互
-            director.pause();
+            //director.pause();
         })
         .start();
     }

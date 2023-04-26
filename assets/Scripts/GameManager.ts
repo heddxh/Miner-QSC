@@ -6,6 +6,7 @@ import {
     Prefab,
     find,
     Label,
+    Node
 } from "cc";
 import { UIController } from "./UIController";
 import { PlayerData } from "./PlayerData";
@@ -13,6 +14,7 @@ const { ccclass, property } = _decorator;
 
 @ccclass("GameManager")
 export class GameManager extends Component {
+
     @property({ type: Prefab })
     private description: Prefab = null;
 
@@ -21,13 +23,12 @@ export class GameManager extends Component {
 
     private leftTime: number;
 
-    @property({ group: { name: "关卡设计" }, type: Array })
     private score: number;
 
     private level: number;
 
     //获取常驻节点和节点上的脚本
-    private PlayerDataNode = find("PlayerData");
+    private PlayerDataNode:Node = null;
 
     //技能数据
     public TNTNum: number;
@@ -36,25 +37,33 @@ export class GameManager extends Component {
     public isLucky: boolean;
     public isRockAppreciate: boolean;
 
+    
+    private isGameOver:boolean;
+
     private static instance: GameManager = null;
 
     onLoad() {
-        let PD = this.PlayerDataNode.getComponent(PlayerData);
-        this.setUserName();
+        //this.PlayerDataNode = find("PlayerData");
+        //let PD = this.PlayerDataNode.getComponent(PlayerData);
+        //this.setUserName();
+
+        this.isGameOver = false;
+        
         if (GameManager.instance == null) {
             //重开新游戏
             this.score = 0;
             this.level = 1;
-            this.TNTNum = PD.TNTNum;
-            this.isDiamondPolish = PD.isDiamondPolish;
-            this.isLucky = PD.isLucky;
-            this.isStrengthen = PD.isStrengthen;
-            this.isRockAppreciate = PD.isRockAppreciate;
+            //this.TNTNum = PD.TNTNum;
+            //this.isDiamondPolish = PD.isDiamondPolish;
+            //this.isLucky = PD.isLucky;
+            //this.isStrengthen = PD.isStrengthen;
+            //this.isRockAppreciate = PD.isRockAppreciate;
             GameManager.instance = this;
         } else {
             //进入下一关，关卡开始时进行技能使用
             GameManager.instance.level += 1;
         }
+        
         //等待任务发布的时间后开始游戏
         GameManager.instance.leftTime = GameManager.instance.totalTime;
         UIController.setTime(GameManager.instance.totalTime);
@@ -137,8 +146,16 @@ export class GameManager extends Component {
         return GameManager.instance.isStrengthen;
     }
 
+    public static getIsGameOver():boolean {
+        return GameManager.instance.isGameOver;
+    }
+
     //查看水产介绍，停止计时
+
     private seeIntroduction(event, args) {
+        if(GameManager.instance.isGameOver){
+            return;
+        }
         let scene = director.getScene();
         let parentnode = scene.getChildByName("Canvas");
         let node = instantiate(GameManager.instance.description);
@@ -152,9 +169,11 @@ export class GameManager extends Component {
     private continueGame(event, args) {
         director.resume();
     }
+
     //游戏结束，总分结算
     public static gameOver() {
         //先等动画完成后再pause，此处先禁用玩家下钩等操作
+        GameManager.instance.isGameOver = true;
         UIController.ShowFinalScore(GameManager.instance.score);
     }
 }

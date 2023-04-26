@@ -4,8 +4,15 @@
     "gravity": {
       "y": 0
     },
+    "collisionGroups": [
+      {
+        "index": 1,
+        "name": "Ores"
+      }
+    ],
     "collisionMatrix": {
-      "0": 1
+      "0": 3,
+      "1": 1
     }
   },
   "general": {
