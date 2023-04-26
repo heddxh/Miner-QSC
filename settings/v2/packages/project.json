@@ -3,6 +3,9 @@
   "physics": {
     "gravity": {
       "y": 0
+    },
+    "collisionMatrix": {
+      "0": 1
     }
   },
   "general": {
