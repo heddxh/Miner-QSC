@@ -63,6 +63,10 @@ export class ShopPage extends Component {
     onLoad() {}
 
     start() {
+        // 预加载 GameScene
+        director.preloadScene("GameScene", function () {
+            console.log("GameScene preloaded");
+        });
         //监测手指是否触摸物品
         this.target1.on(
             Node.EventType.TOUCH_START,

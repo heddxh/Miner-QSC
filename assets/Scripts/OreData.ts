@@ -5,16 +5,13 @@ import {
     SpriteFrame,
     Sprite,
     Enum,
-    Collider2D,
     find,
     Vec3,
     Prefab,
     instantiate,
     Node,
-    Contact2DType,
     Animation,
     AnimationComponent,
-    isCCObject,
     UITransform,
 } from "cc";
 import { GameManager } from "./GameManager";
@@ -88,7 +85,6 @@ export class OreData extends Component {
     private _direction: number = 0;
     private _deltaPos: Vec3 = new Vec3(0, 0, 0);
 
-    private _isCollide: boolean = false;
     public isStartMoving: boolean = false;
     public contentSize: { width: number; height: number } = {
         width: 0,

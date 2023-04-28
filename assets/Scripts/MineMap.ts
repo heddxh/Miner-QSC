@@ -8,7 +8,6 @@ import {
     Vec3,
     find
 } from "cc";
-import { PlayerData } from "./PlayerData";
 const { ccclass, property } = _decorator;
 
 @ccclass("MineMap")
@@ -22,8 +21,6 @@ export class MineController extends Component {
     @property
     public BombNum: number = 3;
 
-    private PlayerDataNode: Node | null = null;
-
     // 矿物数量限制
     private _spawnedOres: { [key: string]: number } = {
         BareStudent: 1,
@@ -33,7 +30,7 @@ export class MineController extends Component {
         EarlyEight: 2,
         EarlyTen: 2,
         GptDiamond: 2,
-        GptStudent: 2,
+        GptStudent: 1,
         RandomBag: 2,
         TNT: 0,
     };
