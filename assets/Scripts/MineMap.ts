@@ -6,7 +6,7 @@ import {
     instantiate,
     UITransform,
     Vec3,
-    find,
+    find
 } from "cc";
 import { PlayerData } from "./PlayerData";
 const { ccclass, property } = _decorator;
@@ -27,14 +27,14 @@ export class MineController extends Component {
     // 矿物数量限制
     private _spawnedOres: { [key: string]: number } = {
         BareStudent: 1,
-        CatGoldLarge: 1,
-        CatGoldMiddle: 1,
-        CatGoldSmall: 1,
-        EarlyEight: 1,
-        EarlyTen: 1,
-        GptDiamond: 1,
-        GptStudent: 1,
-        RandomBag: 1,
+        CatGoldLarge: 2,
+        CatGoldMiddle: 2,
+        CatGoldSmall: 2,
+        EarlyEight: 2,
+        EarlyTen: 2,
+        GptDiamond: 2,
+        GptStudent: 2,
+        RandomBag: 2,
         TNT: 0,
     };
 
