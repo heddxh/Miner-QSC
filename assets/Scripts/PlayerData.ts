@@ -3,10 +3,18 @@ const { ccclass, property } = _decorator;
 
 @ccclass("PlayerData")
 export class PlayerData extends Component {
+    //玩家名字
     @property
-    public UserName = "tomato";
+    public playerName = "tomato";
     @property
     public money = 0;
+    
+    //所在关卡信息
+    @property
+    public totalTime: number = 120;
+    public level:number = 1;
+
+    //技能数据
     @property
     public TNTNum = 3;
     @property
@@ -17,10 +25,6 @@ export class PlayerData extends Component {
     public isLucky = false;
     @property
     public isRockAppreciate = false;
-    @property
-    public score = 0;
-
-    private static instance: PlayerData = null;
 
     start() {
         let scene = director.getScene();
@@ -28,6 +32,4 @@ export class PlayerData extends Component {
         director.addPersistRootNode(node);
         console.log("成功持久化 PlayData");
     }
-
-    update(deltaTime: number) {}
 }

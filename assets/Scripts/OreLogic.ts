@@ -13,8 +13,9 @@ import {
     Animation,
     AnimationComponent,
     UITransform,
+    serializeTag,
 } from "cc";
-import { GameManager } from "./GameManager";
+import { GameController } from "./GameController";
 const { ccclass, property } = _decorator;
 
 enum OreType {
@@ -26,8 +27,8 @@ enum OreType {
     Waste,
 }
 
-@ccclass("OreData")
-export class OreData extends Component {
+@ccclass("OreLogic")
+export class OreLogic extends Component {
     @property(CCInteger)
     public value: number = 0;
 
@@ -76,7 +77,7 @@ export class OreData extends Component {
     private randomMinValue: number = 100;
     private randomMaxValue: number = 600;
 
-    private explodeRadium: number = 300;
+    private explodeRadium: number = 260;
 
     private MineMap: Node;
 
@@ -91,8 +92,11 @@ export class OreData extends Component {
         height: 0,
     };
 
-    @property(Prefab)
+    @property({type:Prefab,group:{name:"爆炸素材"}})
     private bombPrefab: Prefab;
+
+    @property({type:SpriteFrame,group:{name:"爆炸素材"}})
+    private brokenCeil:SpriteFrame;
 
     start() {
         //为多图矿物随机分配图片
@@ -214,10 +218,11 @@ export class OreData extends Component {
         switch (this.type) {
             case OreType.Diamond:
                 //钻石涨价技能
-                if (GameManager.getDiamondPolish()) this.value *= 1.5;
+                if (GameController.getDiamondPolish()) this.value *= 1.5;
                 break;
             case OreType.Gold:
                 break;
+            
             case OreType.RandomBag:
                 //随机价格
                 this.value =
@@ -229,69 +234,60 @@ export class OreData extends Component {
                     ) *
                         10;
                 break;
+            
             case OreType.Bomb:
                 //直接爆炸
                 let MineMap = find("Canvas/MineMap");
                 let allMines = MineMap.children;
                 let tntPos = this.node.getWorldPosition();
-
-                let killList = [];
-
-                this.explodeInCircle(killList, allMines, tntPos);
-
-                for (let q in killList) killList[q].destroy();
-
+                this.getComponent(Sprite).spriteFrame = this.brokenCeil;
+                this.explodeInCircle(allMines, tntPos);
                 break;
         }
     }
 
     //用递归实现连环炸(统一用世界坐标)
     private explodeInCircle(
-        killList: Component["node"][],
         searchList: Component["node"][],
         worldcenter: Vec3
     ) {
         //爆炸动画
-        console.log(worldcenter);
-
         let oneBomb: Node = instantiate(this.bombPrefab);
-
         //不能挂在当前parent上，会被看成矿物删掉，可以挂载在其他节点上，但需要进行坐标系变换
         //这里统一用世界坐标系
-        //或者额外判断爆炸动画，不加入销毁列表中
         this.node.parent.addChild(oneBomb);
-        oneBomb.setScale(oneBomb.getScale().multiplyScalar(4));
+        oneBomb.setScale(oneBomb.getScale().multiplyScalar(4.3));
         oneBomb.setWorldPosition(worldcenter);
 
         this.scheduleOnce(() => {
             oneBomb.destroy();
         }, 0.5);
 
+
         for (let q in searchList) {
-            let oreData = searchList[q].getComponent(OreData);
+            if(!searchList[q]) continue;
+            let oreData = searchList[q].getComponent(OreLogic);
             if (!oreData) continue;
 
             let thisPos: Vec3 = oreData.node.getWorldPosition();
-
             //注意不要更改thisPos
             let distance: number = Vec3.clone(thisPos)
                 .subtract(worldcenter)
                 .length();
-
-            //在爆炸范围内，且没放入killList,(并排除自己this，自己作为毛的形式被捞上去),同时还不是动画,就保存在销毁列表中
+            //在爆炸范围内,排除自己this,自己作为毛的形式被捞上去,同时还不是动画,就直接销毁
             if (
                 searchList[q].uuid != this.node.uuid &&
-                distance < this.explodeRadium &&
-                !killList.find((nowelement) => {
-                    return nowelement.uuid == searchList[q].uuid;
-                })
+                distance < this.explodeRadium
             ) {
-                killList.push(searchList[q]);
                 //连环炸
                 if (oreData.type == OreType.Bomb) {
-                    console.log(thisPos);
-                    this.explodeInCircle(killList, searchList, thisPos);
+                    this.scheduleOnce(()=>{
+                        this.explodeInCircle(searchList, thisPos)
+                    },0.3);
                 }
+                //毁坏
+                searchList[q].destroy();
+                
             }
         }
     }

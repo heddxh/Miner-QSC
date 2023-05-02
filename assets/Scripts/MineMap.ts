@@ -11,7 +11,7 @@ import {
 const { ccclass, property } = _decorator;
 
 @ccclass("MineMap")
-export class MineController extends Component {
+export class MineMap extends Component {
     @property({ type: [Prefab], group: { name: "矿物预制体" } })
     public orePrefabs: Prefab[] = [];
 

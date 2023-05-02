@@ -2,7 +2,7 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
-  "uuid": "6e858a1c-3cd1-4eaf-8fe5-a490019427c6",
+  "uuid": "0dc76214-c618-476d-8c60-fc6dbcc1c90d",
   "files": [
     ".json",
     ".png"
@@ -10,14 +10,14 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "6e858a1c-3cd1-4eaf-8fe5-a490019427c6@6c48a",
-      "displayName": "a猫猫黄金 4",
+      "uuid": "0dc76214-c618-476d-8c60-fc6dbcc1c90d@6c48a",
+      "displayName": "松鼠黄金",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "6e858a1c-3cd1-4eaf-8fe5-a490019427c6",
+        "imageUuidOrDatabaseUri": "0dc76214-c618-476d-8c60-fc6dbcc1c90d",
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,20 +34,20 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "6e858a1c-3cd1-4eaf-8fe5-a490019427c6@f9941",
-      "displayName": "a猫猫黄金 4",
+      "uuid": "0dc76214-c618-476d-8c60-fc6dbcc1c90d@f9941",
+      "displayName": "松鼠黄金",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
         "rotated": false,
-        "offsetX": 22,
-        "offsetY": -22,
-        "trimX": 206,
-        "trimY": 205,
-        "width": 172,
-        "height": 173,
+        "offsetX": 21,
+        "offsetY": -22.5,
+        "trimX": 204,
+        "trimY": 206,
+        "width": 174,
+        "height": 172,
         "rawWidth": 540,
         "rawHeight": 539,
         "borderTop": 0,
@@ -61,17 +61,17 @@
         "meshType": 0,
         "vertices": {
           "rawPosition": [
+            -87,
             -86,
-            -86.5,
             0,
-            86,
-            -86.5,
-            0,
+            87,
             -86,
-            86.5,
             0,
+            -87,
             86,
-            86.5,
+            0,
+            87,
+            86,
             0
           ],
           "indexes": [
@@ -83,38 +83,38 @@
             3
           ],
           "uv": [
-            206,
-            334,
+            204,
+            333,
             378,
-            334,
-            206,
+            333,
+            204,
             161,
             378,
             161
           ],
           "nuv": [
-            0.3814814814814815,
+            0.37777777777777777,
             0.2987012987012987,
             0.7,
             0.2987012987012987,
-            0.3814814814814815,
-            0.6196660482374768,
+            0.37777777777777777,
+            0.6178107606679035,
             0.7,
-            0.6196660482374768
+            0.6178107606679035
           ],
           "minPos": [
+            -87,
             -86,
-            -86.5,
             0
           ],
           "maxPos": [
+            87,
             86,
-            86.5,
             0
           ]
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "6e858a1c-3cd1-4eaf-8fe5-a490019427c6@6c48a",
+        "imageUuidOrDatabaseUri": "0dc76214-c618-476d-8c60-fc6dbcc1c90d@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +129,6 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
-    "redirect": "6e858a1c-3cd1-4eaf-8fe5-a490019427c6@f9941"
+    "redirect": "0dc76214-c618-476d-8c60-fc6dbcc1c90d@f9941"
   }
 }

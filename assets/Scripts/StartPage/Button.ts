@@ -12,6 +12,7 @@ import {
     find,
 } from "cc";
 import { PlayerData } from "../PlayerData";
+import { SceneController } from "../SceneController";
 const { ccclass, property } = _decorator;
 
 let username: string;
@@ -37,13 +38,13 @@ export class StartPage extends Component {
     }
 
     start() {
-        director.preloadScene("Shop");
+        SceneController.preloadScene("Shop");
     }
 
     update(deltaTime: number) {}
 
     GoShop(event: Event) {
-        director.loadScene("Shop");
+        SceneController.loadScene("Shop");
     }
 
     ShowInputbox() {
@@ -62,7 +63,7 @@ export class StartPage extends Component {
             .getComponent(Button).interactable = true;
         username = this.UsernameNode.getComponent(EditBox).string;
         if (username == "") username = "tomato";
-        this.PD.getComponent(PlayerData).UserName = username;
+        this.PD.getComponent(PlayerData).playerName = username;
         console.log("username:", username);
     }
 

@@ -18,16 +18,13 @@
         "__id__": 2
       },
       {
-        "__id__": 71
-      },
-      {
         "__id__": 69
       }
     ],
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 73
+      "__id__": 71
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -58,7 +55,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 74
+      "__id__": 72
     },
     "_id": "add39862-a51d-46af-a894-00d524a899d3"
   },
@@ -194,7 +191,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 960,
+    "_orthoHeight": 959.9999999999999,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -1031,7 +1028,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 329.6,
-      "y": -726,
+      "y": -726.0000000000001,
       "z": 0
     },
     "_lrot": {
@@ -1949,70 +1946,15 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "UserName": "tomato",
-    "money": 0,
+    "playerName": "tomato",
+    "money": 150,
+    "totalTime": 120,
     "TNTNum": 3,
     "isDiamondPolish": false,
     "isStrengthen": false,
     "isLucky": false,
     "isRockAppreciate": false,
-    "score": 0,
     "_id": "89Xo3m5TdBeruJiQVltTOX"
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "SceneManager",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 1
-    },
-    "_children": [],
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 72
-      }
-    ],
-    "_prefab": null,
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": "a4wkYo+bxGQLrlMgsa7iRp"
-  },
-  {
-    "__type__": "62818/ukFhNQ6b1hxUu/SGq",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 71
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "_id": "5bV8ZrPlFGkYVWVjYDgbQ3"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -2030,22 +1972,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 75
+      "__id__": 73
     },
     "shadows": {
-      "__id__": 76
+      "__id__": 74
     },
     "_skybox": {
-      "__id__": 77
+      "__id__": 75
     },
     "fog": {
-      "__id__": 78
+      "__id__": 76
     },
     "octree": {
-      "__id__": 79
+      "__id__": 77
     },
     "lightProbeInfo": {
-      "__id__": 80
+      "__id__": 78
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

@@ -13,14 +13,14 @@ import {
     Prefab,
     AnimationComponent,
 } from "cc";
-import { GameManager } from "./GameManager";
-import { OreData } from "./OreData";
+import { GameController } from "./GameController";
+import { OreLogic } from "./OreLogic";
 import { UIController } from "./UIController";
 
 const { ccclass, property } = _decorator;
 
 @ccclass("MinerController")
-export class MineController extends Component {
+export class MinerController extends Component {
     @property({ serializable: true })
     private startAngle: number = -40;
     @property
@@ -106,13 +106,13 @@ export class MineController extends Component {
         this.TNTText.enabled = false;
 
         //开局技能的开关
-        if (GameManager.getStrengthen) {
+        if (GameController.getStrengthen) {
             this.hookoutSpeed *= this.affectOfStrengthenDose;
         }
     }
 
     update(deltaTime: number) {
-         if(GameManager.getIsGameOver()){
+         if(GameController.getIsGameOver()){
              return;
         }
 
@@ -185,7 +185,7 @@ export class MineController extends Component {
 
     //由按钮调用出钩函数
     hookDown(event: Event, args) {
-        if(GameManager.getIsGameOver())
+        if(GameController.getIsGameOver())
             return;
         if (!this.isHookOut) {
             this.hookButton.spriteFrame = this.UseTNTImg;
@@ -200,15 +200,15 @@ export class MineController extends Component {
 
             //处理炸药
             this.TNTText.enabled = true;
-            let tnt = GameManager.getTNTNum();
+            let tnt = GameController.getTNTNum();
 
             if (tnt <= 0) this.TNTText.color = Color.RED;
             else this.TNTText.color = Color.WHITE;
 
             this.TNTText.string = "剩余炸药:" + tnt.toString();
         } else if (!this.isSettlingore) {
-            //鞭炮技能，向GameManager要数据
-            let tnt = GameManager.getTNTNum();
+            //鞭炮技能，向GameController要数据
+            let tnt = GameController.getTNTNum();
             if (tnt > 0) {
                 //炸毁物体
                 if (this.oreNode == null) return;
@@ -222,9 +222,9 @@ export class MineController extends Component {
                     tempBomb.destroy();
                 }, 0.5);
 
-                GameManager.setTNTNum(tnt - 1);
+                GameController.setTNTNum(tnt - 1);
                 this.TNTText.string =
-                    "剩余炸药:" + GameManager.getTNTNum().toString();
+                    "剩余炸药:" + GameController.getTNTNum().toString();
 
                 //快速返回
                 if (!this.isBack) this.stretchVec.multiplyScalar(-1);
@@ -232,17 +232,7 @@ export class MineController extends Component {
                 this.isBack = true;
             } else {
                 //炸药不足提示
-                this.hookButton.color = Color.RED;
-                let count = 0;
-                this.schedule(
-                    function () {
-                        count++;
-                        this.hookButton.color =
-                            count % 2 == 0 ? Color.RED : Color.WHITE;
-                    },
-                    0.1,
-                    6
-                );
+                UIController.redWarning(this.hookButton);
             }
         }
     }
@@ -260,7 +250,7 @@ export class MineController extends Component {
             //碰矿物，粘连带走
             this.oreNode = other.node;
             //console.log("抓到了：", this.oreNode.name);
-            let oreData = this.oreNode.getComponent(OreData);
+            let oreData = this.oreNode.getComponent(OreLogic);
 
             this.MinerBoyAni.play();
             //注意负号，表示乘上阻力后返回

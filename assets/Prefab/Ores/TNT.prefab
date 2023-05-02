@@ -40,8 +40,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -400.004,
-      "y": -69.484,
+      "x": 146.864,
+      "y": 929.002,
       "z": 0
     },
     "_lrot": {
@@ -164,6 +164,10 @@
       "__uuid__": "1941638d-6da2-4798-95f6-e2547010cbc1",
       "__expectedType__": "cc.Prefab"
     },
+    "brokenCeil": {
+      "__uuid__": "5fe7d558-0822-4b1c-aa8f-543b4eec542f@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "_id": ""
   },
   {
@@ -277,7 +281,6 @@
       "__id__": 0
     },
     "fileId": "30VvKPBSVH2LaXhwbbbSBX",
-    "instance": null,
     "targetOverrides": null
   }
 ]

@@ -1,5 +1,6 @@
-import {Color, Component, Label,  Sprite,  tween, Vec3,  _decorator,Node,director, easing} from 'cc';
-import { GameManager } from './GameManager';
+import {Color, Component, Label,  Sprite,  tween, Vec3,  _decorator,Node,director, easing, find} from 'cc';
+import { GameController } from './GameController';
+import { SceneController } from './SceneController';
 const { ccclass, property } = _decorator;
 
 @ccclass('UIController')
@@ -43,13 +44,13 @@ export class UIController extends Component {
 
     start() {
         UIController.instance.LuckyIcon.color = UIController.getColor(
-            GameManager.getLucky());
+            GameController.getLucky());
         UIController.instance.StrengthenIcon.color = UIController.getColor(
-            GameManager.getStrengthen());
+            GameController.getStrengthen());
         UIController.instance.DiamondPolishIcon.color = UIController.getColor(
-            GameManager.getDiamondPolish());
+            GameController.getDiamondPolish());
         UIController.instance.RockAppreciateIcon.color = UIController.getColor(
-            GameManager.getRockAppreciate());
+            GameController.getRockAppreciate());
         UIController.instance.ScoreAni = UIController.instance.ScoreAniLabel.node;
     }
 
@@ -83,7 +84,7 @@ export class UIController extends Component {
         .to(0.2,{position:new Vec3(480,1672,0),scale:new Vec3(2,2,2)})
         .to(0.6,{position:new Vec3(251,1661,0),scale:Vec3.ZERO})
         .call(()=>{
-            GameManager.setProfit(scoreAdded);
+            GameController.setProfit(scoreAdded);
         })
         .start();
     }
@@ -93,12 +94,28 @@ export class UIController extends Component {
         UIController.instance.FinalScore.string = finalScore.toString();
 
         tween().target(UIController.instance.FinalScoreBoard)
-        .to(0.5,{position:new Vec3(525,838,0)},{easing:'cubicOut'})
+        .to(0.5,{position:new Vec3(525,838,0)},{easing:"cubicOut"})
         .call(()=>{
             //还需要UI交互
             //director.pause();
         })
         .start();
+    }
+
+    //某项数值不足的提示
+    public static redWarning(icon:Sprite){
+        icon.color = Color.RED;
+        let interval:number = 100;
+        let count:number = 0;
+
+        let temp = setInterval(()=>{
+            count++;
+            icon.color = count%2==1?Color.WHITE:Color.RED;
+            if(count >= 5){
+                clearInterval(temp);
+                icon.color=Color.WHITE;
+            }
+        },interval);
     }
 }
 
