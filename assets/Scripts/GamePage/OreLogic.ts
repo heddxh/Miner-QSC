@@ -15,6 +15,7 @@ import {
     UITransform,
     serializeTag,
 } from "cc";
+import { AudioController } from "../AudioController";
 import { GameController } from "./GameController";
 const { ccclass, property } = _decorator;
 
@@ -219,10 +220,15 @@ export class OreLogic extends Component {
             case OreType.Diamond:
                 //钻石涨价技能
                 if (GameController.getDiamondPolish()) this.value *= 1.5;
+                //抓到钻石的音效
+                AudioController.playCatchDiamond();
                 break;
+                
             case OreType.Gold:
+                //抓黄金音效
+                AudioController.playCatchGold();
                 break;
-            
+
             case OreType.RandomBag:
                 //随机价格
                 this.value =
@@ -233,8 +239,10 @@ export class OreLogic extends Component {
                             10
                     ) *
                         10;
+                
+                AudioController.playCatchGold();
                 break;
-            
+
             case OreType.Bomb:
                 //直接爆炸
                 let MineMap = find("Canvas/MineMap");
@@ -243,6 +251,12 @@ export class OreLogic extends Component {
                 this.getComponent(Sprite).spriteFrame = this.brokenCeil;
                 this.explodeInCircle(allMines, tntPos);
                 break;
+
+            case OreType.Rock:
+                AudioController.playStone();
+                break;
+
+            
         }
     }
 
@@ -251,7 +265,7 @@ export class OreLogic extends Component {
         searchList: Component["node"][],
         worldcenter: Vec3
     ) {
-        //爆炸动画
+        //爆炸动画与音效
         let oneBomb: Node = instantiate(this.bombPrefab);
         //不能挂在当前parent上，会被看成矿物删掉，可以挂载在其他节点上，但需要进行坐标系变换
         //这里统一用世界坐标系
@@ -262,6 +276,8 @@ export class OreLogic extends Component {
         this.scheduleOnce(() => {
             oneBomb.destroy();
         }, 0.5);
+
+        AudioController.playRoofBomb();
 
 
         for (let q in searchList) {

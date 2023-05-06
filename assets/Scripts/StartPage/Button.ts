@@ -11,6 +11,7 @@ import {
     instantiate,
     find,
 } from "cc";
+import { AudioController } from "../AudioController";
 import { PlayerData } from "../PlayerData";
 import { SceneController } from "../SceneController";
 const { ccclass, property } = _decorator;
@@ -55,6 +56,9 @@ export class StartPage extends Component {
     }
 
     EnterGame(event: Event) {
+
+        AudioController.playButtonClick();
+
         this.node.getChildByName("上传框").destroy();
         this.node.getChildByName("半透灰").destroy();
         this.node

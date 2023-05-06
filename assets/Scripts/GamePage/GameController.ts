@@ -6,10 +6,14 @@ import {
     Prefab,
     find,
     Label,
+    UIOpacity,
+    NodeEventType,
 } from "cc";
 import { UIController } from "./UIController";
-import { PlayerData } from "./PlayerData";
-import { SceneController } from "./SceneController";
+import { PlayerData } from "../PlayerData";
+import { SceneController } from "../SceneController";
+import { AudioController } from "../AudioController";
+import { MinerController } from "./MinerController";
 const { ccclass, property } = _decorator;
 
 @ccclass("GameController")
@@ -26,9 +30,13 @@ export class GameController extends Component {
     //关卡、技能数据直接保存在PlayerData中;
     private playerData:PlayerData = null;
 
+    @property(UIOpacity)
+    private TipBoardOpacity:UIOpacity = null;
 
-    
     private isGameOver:boolean;
+
+    //每局游戏注册MinerController
+    private miner:MinerController=null;
 
     private static instance: GameController = null;
 
@@ -46,16 +54,55 @@ export class GameController extends Component {
             this.destroy();
         }
         
+        //展示初始UI信息
         ins.setUserName();
-        ins.isGameOver = false;
-        
-        //等待任务发布的时间后开始游戏
         ins.leftTime = ins.playerData.totalTime;
         UIController.setTime(ins.leftTime);
 
-        ins.schedule(ins.setTime, 1);
+
+        //等待用户点击提示后开始游戏
+        ins.isGameOver=true;
+        ins.TipBoardOpacity.node.on(NodeEventType.TOUCH_START,ins.macroHookDown,ins);
+
+        //第一次进入游戏会多一个提示，点击后才开始游戏
+        if(ins.playerData.isFirstTimePlay){
+            ins.TipBoardOpacity.opacity=255;
+        }else{
+            ins.TipBoardOpacity.opacity=255;
+            //直接开始游戏
+            ins.letGameBegin();
+        }
 
     }
+
+    //注册矿工组件，用于控制下钩
+    public static registerMiner(miner:MinerController){
+        GameController.instance.miner=miner;
+    }
+
+    private macroHookDown(){
+        let ins=GameController.instance;
+        if(ins.playerData.isFirstTimePlay){
+            ins.playerData.isFirstTimePlay=false;
+            ins.letGameBegin();
+        }
+        else{
+            //调用MinerController的下钩
+            ins.miner.hookDown(null,0);
+        }
+    }
+
+    private letGameBegin(){
+        let ins=GameController.instance;
+
+        //去除灰雾
+        ins.TipBoardOpacity.opacity=0;
+        //开始响应下钩
+        ins.isGameOver = false;
+        //开始计时
+        ins.schedule(ins.setTime, 1);
+    }
+
 
     private dataInitialize(){
         let data = GameController.getPlayerData();
@@ -89,13 +136,17 @@ export class GameController extends Component {
     }
 
     private setTime() {
-        GameController.instance.leftTime--;
-        if (GameController.instance.leftTime <= 0) {
+        let leftT=--GameController.instance.leftTime;
+        
+        if (leftT <= 0) {
             this.unschedule(this.setTime);
             GameController.gameOver();
             return;
         }
-        UIController.setTime(GameController.instance.leftTime);
+        //倒计时音效
+        if(leftT == 3) AudioController.playTimeOut();
+
+        UIController.setTime(leftT);
     }
 
     public static setProfit(profit: number) {
@@ -170,6 +221,10 @@ export class GameController extends Component {
     //游戏结束，总分结算
     public static gameOver() {
         //先等动画完成后再pause，此处先禁用玩家下钩等操作
+        AudioController.playGameOver();
+
+        //可直接控制注册的miner属性
+        //GameController.instance.miner.node.active=false;
         GameController.instance.isGameOver = true;
         UIController.ShowFinalScore(GameController.getPlayerData().money);
     }

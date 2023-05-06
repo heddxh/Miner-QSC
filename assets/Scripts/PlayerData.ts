@@ -3,6 +3,11 @@ const { ccclass, property } = _decorator;
 
 @ccclass("PlayerData")
 export class PlayerData extends Component {
+
+    //记录玩家是否是第一次游玩(以是否到过提示下矿来判断)
+    @property
+    public isFirstTimePlay = true;
+
     //玩家名字
     @property
     public playerName = "tomato";
@@ -27,9 +32,7 @@ export class PlayerData extends Component {
     public isRockAppreciate = false;
 
     start() {
-        let scene = director.getScene();
-        let node = scene.getChildByName("PlayerData");
-        director.addPersistRootNode(node);
+        director.addPersistRootNode(this.node);
         console.log("成功持久化 PlayData");
     }
 }

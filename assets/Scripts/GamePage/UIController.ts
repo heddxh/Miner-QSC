@@ -1,6 +1,6 @@
 import {Color, Component, Label,  Sprite,  tween, Vec3,  _decorator,Node,director, easing, find} from 'cc';
 import { GameController } from './GameController';
-import { SceneController } from './SceneController';
+import { SceneController } from '../SceneController';
 const { ccclass, property } = _decorator;
 
 @ccclass('UIController')
@@ -52,6 +52,8 @@ export class UIController extends Component {
         UIController.instance.RockAppreciateIcon.color = UIController.getColor(
             GameController.getRockAppreciate());
         UIController.instance.ScoreAni = UIController.instance.ScoreAniLabel.node;
+
+        UIController.instance.FinalScoreBoard.active=false;
     }
 
     private static getColor(isActive:boolean){
@@ -90,13 +92,15 @@ export class UIController extends Component {
     }
 
     public static ShowFinalScore(finalScore:number){
-        
+
+        UIController.instance.FinalScoreBoard.active=true;
+
         UIController.instance.FinalScore.string = finalScore.toString();
 
         tween().target(UIController.instance.FinalScoreBoard)
         .to(0.5,{position:new Vec3(525,838,0)},{easing:"cubicOut"})
         .call(()=>{
-            //还需要UI交互
+            //还需要UI交互和音效等，因此放弃pause
             //director.pause();
         })
         .start();

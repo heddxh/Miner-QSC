@@ -11,8 +11,9 @@ import {
 
 import { PlayerData } from "../PlayerData";
 import { SceneController } from "../SceneController";
-import { UIController } from "../UIController";
+import { UIController } from "../GamePage/UIController";
 import { CommodityData } from "./CommodityData";
+import { AudioController } from "../AudioController";
 const { ccclass, property } = _decorator;
 
 
@@ -107,6 +108,9 @@ export class ShopLogic extends Component {
                         this.PD.isRockAppreciate=true;
                         break;
                 }
+
+                AudioController.playBuyItem();
+                
                 this.PD.money-=this.commoDatas[index].price;
                 this.renewMoney();
                 
