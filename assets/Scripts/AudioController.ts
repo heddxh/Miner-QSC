@@ -42,14 +42,21 @@ export class AudioController extends Component {
     @property(AudioSource)
     private UIAudio:AudioSource;
 
-    private static instance:AudioController;
+    private static instance:AudioController=null;
     
     start() {
-        this.gameAudio.loop=false;
-        //持久化音频播放节点，game和UI
-        director.addPersistRootNode(this.node);
-        director.addPersistRootNode(this.UIAudio.node);
-        AudioController.instance=this;
+        if(AudioController.instance==null){
+            this.gameAudio.loop=false;
+            this.gameAudio.volume=0.7;
+            this.UIAudio.volume=0.7;
+            //持久化音频播放节点，game和UI
+            director.addPersistRootNode(this.node);
+            director.addPersistRootNode(this.UIAudio.node);
+            AudioController.instance=this;
+        }
+        else {
+            this.destroy();
+        }
     }
 
     //提供播放UI音频的函数
@@ -76,6 +83,7 @@ export class AudioController extends Component {
             AudioController.instance.tntBomb;
         AudioController.instance.gameAudio.play();
     }
+
     public static playRope(){
         AudioController.instance.gameAudio.clip=
             AudioController.instance.rope;
@@ -122,7 +130,7 @@ export class AudioController extends Component {
             AudioController.instance.buyItem;
         AudioController.instance.gameAudio.play();
     }
-    
+
 
 }
 

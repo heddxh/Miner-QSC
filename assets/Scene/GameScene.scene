@@ -80,6 +80,9 @@
         "__id__": 115
       },
       {
+        "__id__": 31
+      },
+      {
         "__id__": 141
       },
       {
@@ -105,7 +108,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 540,
-      "y": 959.9999999999998,
+      "y": 960,
       "z": 0
     },
     "_lrot": {
@@ -606,9 +609,6 @@
       },
       {
         "__id__": 41
-      },
-      {
-        "__id__": 31
       }
     ],
     "_active": true,
@@ -994,10 +994,10 @@
     "_restitution": 0,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": -1.2000000000000006,
-      "y": -26.49999999999999
+      "x": 0.39999999999999947,
+      "y": -31.39999999999999
     },
-    "_radius": 22.1,
+    "_radius": 17.1,
     "_id": "a78dizyRhO54FGI/3qaLgg"
   },
   {
@@ -1133,6 +1133,12 @@
       "__uuid__": "58991852-6f35-4000-a903-3e7c3496f0c4@f4f6a",
       "__expectedType__": "cc.SpriteFrame"
     },
+    "boyNode": {
+      "__id__": 15
+    },
+    "boyRightBy": 100,
+    "boyLeftBy": -60,
+    "boyHorizontalSpeed": 30,
     "bombPrefab": {
       "__uuid__": "1941638d-6da2-4798-95f6-e2547010cbc1",
       "__expectedType__": "cc.Prefab"
@@ -1140,12 +1146,12 @@
     "hookButton": {
       "__id__": 30
     },
-    "HookDownImg": {
-      "__uuid__": "31fa4724-0032-4733-953d-50adbcd8420c@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
     "UseTNTImg": {
       "__uuid__": "44f24b05-9834-4440-b961-1bf8e3580ec8@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "HookDownImg": {
+      "__uuid__": "31fa4724-0032-4733-953d-50adbcd8420c@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "TNTText": {
@@ -1201,7 +1207,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 15
+      "__id__": 2
     },
     "_children": [
       {
@@ -1223,8 +1229,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 502.713,
-      "y": 310.509,
+      "x": 404.76300000000003,
+      "y": 380.47399999999993,
       "z": 0
     },
     "_lrot": {
@@ -3635,8 +3641,8 @@
     "_target": null,
     "_left": 5.684341886080802e-14,
     "_right": 5.684341886080802e-14,
-    "_top": -1.7053025658242404e-13,
-    "_bottom": -1.7053025658242404e-13,
+    "_top": -5.684341886080802e-14,
+    "_bottom": -5.684341886080802e-14,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
     "_isAbsLeft": true,

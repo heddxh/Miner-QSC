@@ -12,6 +12,7 @@ import {
     instantiate,
     Prefab,
     AnimationComponent,
+    dynamicAtlasManager,
 } from "cc";
 import { AudioController } from "../AudioController";
 import { GameController } from "./GameController";
@@ -47,15 +48,31 @@ export class MinerController extends Component {
     @property({ group: { name: "钩子相关" }, type: SpriteFrame })
     private hookClosingImg: SpriteFrame;
 
+    //整个人的左右移动
+    @property({ group: { name: "矿工水平移动" }, type: Node })
+    private boyNode: Node;
+    @property({ group: { name: "矿工水平移动" }})
+    private boyRightBy: number =0;
+    @property({ group: { name: "矿工水平移动" }})
+    private boyLeftBy: number =0;
+    @property({ group: { name: "矿工水平移动" }})
+    private boyHorizontalSpeed: number =0;
+    
+    private boyDirect:number =1;
+    private boyOriX: number =0;
+    
+
     @property(Prefab)
     private bombPrefab: Prefab;
 
+    //因为有注册，之后可以全部移到GameController中
     @property({ group: { name: "按钮相关" }, type: Sprite })
     private hookButton: Sprite;
     @property({ group: { name: "按钮相关" }, type: SpriteFrame })
-    private HookDownImg: SpriteFrame;
-    @property({ group: { name: "按钮相关" }, type: SpriteFrame })
     private UseTNTImg: SpriteFrame;
+    @property({ group: { name: "按钮相关" }, type: SpriteFrame })
+    private HookDownImg:SpriteFrame;
+
     @property({ group: { name: "按钮相关" }, type: Label })
     private TNTText: Label;
 
@@ -94,15 +111,19 @@ export class MinerController extends Component {
         //注册矿工
         GameController.registerMiner(this);
 
+        //设置初始物理侦听器
         this.colli = this.getComponentInChildren(Collider2D);
         this.colli.on(Contact2DType.BEGIN_CONTACT, this.hookBack, this);
 
+        //记录方位初始值(所有移动按偏移量计算)
         this.amplitude = this.endAngle - this.startAngle;
 
         this.originalAngle = this.node.angle;
         this.originalPos = this.node.getPosition();
 
         this.hookNodeOriPos = this.hookNode.getPosition();
+        this.boyOriX = this.boyNode.position.x;
+
 
         let rope = this.node.getChildByName("rope");
         this.ropeSprite = rope.getComponent(Sprite);
@@ -122,8 +143,11 @@ export class MinerController extends Component {
         }
 
         if (!this.isHookOut) {
+            //钩子的运动(复合运动hh)
             this.node.angle =
                 this.node.angle + this.getAngularSpeed() * deltaTime;
+            
+            this.boyHorizontalMove(deltaTime);
         } else {
             this.tempVec = new Vec3(0, 0, 0);
             //控制出钩速度
@@ -159,6 +183,21 @@ export class MinerController extends Component {
             }
         }
     }
+
+    //在没出钩的时候才左右水平移动
+    boyHorizontalMove(dt:number){
+        let posi:Vec3=this.boyNode.getPosition();
+        let displace:number = this.boyHorizontalSpeed*dt;
+        //判断方向
+        if(posi.x>this.boyOriX+this.boyRightBy){
+            this.boyDirect=-1;
+        }else if(posi.x<this.boyOriX+this.boyLeftBy){
+            this.boyDirect=1;
+        }
+        posi.add3f(this.boyDirect*displace,0,0);
+        this.boyNode.setPosition(posi);
+    }
+
 
     getAngularSpeed(): number {
         if (this.node.angle > this.endAngle) {
