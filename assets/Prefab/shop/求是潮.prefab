@@ -288,7 +288,9 @@
     "_disabledSprite": null,
     "_duration": 0.1,
     "_zoomScale": 1.2,
-    "_target": null,
+    "_target": {
+      "__id__": 2
+    },
     "_id": ""
   },
   {
@@ -767,6 +769,7 @@
       "__id__": 0
     },
     "fileId": "914YAhza1LzIaDhCak3vgb",
+    "instance": null,
     "targetOverrides": null
   }
 ]

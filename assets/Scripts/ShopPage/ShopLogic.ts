@@ -7,6 +7,7 @@ import {
     Sprite,
     SpriteFrame,
     find,
+    Button
 } from "cc";
 
 import { PlayerData } from "../PlayerData";
@@ -31,6 +32,10 @@ export class ShopLogic extends Component {
     //已售罄图标
     @property({ type: SpriteFrame })
     private sold_out: SpriteFrame = null;
+
+    //商品的普通图标
+    @property({ type: [SpriteFrame] })
+    private icon: SpriteFrame[] = [];
 
     @property({ type: Label })
     private moneyLabel: Label = null;
@@ -91,39 +96,88 @@ export class ShopLogic extends Component {
         //买得起并且还有剩余
         if(this.commoDatas[index].leftNum>0){
             if(this.PD.money >= this.commoDatas[index].price){
+                if(index!=0){
+                    this.commodities[index].getChildByName("priceTag").getComponent(Label).string="取消"
+                }
                 switch(index){
                     case 0:
                         this.PD.TNTNum++;
+                        this.PD.money-=this.commoDatas[index].price;
                         break;
                     case 1:
-                        this.PD.isDiamondPolish=true;
-                        break;
+                            this.PD.isDiamondPolish=true;
+                            this.PD.money-=this.commoDatas[index].price;
+                            break;
                     case 2:
-                        this.PD.isStrengthen=true;
-                        break;
+                            this.PD.isStrengthen=true;
+                            this.PD.money-=this.commoDatas[index].price;
+                            break;
                     case 3:
-                        this.PD.isLucky=true;
-                        break;
+                            this.PD.isLucky=true;
+                            this.PD.money-=this.commoDatas[index].price;
+                            break;
                     case 4:
-                        this.PD.isRockAppreciate=true;
-                        break;
+                            this.PD.isRockAppreciate=true;
+                            this.PD.money-=this.commoDatas[index].price;
+                            break;
                 }
 
                 AudioController.playBuyItem();
-                
-                this.PD.money-=this.commoDatas[index].price;
                 this.renewMoney();
+                
                 
                 //已售罄
                 if((--this.commoDatas[index].leftNum) <= 0){
                     this.commodities[index].getChildByName("icon")
                     .getComponent(Sprite).spriteFrame = this.sold_out;
                 }
+
+                if(this.commoDatas[0].leftNum==0){
+                    this.commodities[0].getChildByName("绿框").getComponent(Button).interactable=false;
+                }
             }else{
                 //余额不足
                 this.setMsg("你小子没钱了还在这鬼混，去去去");
-                UIController.redWarning(this.moneyLabel.node.getParent().getComponent(Sprite));
+                    UIController.redWarning(this.moneyLabel.node.getParent().getComponent(Sprite));
             }
+        }else{
+            switch(index){
+                case 0:
+                    
+                case 1:
+                    if(this.PD.isDiamondPolish){
+                        this.PD.isDiamondPolish=false;
+                        this.PD.money+=this.commoDatas[index].price;
+                    }
+                    break;
+                case 2:
+                    if(this.PD.isStrengthen){
+                        this.PD.isStrengthen=false;
+                        this.PD.money+=this.commoDatas[index].price;
+                    }
+                    break;
+                case 3:
+                    if(this.PD.isLucky){
+                        this.PD.isLucky=false;
+                        this.PD.money+=this.commoDatas[index].price;
+                    }
+                    break;
+                case 4:
+                    if(this.PD.isRockAppreciate){
+                        this.PD.isRockAppreciate=false;
+                        this.PD.money+=this.commoDatas[index].price;
+                    }
+                    break;
+            }
+
+            AudioController.playBuyItem();
+            this.renewMoney();
+
+            this.commoDatas[index].leftNum++;
+            this.commodities[index].getChildByName("priceTag")
+                    .getComponent(Label).string="$ "+this.commoDatas[index].price.toString();
+            this.commodities[index].getChildByName("icon")
+                    .getComponent(Sprite).spriteFrame = this.icon[index];
         }
 
     }
