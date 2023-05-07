@@ -21,7 +21,7 @@ export class PlayerData extends Component {
 
     //技能数据
     @property
-    public TNTNum = 3;
+    public TNTNum = 0;
     @property
     public isDiamondPolish = false;
     @property
@@ -31,8 +31,19 @@ export class PlayerData extends Component {
     @property
     public isRockAppreciate = false;
 
+    //判断是否已经游玩过，根据UserId,可以刷新记录
+    private static hasCreate:boolean=false;
     start() {
-        director.addPersistRootNode(this.node);
-        console.log("成功持久化 PlayData");
+        if(!PlayerData.hasCreate){
+            
+            director.addPersistRootNode(this.node);
+            console.log("成功持久化 PlayData");
+            PlayerData.hasCreate=false;
+
+        }else{
+
+            this.destroy();
+            
+        }
     }
 }

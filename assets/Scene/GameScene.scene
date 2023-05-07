@@ -2758,7 +2758,7 @@
     "node": {
       "__id__": 45
     },
-    "_enabled": false,
+    "_enabled": true,
     "__prefab": null,
     "orePrefabs": [
       {
