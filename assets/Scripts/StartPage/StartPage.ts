@@ -26,14 +26,19 @@ export class StartPage extends Component {
     @property({ type: Prefab })
     private description: Prefab = null;
 
+    @property({type:Node})
+    private inputBlock:Node = null;
+
     UsernameNode = null;
 
     onLoad() {
         let scene = director.getScene().name;
-        if (scene == "StartPage") {
+        
+        if (scene == "StartPage" && PlayerData.hasPlayed==false) {
             this.ShowInputbox();
         }
-        this.UsernameNode = this.node
+
+        this.UsernameNode = this.inputBlock
             .getChildByName("上传框")
             .getChildByName("输入框");
     }
@@ -53,18 +58,20 @@ export class StartPage extends Component {
             .getChildByName("StartPagePerson")
             .getChildByName("Start")
             .getComponent(Button).interactable = false;
+        this.inputBlock.active=true;
     }
 
     EnterGame(event: Event) {
 
         AudioController.playButtonClick();
 
-        this.node.getChildByName("上传框").destroy();
-        this.node.getChildByName("半透灰").destroy();
+        this.inputBlock.active=false;
+
         this.node
             .getChildByName("StartPagePerson")
             .getChildByName("Start")
             .getComponent(Button).interactable = true;
+        
         username = this.UsernameNode.getComponent(EditBox).string;
         if (username == "") username = "tomato";
         this.PD.getComponent(PlayerData).playerName = username;

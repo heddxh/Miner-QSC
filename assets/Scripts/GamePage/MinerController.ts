@@ -335,6 +335,7 @@ export class MinerController extends Component {
     settleore() {
         //先加上钱再说，防止在显摆成果时去世
         if (this.oreNode != null) {
+            GameController.setProfit(this.ore);
             UIController.setScoreAni(this.ore);
             AudioController.playBonus();
             //销毁矿物

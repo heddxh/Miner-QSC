@@ -1,4 +1,4 @@
-import {Color, Component, Label,  Sprite,  tween, Vec3,  _decorator,Node,director, easing, find} from 'cc';
+import {Color, Component, Label,  Sprite,  tween, Vec3,  _decorator,Node,director, easing, find, NodeEventType} from 'cc';
 import { GameController } from './GameController';
 import { SceneController } from '../SceneController';
 const { ccclass, property } = _decorator;
@@ -30,6 +30,9 @@ export class UIController extends Component {
     private FinalScoreBoard:Node;
     @property(Label)
     private FinalScore:Label;
+    
+    @property(Node)
+    private submitButton:Node;
 
     private ScoreAni:Node;
 
@@ -43,17 +46,19 @@ export class UIController extends Component {
     }
 
     start() {
-        UIController.instance.LuckyIcon.color = UIController.getColor(
-            GameController.getLucky());
-        UIController.instance.StrengthenIcon.color = UIController.getColor(
-            GameController.getStrengthen());
-        UIController.instance.DiamondPolishIcon.color = UIController.getColor(
-            GameController.getDiamondPolish());
-        UIController.instance.RockAppreciateIcon.color = UIController.getColor(
-            GameController.getRockAppreciate());
-        UIController.instance.ScoreAni = UIController.instance.ScoreAniLabel.node;
+        let ins = UIController.instance;
 
-        UIController.instance.FinalScoreBoard.active=false;
+        ins.LuckyIcon.color = UIController.getColor(
+            GameController.getLucky());
+        ins.StrengthenIcon.color = UIController.getColor(
+            GameController.getStrengthen());
+        ins.DiamondPolishIcon.color = UIController.getColor(
+            GameController.getDiamondPolish());
+        ins.RockAppreciateIcon.color = UIController.getColor(
+            GameController.getRockAppreciate());
+        ins.ScoreAni = ins.ScoreAniLabel.node;
+        
+        ins.FinalScoreBoard.active=false;
     }
 
     private static getColor(isActive:boolean){
@@ -86,9 +91,16 @@ export class UIController extends Component {
         .to(0.2,{position:new Vec3(480,1672,0),scale:new Vec3(2,2,2)})
         .to(0.6,{position:new Vec3(251,1661,0),scale:Vec3.ZERO})
         .call(()=>{
-            GameController.setProfit(scoreAdded);
+            UIController.setScore(GameController.getPlayerData().money);
         })
         .start();
+    }
+
+
+    //以下是已经封装好的方法
+
+    public static showToast(msg:string){
+
     }
 
     public static ShowFinalScore(finalScore:number){

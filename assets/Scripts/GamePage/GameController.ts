@@ -41,6 +41,8 @@ export class GameController extends Component {
     private static instance: GameController = null;
 
     onLoad() {
+        SceneController.preloadScene("RankPage");
+
         let ins = GameController.instance;
 
         if (ins == null) {
@@ -157,7 +159,6 @@ export class GameController extends Component {
 
     public static setProfit(profit: number) {
         GameController.getPlayerData().money+=profit;
-        UIController.setScore(GameController.getPlayerData().money);
     }
 
     public static getTNTNum(): number {
@@ -232,10 +233,17 @@ export class GameController extends Component {
         //可直接控制注册的miner属性
         //GameController.instance.miner.node.active=false;
         GameController.instance.isGameOver = true;
+        
         UIController.ShowFinalScore(GameController.getPlayerData().money);
     }
 
     public static showEndingScene(){
         SceneController.loadSettlingScoreScene(GameController.getPlayerData().money);
+    }
+
+
+    private goToRank(event:Event){
+        console.log("ToRankPage");
+        SceneController.loadScene("RankPage");
     }
 }

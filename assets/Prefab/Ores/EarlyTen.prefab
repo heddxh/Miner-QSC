@@ -205,7 +205,7 @@
       "__id__": 9
     },
     "value": 20,
-    "dragForce": 0.3,
+    "dragForce": 0.2,
     "type": 4,
     "isMultiImgs": false,
     "imgs": [],

@@ -150,7 +150,7 @@
       "__id__": 7
     },
     "value": 200,
-    "dragForce": 0.2,
+    "dragForce": 0.15,
     "type": 0,
     "isMultiImgs": true,
     "imgs": [
@@ -281,6 +281,7 @@
       "__id__": 0
     },
     "fileId": "e8BEkdnKhLnLr4i+Mv6pcB",
+    "instance": null,
     "targetOverrides": null
   }
 ]

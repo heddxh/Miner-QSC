@@ -11,6 +11,10 @@ export class PlayerData extends Component {
     //玩家名字
     @property
     public playerName = "tomato";
+
+    //玩家的userId
+    private userId:string = "";
+
     @property
     public money = 0;
     
@@ -31,19 +35,34 @@ export class PlayerData extends Component {
     @property
     public isRockAppreciate = false;
 
+    @property
+    public static userIdLocalKey="QSCMinerUserId";
+    @property
+    public static highScoreLocalKey="QSCMinerHistoryHigh";
+
     //判断是否已经游玩过，根据UserId,可以刷新记录
-    private static hasCreate:boolean=false;
+    public static hasPlayed:boolean=false;
+
     start() {
-        if(!PlayerData.hasCreate){
+
+
+        if(!PlayerData.hasPlayed){
             
             director.addPersistRootNode(this.node);
             console.log("成功持久化 PlayData");
-            PlayerData.hasCreate=false;
+            PlayerData.hasPlayed=true;
 
         }else{
-
             this.destroy();
-            
         }
+    }
+
+    //创建本地的UserId
+    public setUserId(id:string){
+        this.userId=id;
+    }
+
+    public getUserId(){
+        return this.userId;
     }
 }

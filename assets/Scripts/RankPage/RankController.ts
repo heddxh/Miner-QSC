@@ -1,4 +1,7 @@
-import { _decorator, Component, Node, Prefab, Label } from 'cc';
+import { _decorator, Component, Node, Prefab, Label,find, instantiate, tween, Vec3} from 'cc';
+import { UIController } from '../GamePage/UIController';
+import { PlayerData } from '../PlayerData';
+import { SceneController } from '../SceneController';
 const { ccclass, property } = _decorator;
 
 export type User={
@@ -23,32 +26,80 @@ export class RankController extends Component {
 
     //玩家得分文本
     @property(Label)
-    private userScoreLabel:Label;
+    private curScoreLabel:Label;
+    @property(Label)
+    private hisScoreLabel:Label;
+
     
-    //玩家超越百分比文本
+
+    //玩家超越百分比和排名文本
     @property(Label)
     private transcendPercentLabel:Label;
     
+    @property(Label)
+    private transcendRankLabel:Label;
+
+
     //按玩家得分段位进行评语
     @property(Label)
     private judgement:Label;
 
-    start() {
+    @property(Node)
+    private rewardBoard:Node;
 
+    @property(Label)
+    private rewardBoardId:Label;
+
+    @property(Label)
+    private rewardBoardRank:Label;
+
+    private static instance:RankController=null;
+
+    start() {
+        let ins=RankController.instance;
+        if(ins==null){
+            ins=this;
+        }else{
+            this.destroy();
+        }
+        ins.rewardBoard.active=false;
     }
 
+    public static showTwoScore(now:number,history:number){
+        let ins=RankController.instance;
+        ins.curScoreLabel.string=now.toString();
+        ins.hisScoreLabel.string=history.toString();
+    }
+
+
     //显示整个排行榜
-    public static createRank(users:User[]){
-        for(let q in users){
-            users[q].rank;
-            users[q].username;
-            users[q].score;
+    public static showWholeRank(users:User[]){
+        let ins=RankController.instance;
+
+        for(let q=0;q<users.length;q++){
+            let one:Node=null;
+            if(q%2==1){
+                one=instantiate(ins.oneRecordOdd);
+            }else{
+                one=instantiate(ins.oneRecordEven);
+            }
+            one.getChildByName("RankNumberLabel")
+            .getComponent(Label).string = users[q].rank.toString();
+            
+            one.getChildByName("RankNameLabel")
+            .getComponent(Label).string = users[q].username.toString();
+            
+            one.getChildByName("RankScoreLabel")
+            .getComponent(Label).string = "$"+users[q].score.toString();
+            
+            ins.RankParentNode.addChild(one);
         }
     }
 
-    //显示当前用户的排行
-    public static createUserRank(currentRank:number){
-
+    //显示玩家超越百分比和排名
+    public static showUserRank(currentRank:number,per:number){
+        RankController.instance.transcendPercentLabel.string=per.toString()+"%";
+        RankController.instance.transcendRankLabel.string="您的历史最高名次:第"+currentRank.toString()+"名";
     }
 
     //正在等待服务器响应，显示转圈
@@ -66,10 +117,47 @@ export class RankController extends Component {
 
     }
 
+    //点击显示兑奖码
+    showReward(id:string,rank:number){
+        let ins=RankController.instance;
+        ins.rewardBoard.active=true;
+
+        ins.rewardBoardRank.string=rank.toString();
+        ins.rewardBoardId.string=id;
+
+        tween().target(ins.rewardBoard)
+        .to(0.5,{position:new Vec3(0,-92.307,0)},{easing:"cubicOut"})
+        .start();
+    }
+
+    closeReward(){
+        tween().target(RankController.instance.rewardBoard)
+        .to(0.5,{position:new Vec3(0,-2040.029,0)},{easing:"cubicOut"})
+        .call(()=>{
+            RankController.instance.rewardBoard.active=false;
+        })
+        .start();
+    }
+
+
     //点击重新游戏
     replay(event,arg){
-
+        SceneController.loadScene("StartPage");
     }
-    
+
+    //点击拷贝
+    public static copy(content:string){
+        try{
+            var aux=document.createElement("input");
+            aux.setAttribute("value",content);
+            document.body.appendChild(aux);
+            aux.select();
+            document.execCommand("copy");
+            document.body.removeChild(aux);
+            UIController.showToast("复制成功!");
+        }catch(err){
+            UIController.showToast("复制失败，请手动复制");
+        }
+    }
 }
 
