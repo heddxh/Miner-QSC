@@ -23,11 +23,12 @@ export class StartPage extends Component {
     @property({ type: Node })
     private PD: Node = null;
 
-    @property({ type: Prefab })
-    private description: Prefab = null;
+    @property({type:[Node]})
+    private description:Node[] = [];
 
     @property({type:Node})
     private inputBlock:Node = null;
+
 
     UsernameNode = null;
 
@@ -78,13 +79,23 @@ export class StartPage extends Component {
         console.log("username:", username);
     }
 
-    Description(event: Event) {
-        let scene = director.getScene();
-        let parentnode = scene.getChildByName("Canvas");
-        let node = instantiate(this.description);
-
-        scene.addChild(node);
-        node.setPosition(0, 0);
-        node.parent = parentnode;
+    Description(event: Event,customEventData: string) {
+        let index:number = parseInt(customEventData)-1;
+        switch(index){
+            case 0: 
+                this.description[0].active=true;
+                break;
+            case 1:
+                this.description[0].active=false;
+                this.description[1].active=true;
+                break;
+            case 2:
+                this.description[2].active=true;
+                this.description[1].active=false;
+                break;
+            case 3:
+                this.description[2].active=false;
+                break;
+        }
     }
 }
