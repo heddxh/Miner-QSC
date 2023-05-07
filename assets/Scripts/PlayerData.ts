@@ -23,7 +23,7 @@ export class PlayerData extends Component {
     public level:number = 1;
 
     //不同关卡的总时间
-    public static LevelTotalTimes:number[]=[5,];
+    public static LevelTotalTimes:number[]=[30,];
 
     //技能数据
     @property

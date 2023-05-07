@@ -2260,6 +2260,7 @@
     ],
     "oreCount": 15,
     "BombNum": 3,
+    "isContinuous": true,
     "_id": "5eEt1xy4NPbo9y6XevIjHC"
   },
   {

@@ -124,9 +124,13 @@ export class MineMap extends Component {
                     let oreIndex = Math.floor(Math.random() * 10);
                     let ore = instantiate(this.orePrefabs[oreIndex]);
                     let gridPos = this.spawnOre(ore);
-                    console.log(gridPos);
+                    tween()
+                        .target(ore)
+                        .by(1.0, { angle: 360 }) 
+                        .start();
+                    // console.log(gridPos);
                     this.mapGridLeft.splice(this.mapGridLeft.indexOf({ r: gridPos[0], c: gridPos[1] }));
-                    console.log(this.mapGridLeft);
+                    // console.log(this.mapGridLeft);
                     console.log("生成了：" + ore.name);
                 }
             }
@@ -178,10 +182,13 @@ export class MineMap extends Component {
 
         // 注册父节点改变事件以监听是否上钩(包括爆炸)
         ore.on(Node.EventType.NODE_DESTROYED, () => {
-            this.mapGrid[randomRow][randomColumn] = false;
-            this.mapGridLeft.push({ r: randomRow, c: randomColumn });
-            console.log(ore.name + "被销毁 " + randomRow + "," + randomColumn);
-            console.log(this.mapGridLeft);
+            if (!GameController.getIsGameOver()) {
+                // 游戏开始后才计入
+                this.mapGrid[randomRow][randomColumn] = false;
+                this.mapGridLeft.push({ r: randomRow, c: randomColumn });
+                console.log(ore.name + "被销毁 " + randomRow + "," + randomColumn);
+                // console.log(this.mapGridLeft);
+            }
         }); 
 
         // 位置偏移
