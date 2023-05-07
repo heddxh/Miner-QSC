@@ -1,6 +1,8 @@
 import { _decorator, Component, director, CCInteger } from "cc";
 const { ccclass, property } = _decorator;
 
+
+
 @ccclass("PlayerData")
 export class PlayerData extends Component {
 
@@ -23,7 +25,7 @@ export class PlayerData extends Component {
     public level:number = 1;
 
     //不同关卡的总时间
-    public static LevelTotalTimes:number[]=[30,];
+    public static LevelTotalTimes:number[]=[5,];
 
     //技能数据
     @property

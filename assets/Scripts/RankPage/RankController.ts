@@ -54,6 +54,13 @@ export class RankController extends Component {
     @property(Label)
     private rewardBoardRank:Label;
 
+
+    @property(Node)
+    private LoadingNode:Node;
+
+    @property(Node)
+    private LoadingFailNode:Node;
+
     private static instance:RankController=null;
 
     onLoad() {
@@ -103,17 +110,23 @@ export class RankController extends Component {
 
     //正在等待服务器响应，显示转圈
     public static showLoading(){
-
+        let ins=RankController.instance;
+        ins.LoadingFailNode.active=false;
+        ins.LoadingNode.active=true;
     }
 
     //服务器响应成功，取消转圈
     public static successLoading(){
-
+        let ins=RankController.instance;
+        ins.LoadingFailNode.active=false;
+        ins.LoadingNode.active=false;
     }
 
     //服务器响应失败，也取消转圈，但显示失败信息
     public static failLoading(){
-
+        let ins=RankController.instance;
+        ins.LoadingNode.active=false;
+        ins.LoadingFailNode.active=true;
     }
 
     //点击显示兑奖码
@@ -153,9 +166,9 @@ export class RankController extends Component {
             aux.select();
             document.execCommand("copy");
             document.body.removeChild(aux);
-            UIController.showToast("复制成功!");
+            UIController.showToast("复制成功!",1000);
         }catch(err){
-            UIController.showToast("复制失败，请手动复制");
+            UIController.showToast("复制失败，请手动复制",1000);
         }
     }
 }

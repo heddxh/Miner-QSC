@@ -3,5 +3,8 @@
   "uuid": "b4bf1ce2-6a68-4397-ad73-4399edadfab4",
   "creator": {
     "version": "3.7.2"
+  },
+  "dependencies": {
+    "@sentry/browser": "^7.51.0"
   }
 }
