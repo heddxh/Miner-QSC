@@ -6,8 +6,9 @@ import {
     instantiate,
     UITransform,
     Vec3,
-    find
+    tween
 } from "cc";
+import { GameController } from "./GameController";
 const { ccclass, property } = _decorator;
 
 @ccclass("MineMap")
@@ -35,7 +36,12 @@ export class MineMap extends Component {
         TNT: 0,
     };
 
-    public contentSize: { width: number; height: number } = {
+    // 石头变钻石技能
+    private _isRockAppreciate: boolean = false;
+    private _rockNodes: Node[] = [];
+    private _diamondIndex: number = 0;
+
+    private contentSize: { width: number; height: number } = {
         width: 0,
         height: 0,
     };
@@ -50,18 +56,60 @@ export class MineMap extends Component {
     start() {
         this.init();
         let oreIndex: number = 0;
+        let ore: Node;
         for (let i = 0; i < this.oreCount; i++) {
             do {
                 oreIndex = Math.floor(Math.random() * 10);
             } while (this._spawnedOres[this.orePrefabs[oreIndex].name] <= 0);
             this._spawnedOres[this.orePrefabs[oreIndex].name]--;
-            this.spawnOre(instantiate(this.orePrefabs[oreIndex]));
+            ore = instantiate(this.orePrefabs[oreIndex]);
+            this.spawnOre(ore);
+            // 保存生成的石头
+            if (this.orePrefabs[oreIndex].name == "EarlyEight" || this.orePrefabs[oreIndex].name == "EarlyTen") 
+                this._rockNodes.push(ore);
+        };
+        
+    }
+
+    update(deltaTime: number) {
+        if (!GameController.getIsGameOver()) {
+            //游戏进行中
+
+            // 石头变钻石技能
+            if (this._isRockAppreciate && this._rockNodes.length > 0) {
+                this._isRockAppreciate = false;
+                console.log("早八，给我变！");
+                let randomIndex = Math.floor(Math.random() * this._rockNodes.length);
+                let rockChangedNode = this._rockNodes[randomIndex];
+                let pos: Vec3 = rockChangedNode.getPosition();
+
+                // 播放动画tween
+                let tweenRotate = tween()
+                    .target(rockChangedNode)
+                    .by(1.0, { angle: 360 }) // 旋转一圈
+                    .call (() => {
+                        rockChangedNode.destroy();
+                        let diamond = instantiate(this.orePrefabs[this._diamondIndex])
+                        this.node.addChild(diamond);
+                        diamond.setPosition(pos);
+                    })
+                let tweenScale = tween()
+                    .target(rockChangedNode)
+                    .by(1.0, { scale: new Vec3(-0.5, -0.5, 0) }) // 扩大一倍
+                tween(rockChangedNode).parallel(tweenRotate, tweenScale).start();
+            }
         }
     }
 
-    update(deltaTime: number) {}
-
     init() {
+        // 找到钻石预置体下标
+        for (let i = 0; i < this.orePrefabs.length; i++) {
+            if (this.orePrefabs[i].name == "GptDiamond") {
+                this._diamondIndex = i;
+                break;
+            }
+        }
+
         // 获取边界，生成网格
         this.contentSize = this.node.getComponent(UITransform).contentSize;
         this._gridWidth = this.contentSize.width / this._columnCount;
@@ -77,7 +125,12 @@ export class MineMap extends Component {
             }
         }
 
+        // TNT 数量
         this._spawnedOres["TNT"] = this.BombNum;
+
+        // 是否启用石头变钻石技能
+        this._isRockAppreciate = GameController.getRockAppreciate();
+        console.log("石头变钻石技能：" + this._isRockAppreciate);
     }
 
     spawnOre(ore: Node): [number, number] {
