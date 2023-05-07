@@ -5,10 +5,11 @@ import { SceneController } from '../SceneController';
 const { ccclass, property } = _decorator;
 
 export type User={
+    ser:number;
     rank:number; 
     username:string; 
     score:number;
-
+    time:string;
 }
 
 @ccclass('RankController')
@@ -55,13 +56,10 @@ export class RankController extends Component {
 
     private static instance:RankController=null;
 
-    start() {
-        let ins=RankController.instance;
-        if(ins==null){
-            ins=this;
-        }else{
-            this.destroy();
-        }
+    onLoad() {
+        //不是单例模式，只不过方便类外调用
+        let ins=RankController.instance=this;
+        
         ins.rewardBoard.active=false;
     }
 
@@ -83,6 +81,7 @@ export class RankController extends Component {
             }else{
                 one=instantiate(ins.oneRecordEven);
             }
+            //设置一条记录
             one.getChildByName("RankNumberLabel")
             .getComponent(Label).string = users[q].rank.toString();
             

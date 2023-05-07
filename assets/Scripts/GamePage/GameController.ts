@@ -43,17 +43,22 @@ export class GameController extends Component {
     onLoad() {
         SceneController.preloadScene("RankPage");
 
-        let ins = GameController.instance;
-
+        this.playerData = find("PlayerData").getComponent(PlayerData);
+        
+        //进入下一关,关卡开始时进行技能使用(更新序列化信息，不是单例)
+        let ins = GameController.instance = this;
+        
+        /*
         if (ins == null) {
             //重开新游戏,获得游戏数据节点
-            this.playerData = find("PlayerData").getComponent(PlayerData);
-            ins = GameController.instance = this;
+            
         } else {
-            //进入下一关，关卡开始时进行技能使用
-            ins.playerData.level += 1;
-            this.destroy();
+            
+            ins.playerData= find("PlayerData").getComponent(PlayerData);
+            
+            ins = GameController.instance = this;
         }
+        */
         
         //展示初始UI信息
         ins.setUserName();
@@ -69,8 +74,9 @@ export class GameController extends Component {
         if(ins.playerData.isFirstTimePlay){
             ins.TipBoardOpacity.opacity=255;
         }else{
-            ins.TipBoardOpacity.opacity=255;
+            ins.TipBoardOpacity.opacity=0;
             //直接开始游戏
+            console.log("Let game Begin!");
             ins.letGameBegin();
         }
 
@@ -105,20 +111,6 @@ export class GameController extends Component {
     }
 
 
-    //玩家数据彻底刷新，在游戏失败后才使用
-    private dataInitialize(){
-        let data = GameController.getPlayerData();
-        data.TNTNum=0;
-        data.isDiamondPolish = data.isLucky = data.isRockAppreciate = data.isStrengthen = false;
-        data.level=1;
-        data.totalTime = 30;
-    }
-    //玩家数据关卡间刷新
-    private dataToNextLevel(){
-        let data = GameController.getPlayerData();
-        data.isDiamondPolish = data.isLucky = data.isRockAppreciate = data.isStrengthen = false;
-        data.level++;
-    }
 
     public static getPlayerData(){
         return GameController.instance.playerData;

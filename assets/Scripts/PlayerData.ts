@@ -1,4 +1,4 @@
-import { _decorator, Component, director } from "cc";
+import { _decorator, Component, director, CCInteger } from "cc";
 const { ccclass, property } = _decorator;
 
 @ccclass("PlayerData")
@@ -15,13 +15,15 @@ export class PlayerData extends Component {
     //玩家的userId
     private userId:string = "";
 
-    @property
     public money = 0;
     
     //所在关卡信息
-    @property
-    public totalTime: number = 120;
+    public totalTime: number = 5;
+    
     public level:number = 1;
+
+    //不同关卡的总时间
+    public static LevelTotalTimes:number[]=[5,];
 
     //技能数据
     @property
@@ -40,22 +42,39 @@ export class PlayerData extends Component {
     @property
     public static highScoreLocalKey="QSCMinerHistoryHigh";
 
-    //判断是否已经游玩过，根据UserId,可以刷新记录
-    public static hasPlayed:boolean=false;
+    //判断是否已经实例化过，根据UserId,可以刷新记录
+    public static hasInit:boolean=false;
 
     start() {
-
-
-        if(!PlayerData.hasPlayed){
-            
+        if(!PlayerData.hasInit){
+            //第一次游玩
             director.addPersistRootNode(this.node);
             console.log("成功持久化 PlayData");
-            PlayerData.hasPlayed=true;
-
+            PlayerData.hasInit=true;
         }else{
+            //例如Unity，持久化节点在二次进入场景时又会生成一个重复的持久节点，要删去
             this.destroy();
         }
     }
+
+    //玩家数据彻底刷新，在新的一局才使用
+    public dataInitialize(){
+        let data = this;
+        data.TNTNum=0;
+        data.isDiamondPolish = data.isLucky = data.isRockAppreciate = data.isStrengthen = false;
+        data.level=1;
+        data.totalTime = PlayerData.LevelTotalTimes[0];
+        //开局150块钱
+        data.money=150;
+    }
+
+    //玩家数据关卡间刷新
+    public dataToNextLevel(){
+        let data = this;
+        data.isDiamondPolish = data.isLucky = data.isRockAppreciate = data.isStrengthen = false;
+        data.level++;
+    }
+
 
     //创建本地的UserId
     public setUserId(id:string){

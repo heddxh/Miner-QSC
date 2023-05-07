@@ -20,8 +20,9 @@ let username: string;
 
 @ccclass("StartPage")
 export class StartPage extends Component {
-    @property({ type: Node })
-    private PD: Node = null;
+
+    @property({ type: PlayerData })
+    private PD: PlayerData = null;
 
     @property({type:[Node]})
     private description:Node[] = [];
@@ -35,10 +36,10 @@ export class StartPage extends Component {
     onLoad() {
         let scene = director.getScene().name;
         
-        if (scene == "StartPage" && PlayerData.hasPlayed==false) {
+        if (scene == "StartPage" && PlayerData.hasInit==false) {
             this.ShowInputbox();
         }
-
+        
         this.UsernameNode = this.inputBlock
             .getChildByName("上传框")
             .getChildByName("输入框");
@@ -46,9 +47,11 @@ export class StartPage extends Component {
 
     start() {
         SceneController.preloadScene("Shop");
+        //延迟寻找留下的真playerdata,并为之初始化
+        this.PD = find("PlayerData").getComponent(PlayerData);
+        this.PD.dataInitialize();
     }
 
-    update(deltaTime: number) {}
 
     GoShop(event: Event) {
         SceneController.loadScene("Shop");
@@ -75,7 +78,7 @@ export class StartPage extends Component {
         
         username = this.UsernameNode.getComponent(EditBox).string;
         if (username == "") username = "tomato";
-        this.PD.getComponent(PlayerData).playerName = username;
+        this.PD.playerName = username;
         console.log("username:", username);
     }
 

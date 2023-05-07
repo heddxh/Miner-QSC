@@ -39,10 +39,8 @@ export class UIController extends Component {
     private static instance:UIController = null;
 
     onLoad() {
-        if(UIController.instance == null){
-            UIController.instance = this;
-        }else return;
-
+        //始终要更新ins为this(因为上面挂载了真正的序列化数据)，不是单例模式
+        UIController.instance = this;
     }
 
     start() {
@@ -100,7 +98,7 @@ export class UIController extends Component {
     //以下是已经封装好的方法
 
     public static showToast(msg:string){
-
+        
     }
 
     public static ShowFinalScore(finalScore:number){

@@ -65,6 +65,8 @@ export class Messenger extends Component {
             body:JSON.stringify(userInfo),
         }).then(res=>res.json()).then(
         (data)=>{
+            console.log(data);
+            data=data.data;
             //结束转圈
             RankController.successLoading();
 
