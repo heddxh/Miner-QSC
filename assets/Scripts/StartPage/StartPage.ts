@@ -10,6 +10,7 @@ import {
     Prefab,
     instantiate,
     find,
+    Scene,
 } from "cc";
 import { AudioController } from "../AudioController";
 import { PlayerData } from "../PlayerData";
@@ -106,4 +107,9 @@ export class StartPage extends Component {
                 break;
         }
     }
+    
+    gotoRank(){
+        SceneController.loadScene("RankPage");
+    }
+    
 }

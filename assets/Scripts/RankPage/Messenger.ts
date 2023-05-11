@@ -32,7 +32,14 @@ export class Messenger extends Component {
 
         //获取可能已有的ID
         let userIds=sys.localStorage.getItem(PlayerData.userIdLocalKey);
-        if(userIds==null) userIds="";
+
+        //如果没有，随机生成一个
+        if(userIds==null){
+            userIds=this.randUserId();
+            console.log(userIds);
+            sys.localStorage.setItem(PlayerData.userIdLocalKey,userIds);
+        }
+
         this.PD.setUserId(userIds);
 
         
@@ -56,6 +63,17 @@ export class Messenger extends Component {
         //上传数据
         this.submit();
         
+    }
+
+
+    //随机生成用户ID
+    randUserId():string{
+        let res:string="";
+
+        for(let q=0;q<10;q++){
+            res = res.concat(String.fromCharCode(65 + Math.floor(Math.random()*52)));
+        }
+        return res;
     }
 
 
@@ -95,7 +113,7 @@ export class Messenger extends Component {
     
                 //展示当前玩家排行
                 RankController.showUserRank(data.user.rank,
-                (data.total-data.user.rank+1)/data.total/100);
+                (data.total-data.user.rank+1)/data.total*100);
 
                 this.historyRank=data.user.rank;
     

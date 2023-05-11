@@ -1137,8 +1137,8 @@
       "__id__": 15
     },
     "boyRightBy": 100,
-    "boyLeftBy": -60,
-    "boyHorizontalSpeed": 40,
+    "boyLeftBy": -80,
+    "boyHorizontalSpeed": 50,
     "bombPrefab": {
       "__uuid__": "1941638d-6da2-4798-95f6-e2547010cbc1",
       "__expectedType__": "cc.Prefab"

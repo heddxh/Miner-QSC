@@ -10,7 +10,7 @@ import { PlayerData } from '../PlayerData';
 Sentry.init({
     dsn: "https://e9feb0aa363d42189aa7d0527494a144@sentry.zjuqsc.com/9",
     
-    release: "3.7.2",
+    release: "1.0.0",
 
     integrations:[new Sentry.BrowserTracing()],
     
