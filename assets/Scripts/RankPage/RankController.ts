@@ -52,7 +52,7 @@ export class RankController extends Component {
     private rewardBoardId:Label;
 
     @property(Label)
-    private rewardBoardRank:Label;
+    private rewardRankLabel:Label;
 
 
     @property(Node)
@@ -79,7 +79,10 @@ export class RankController extends Component {
 
     //显示整个排行榜
     public static showWholeRank(users:User[]){
+
         let ins=RankController.instance;
+
+        console.log(users);
 
         for(let q=0;q<users.length;q++){
             let one:Node=null;
@@ -89,6 +92,9 @@ export class RankController extends Component {
                 one=instantiate(ins.oneRecordEven);
             }
             //设置一条记录
+            
+            console.log(users[q]);
+
             one.getChildByName("RankNumberLabel")
             .getComponent(Label).string = users[q].rank.toString();
             
@@ -98,6 +104,12 @@ export class RankController extends Component {
             one.getChildByName("RankScoreLabel")
             .getComponent(Label).string = "$"+users[q].score.toString();
             
+            if(q>=48){
+                one.setScale(one.getScale().multiplyScalar(0.8));
+            }else if(q>=6){
+                one.setScale(one.getScale().multiplyScalar(0.9));
+            }
+
             ins.RankParentNode.addChild(one);
         }
     }
@@ -105,7 +117,7 @@ export class RankController extends Component {
     //显示玩家超越百分比和排名
     public static showUserRank(currentRank:number,per:number){
         RankController.instance.transcendPercentLabel.string=per.toString()+"%";
-        RankController.instance.transcendRankLabel.string="您的历史最高名次:第"+currentRank.toString()+"名";
+        RankController.instance.transcendRankLabel.string="第"+currentRank.toString()+"名";
     }
 
     //正在等待服务器响应，显示转圈
@@ -130,11 +142,11 @@ export class RankController extends Component {
     }
 
     //点击显示兑奖码
-    showReward(id:string,rank:number){
+    public static showReward(id:string,rank:number){
         let ins=RankController.instance;
         ins.rewardBoard.active=true;
 
-        ins.rewardBoardRank.string=rank.toString();
+        ins.rewardRankLabel.string="您的历史最高名次:"+rank.toString();
         ins.rewardBoardId.string=id;
 
         tween().target(ins.rewardBoard)
@@ -142,7 +154,7 @@ export class RankController extends Component {
         .start();
     }
 
-    closeReward(){
+    public static closeReward(){
         tween().target(RankController.instance.rewardBoard)
         .to(0.5,{position:new Vec3(0,-2040.029,0)},{easing:"cubicOut"})
         .call(()=>{
@@ -167,6 +179,8 @@ export class RankController extends Component {
             document.execCommand("copy");
             document.body.removeChild(aux);
             UIController.showToast("复制成功!",1000);
+            RankController.closeReward();
+
         }catch(err){
             UIController.showToast("复制失败，请手动复制",1000);
         }

@@ -94,25 +94,30 @@ export class MineMap extends Component {
                 let randomIndex = Math.floor(Math.random() * this._rockNodes.length);
                 let rockChangedNode = this._rockNodes[randomIndex];
                 let pos: Vec3 = rockChangedNode.getPosition();
-
                 // FIXME: 暂停节点监听
                 // this.node.pauseSystemEvents(true);
                 // console.log("暂停节点监听");
                 
+
                 // 播放动画tween
-                let tweenRotate = tween()
+                tween()
                     .target(rockChangedNode)
-                    .by(1.0, { angle: 360 }) // 旋转一圈
+                    .to(0.5, { angle: 360,scale:Vec3.ZERO}) // 旋转一圈并消失
                     .call (() => {
                         rockChangedNode.destroy();
-                        let diamond = instantiate(this.orePrefabs[this._diamondIndex])
+                        let diamond = instantiate(this.orePrefabs[this._diamondIndex]);
+                        
+                        let oriScale:Vec3 = diamond.getScale();
+                        diamond.setScale(Vec3.ZERO);
+
+                        tween()
+                        .target(diamond)
+                        .to(0.4, { angle: 360 ,scale:oriScale})
+                        .start();
+
                         this.node.addChild(diamond);
                         diamond.setPosition(pos);
-                    })
-                let tweenScale = tween()
-                    .target(rockChangedNode)
-                    .by(1.0, { scale: new Vec3(-0.5, -0.5, 0) }) // 扩大一倍
-                tween(rockChangedNode).parallel(tweenRotate, tweenScale).start();
+                    }).start();
 
                 // 恢复节点监听
                 // this.node.resumeSystemEvents(true);
@@ -124,10 +129,16 @@ export class MineMap extends Component {
                     let oreIndex = Math.floor(Math.random() * 10);
                     let ore = instantiate(this.orePrefabs[oreIndex]);
                     let gridPos = this.spawnOre(ore);
+                    
+                    let oriScale:Vec3 = ore.getScale();
+                    ore.setScale(Vec3.ZERO);
+                    
                     tween()
                         .target(ore)
-                        .by(1.0, { angle: 360 }) 
+                        .to(1.0, { angle: 360 ,scale:oriScale})
                         .start();
+
+
                     // console.log(gridPos);
                     this.mapGridLeft.splice(this.mapGridLeft.indexOf({ r: gridPos[0], c: gridPos[1] }));
                     // console.log(this.mapGridLeft);

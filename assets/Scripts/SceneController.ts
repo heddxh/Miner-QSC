@@ -1,4 +1,4 @@
-import { CCClass, director, _decorator, Component, Button, find } from "cc";
+import { CCClass, director, _decorator, Component, Button, find, game } from "cc";
 import { AudioController } from "./AudioController";
 
 const { ccclass, property } = _decorator;
@@ -18,12 +18,12 @@ export class SceneController extends Component {
     public static preloadScene(sceneName:string){
         director.preloadScene(sceneName);
     }
+
+    
     public static loadScene(sceneName:string){
         //切换场景，先放按钮点击音效
         AudioController.playButtonClick();
-
         director.loadScene(sceneName);
     }
 
-    update(deltaTime: number) {}
 }

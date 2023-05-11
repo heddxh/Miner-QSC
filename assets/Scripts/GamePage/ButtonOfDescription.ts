@@ -7,5 +7,7 @@ export class Description extends Component {
         director.resume();
         let scene = director.getScene();
         this.node.parent = scene;
+        this.node.active=false;
+        this.node.destroy();
     }
 }

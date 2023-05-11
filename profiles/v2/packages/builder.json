@@ -4,11 +4,71 @@
     "level": 1
   },
   "common": {
-    "startScene": "a64f443a-a1f7-4239-8675-e84e89edd509",
+    "startScene": "add39862-a51d-46af-a894-00d524a899d3",
     "buildPath": "project://build",
-    "outputName": "android",
+    "outputName": "web-mobile",
     "mainBundleCompressionType": "merge_dep",
-    "platform": "android",
+    "platform": "web-mobile",
     "name": "Miner-QSC"
+  },
+  "BuildTaskManager": {
+    "taskMap": {
+      "1683732349954": {
+        "type": "build",
+        "id": "1683732349954",
+        "progress": 1,
+        "state": "success",
+        "stage": "run",
+        "message": "2023-5-11 22:19:18 run package C:\\My_CS\\My_CS_IT\\RootOfGit\\Miner-QSC\\build\\web-mobile success!",
+        "options": {
+          "name": "Miner-QSC",
+          "platform": "web-mobile",
+          "buildPath": "project://build",
+          "debug": false,
+          "md5Cache": false,
+          "skipCompressTexture": false,
+          "sourceMaps": false,
+          "polyfills": {
+            "asyncFunctions": true
+          },
+          "experimentalEraseModules": false,
+          "useBuiltinServer": false,
+          "mainBundleIsRemote": false,
+          "mainBundleCompressionType": "merge_dep",
+          "useSplashScreen": true,
+          "packAutoAtlas": true,
+          "startScene": "add39862-a51d-46af-a894-00d524a899d3",
+          "outputName": "web-mobile",
+          "scenes": [
+            {
+              "url": "db://assets/Scene/GameScene.scene",
+              "uuid": "0d972fe8-dc46-4193-bf9b-f52a43030c77",
+              "inBundle": false
+            },
+            {
+              "url": "db://assets/Scene/RankPage.scene",
+              "uuid": "9975327f-c8dd-4da2-8ce1-80f74012f83c",
+              "inBundle": false
+            },
+            {
+              "url": "db://assets/Scene/Shop.scene",
+              "uuid": "b1275fe4-3522-4d66-b2fb-52501a33a579",
+              "inBundle": false
+            },
+            {
+              "url": "db://assets/Scene/StartPage.scene",
+              "uuid": "add39862-a51d-46af-a894-00d524a899d3",
+              "inBundle": false
+            }
+          ],
+          "android": [],
+          "packages": {},
+          "__version__": "1.3.4",
+          "web-mobile": []
+        },
+        "time": "2023-5-11 22:18",
+        "dirty": false
+      }
+    }
   }
 }

@@ -41,7 +41,7 @@ export class GameController extends Component {
     private static instance: GameController = null;
 
     onLoad() {
-        SceneController.preloadScene("RankPage");
+        //SceneController.preloadScene("RankPage");
 
         this.playerData = find("PlayerData").getComponent(PlayerData);
         
@@ -64,7 +64,7 @@ export class GameController extends Component {
         ins.setUserName();
         ins.leftTime = ins.playerData.totalTime;
         UIController.setTime(ins.leftTime);
-
+        UIController.setScore(ins.playerData.money);
 
         //等待用户点击提示后开始游戏
         ins.isGameOver=true;

@@ -78,7 +78,8 @@ export class OreLogic extends Component {
     private randomMinValue: number = 100;
     private randomMaxValue: number = 600;
 
-    private explodeRadium: number = 260;
+    @property({group:{name:"爆炸素材"}})
+    private explodeRadium: number = 300;
 
     private MineMap: Node;
 

@@ -53,9 +53,8 @@ export class ShopLogic extends Component {
 
     start() {
         // 预加载 GameScene
-        director.preloadScene("GameScene", function () {
-            console.log("GameScene preloaded");
-        });
+        //SceneController.preloadScene("GameScene");
+        
 
         //监测手指是否触摸物品
         for(let q in this.commodities){

@@ -43,10 +43,15 @@ export class StartPage extends Component {
         this.UsernameNode = this.inputBlock
             .getChildByName("上传框")
             .getChildByName("输入框");
+
+        //开始预加载所有场景
+        SceneController.preloadScene("Shop");
+        SceneController.preloadScene("GameScene");
+        SceneController.preloadScene("RankPage");
+
     }
 
     start() {
-        SceneController.preloadScene("Shop");
         //延迟寻找留下的真playerdata,并为之初始化
         this.PD = find("PlayerData").getComponent(PlayerData);
         this.PD.dataInitialize();

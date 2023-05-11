@@ -17,15 +17,15 @@ export class PlayerData extends Component {
     //玩家的userId
     private userId:string = "";
 
-    public money = 0;
+    public money = 150;
     
     //所在关卡信息
-    public totalTime: number = 5;
+    public totalTime: number = 100;
     
     public level:number = 1;
 
     //不同关卡的总时间
-    public static LevelTotalTimes:number[]=[5,];
+    public static LevelTotalTimes:number[]=[100,];
 
     //技能数据
     @property

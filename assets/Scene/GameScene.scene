@@ -994,10 +994,10 @@
     "_restitution": 0,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": 0.39999999999999947,
-      "y": -31.39999999999999
+      "x": -1.8000000000000007,
+      "y": -35.099999999999994
     },
-    "_radius": 17.1,
+    "_radius": 9.2,
     "_id": "a78dizyRhO54FGI/3qaLgg"
   },
   {
@@ -1138,7 +1138,7 @@
     },
     "boyRightBy": 100,
     "boyLeftBy": -60,
-    "boyHorizontalSpeed": 30,
+    "boyHorizontalSpeed": 40,
     "bombPrefab": {
       "__uuid__": "1941638d-6da2-4798-95f6-e2547010cbc1",
       "__expectedType__": "cc.Prefab"

@@ -6,7 +6,23 @@
       "outputName": "web-mobile",
       "mainBundleCompressionType": "merge_dep",
       "platform": "web-mobile",
-      "name": "Miner-QSC"
-    }
+      "name": "Miner-QSC",
+      "startScene": "add39862-a51d-46af-a894-00d524a899d3"
+    },
+    "options": {
+      "web-mobile": {
+        "orientation": "portrait",
+        "embedWebDebugger": false,
+        "__version__": "1.0.1"
+      }
+    },
+    "taskOptionsMap": {
+      "1683732349954": {
+        "orientation": "portrait",
+        "embedWebDebugger": false,
+        "__version__": "1.0.1"
+      }
+    },
+    "__version__": "1.3.4"
   }
 }
