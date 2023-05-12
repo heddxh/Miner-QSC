@@ -113,7 +113,7 @@ export class Messenger extends Component {
     
                 //展示当前玩家排行
                 RankController.showUserRank(data.user.rank,
-                (data.total-data.user.rank+1)/data.total*100);
+                ((data.total-data.user.rank+1)/data.total*100).toFixed(1));
 
                 this.historyRank=data.user.rank;
     

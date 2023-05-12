@@ -115,8 +115,8 @@ export class RankController extends Component {
     }
 
     //显示玩家超越百分比和排名
-    public static showUserRank(currentRank:number,per:number){
-        RankController.instance.transcendPercentLabel.string=per.toString()+"%";
+    public static showUserRank(currentRank:number,per:string){
+        RankController.instance.transcendPercentLabel.string=per+"%";
         RankController.instance.transcendRankLabel.string="第"+currentRank.toString()+"名";
     }
 
