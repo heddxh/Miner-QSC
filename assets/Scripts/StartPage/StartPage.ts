@@ -25,11 +25,11 @@ export class StartPage extends Component {
     @property({ type: PlayerData })
     private PD: PlayerData = null;
 
-    @property({type:[Node]})
-    private description:Node[] = [];
-
     @property({type:Node})
     private inputBlock:Node = null;
+
+    @property({type:[Node]})
+    private description:Node[]=[];
 
 
     UsernameNode = null;

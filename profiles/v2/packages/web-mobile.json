@@ -7,7 +7,9 @@
       "mainBundleCompressionType": "merge_dep",
       "platform": "web-mobile",
       "name": "Miner-QSC",
-      "startScene": "add39862-a51d-46af-a894-00d524a899d3"
+      "startScene": "add39862-a51d-46af-a894-00d524a899d3",
+      "useBuiltinServer": false,
+      "server": "https://playground.zjuqsc.com/QSC_GoldMiner"
     },
     "options": {
       "web-mobile": {
@@ -18,6 +20,11 @@
     },
     "taskOptionsMap": {
       "1683732349954": {
+        "orientation": "portrait",
+        "embedWebDebugger": false,
+        "__version__": "1.0.1"
+      },
+      "1683886504568": {
         "orientation": "portrait",
         "embedWebDebugger": false,
         "__version__": "1.0.1"

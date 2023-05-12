@@ -9,7 +9,9 @@
     "outputName": "web-mobile",
     "mainBundleCompressionType": "merge_dep",
     "platform": "web-mobile",
-    "name": "Miner-QSC"
+    "name": "Miner-QSC",
+    "useBuiltinServer": false,
+    "server": "https://playground.zjuqsc.com/QSC_GoldMiner"
   },
   "BuildTaskManager": {
     "taskMap": {
@@ -67,6 +69,62 @@
           "web-mobile": []
         },
         "time": "2023-5-11 22:18",
+        "dirty": false
+      },
+      "1683886504568": {
+        "type": "build",
+        "id": "1683886504568",
+        "progress": 1,
+        "state": "success",
+        "stage": "run",
+        "message": "2023-5-12 18:17:18 run package D:\\360MoveData\\Users\\2t7m22d\\Desktop\\Miner-QSC\\build\\web-mobile success!",
+        "options": {
+          "name": "Miner-QSC",
+          "platform": "web-mobile",
+          "buildPath": "project://build",
+          "debug": false,
+          "md5Cache": false,
+          "skipCompressTexture": false,
+          "sourceMaps": false,
+          "polyfills": {
+            "asyncFunctions": true
+          },
+          "experimentalEraseModules": false,
+          "useBuiltinServer": false,
+          "mainBundleIsRemote": false,
+          "mainBundleCompressionType": "merge_dep",
+          "useSplashScreen": true,
+          "packAutoAtlas": true,
+          "startScene": "add39862-a51d-46af-a894-00d524a899d3",
+          "outputName": "web-mobile",
+          "scenes": [
+            {
+              "url": "db://assets/Scene/GameScene.scene",
+              "uuid": "0d972fe8-dc46-4193-bf9b-f52a43030c77",
+              "inBundle": false
+            },
+            {
+              "url": "db://assets/Scene/RankPage.scene",
+              "uuid": "9975327f-c8dd-4da2-8ce1-80f74012f83c",
+              "inBundle": false
+            },
+            {
+              "url": "db://assets/Scene/Shop.scene",
+              "uuid": "b1275fe4-3522-4d66-b2fb-52501a33a579",
+              "inBundle": false
+            },
+            {
+              "url": "db://assets/Scene/StartPage.scene",
+              "uuid": "add39862-a51d-46af-a894-00d524a899d3",
+              "inBundle": false
+            }
+          ],
+          "web-mobile": [],
+          "packages": {},
+          "__version__": "1.3.4",
+          "server": "https://playground.zjuqsc.com/QSC_GoldMiner"
+        },
+        "time": "2023-5-12 18:15",
         "dirty": false
       }
     }
