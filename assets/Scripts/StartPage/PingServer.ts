@@ -4,7 +4,6 @@ const { ccclass, property } = _decorator;
 
 import Sentry from "@sentry/browser";
 import { UIController } from '../GamePage/UIController';
-import { PlayerData } from '../PlayerData';
 
 //sentry埋点
 Sentry.init({
@@ -17,12 +16,6 @@ Sentry.init({
     tracesSampleRate: 1.0,
 });
 
-//结束埋点
-window.onbeforeunload=()=>{
-    
-    Sentry.captureMessage("ClosePage:"+find("PlayerData").getComponent(PlayerData).getUserId());
-
-}
 
 
 @ccclass('PingServer')

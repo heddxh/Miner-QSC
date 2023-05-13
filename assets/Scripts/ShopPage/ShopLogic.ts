@@ -7,7 +7,8 @@ import {
     Sprite,
     SpriteFrame,
     find,
-    Button
+    Button,
+    AnimationComponent
 } from "cc";
 
 import { PlayerData } from "../PlayerData";
@@ -47,6 +48,9 @@ export class ShopLogic extends Component {
     @property({ type: Label})
     private msgLabel: Label = null;
 
+    @property({type:AnimationComponent})
+    private shopKeeperAni: Animation = null; 
+
     onLoad() {
         this.PD = find("PlayerData").getComponent(PlayerData);
     }
@@ -81,6 +85,9 @@ export class ShopLogic extends Component {
 
     setMsg(msg:string){
         this.msgLabel.string = msg;
+        //讲解商品的动画和音效
+        AudioController.playButtonClick();
+        this.shopKeeperAni.play();
     }
 
     renewMoney(){
@@ -121,6 +128,7 @@ export class ShopLogic extends Component {
                             break;
                 }
 
+                //购买的音效和动画
                 AudioController.playBuyItem();
                 this.renewMoney();
                 

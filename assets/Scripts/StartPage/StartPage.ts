@@ -4,18 +4,17 @@ import {
     Node,
     director,
     Button,
-    input,
     EditBox,
-    log,
-    Prefab,
-    instantiate,
     find,
-    Scene,
+    sys,
 } from "cc";
 import { AudioController } from "../AudioController";
 import { PlayerData } from "../PlayerData";
 import { SceneController } from "../SceneController";
 const { ccclass, property } = _decorator;
+
+import Sentry from "@sentry/browser";
+import { UIController } from "../GamePage/UIController";
 
 let username: string;
 
@@ -35,10 +34,23 @@ export class StartPage extends Component {
     UsernameNode = null;
 
     onLoad() {
+        //尝试获取id
+        let userIds=sys.localStorage.getItem(PlayerData.userIdLocalKey);
+
+        //如果没有，随机生成一个
+        if(userIds==null){
+            userIds=this.randUserId();
+            console.log(userIds);
+            sys.localStorage.setItem(PlayerData.userIdLocalKey,userIds);
+        }
+
         let scene = director.getScene().name;
         
+        //判断是否要输入玩家姓名
         if (scene == "StartPage" && PlayerData.hasInit==false) {
             this.ShowInputbox();
+        }else{
+            this.inputBlock.active=false;
         }
         
         this.UsernameNode = this.inputBlock
@@ -72,7 +84,24 @@ export class StartPage extends Component {
     }
 
     EnterGame(event: Event) {
+        
+        //设置用户名
+        username = this.UsernameNode.getComponent(EditBox).string;
+        
+        //检查是否有输入用户名，没有则提示用户输入
+        if (username == ""){
+            UIController.showToast("请输入用户名!",1000);
+            return;
+        }
 
+        this.PD.playerName = username;
+        console.log("username:", username);
+
+        //sentry设置用户id
+        Sentry.setUser({id:this.PD.getUserId(),name:username});
+        
+
+        //除雾，启用开始游戏按钮
         AudioController.playButtonClick();
 
         this.inputBlock.active=false;
@@ -82,10 +111,7 @@ export class StartPage extends Component {
             .getChildByName("Start")
             .getComponent(Button).interactable = true;
         
-        username = this.UsernameNode.getComponent(EditBox).string;
-        if (username == "") username = "tomato";
-        this.PD.playerName = username;
-        console.log("username:", username);
+        
     }
 
     Description(event: Event,customEventData: string) {
@@ -110,6 +136,17 @@ export class StartPage extends Component {
     
     gotoRank(){
         SceneController.loadScene("RankPage");
+    }
+
+
+    //随机生成用户ID
+    randUserId():string{
+        let res:string="";
+
+        for(let q=0;q<10;q++){
+            res = res.concat(String.fromCharCode(65 + Math.floor(Math.random()*52)));
+        }
+        return res;
     }
     
 }

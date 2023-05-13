@@ -30,17 +30,8 @@ export class Messenger extends Component {
         this.PD=find("PlayerData").getComponent(PlayerData);
         
 
-        //获取可能已有的ID
-        let userIds=sys.localStorage.getItem(PlayerData.userIdLocalKey);
-
-        //如果没有，随机生成一个
-        if(userIds==null){
-            userIds=this.randUserId();
-            console.log(userIds);
-            sys.localStorage.setItem(PlayerData.userIdLocalKey,userIds);
-        }
-
-        this.PD.setUserId(userIds);
+        //获取肯定已有的ID，在StartPage中已经生成
+        let userIds=this.PD.getUserId();
 
         
         //获取历史最高分
@@ -65,16 +56,6 @@ export class Messenger extends Component {
         
     }
 
-
-    //随机生成用户ID
-    randUserId():string{
-        let res:string="";
-
-        for(let q=0;q<10;q++){
-            res = res.concat(String.fromCharCode(65 + Math.floor(Math.random()*52)));
-        }
-        return res;
-    }
 
 
     reSubmit(){
@@ -134,7 +115,7 @@ export class Messenger extends Component {
                 }
 
                 //sentry发送数据
-                Sentry.captureMessage("Finish Game:"+userIds);
+                Sentry.captureMessage("FinishGame!");
     
             }
             ).catch((err)=>{this.failLoading(err);});

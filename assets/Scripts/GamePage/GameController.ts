@@ -14,6 +14,9 @@ import { PlayerData } from "../PlayerData";
 import { SceneController } from "../SceneController";
 import { AudioController } from "../AudioController";
 import { MinerController } from "./MinerController";
+
+import Sentry from "@sentry/browser";
+
 const { ccclass, property } = _decorator;
 
 @ccclass("GameController")
@@ -41,7 +44,9 @@ export class GameController extends Component {
     private static instance: GameController = null;
 
     onLoad() {
-        //SceneController.preloadScene("RankPage");
+
+        //发送开始游戏信息
+        Sentry.captureMessage("EnterGame!");
 
         this.playerData = find("PlayerData").getComponent(PlayerData);
         
