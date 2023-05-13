@@ -24,16 +24,19 @@
         "__id__": 109
       },
       {
+        "__id__": 115
+      },
+      {
         "__id__": 113
       },
       {
-        "__id__": 114
+        "__id__": 116
       }
     ],
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 116
+      "__id__": 118
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -64,7 +67,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 123
+      "__id__": 125
     },
     "_id": "add39862-a51d-46af-a894-00d524a899d3"
   },
@@ -123,7 +126,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 540,
-      "y": 960,
+      "y": 959.9999999999998,
       "z": 0
     },
     "_lrot": {
@@ -3118,8 +3121,8 @@
     "_target": null,
     "_left": 0,
     "_right": 0,
-    "_top": -5.684341886080802e-14,
-    "_bottom": -5.684341886080802e-14,
+    "_top": -1.7053025658242404e-13,
+    "_bottom": -1.7053025658242404e-13,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
     "_isAbsLeft": true,
@@ -3334,6 +3337,9 @@
     "UIAudio": {
       "__id__": 112
     },
+    "BGMAudio": {
+      "__id__": 114
+    },
     "_id": "0aAdTq9JJGircefsSAfJd7"
   },
   {
@@ -3411,6 +3417,68 @@
     "_id": "edIM/xum9KhZe8zU9eISup"
   },
   {
+    "__type__": "cc.AudioSource",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 115
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "_clip": {
+      "__uuid__": "8c6a0a34-c3a7-4da5-b1bc-e9a7ffa5d5f2",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "_loop": true,
+    "_playOnAwake": false,
+    "_volume": 0.25,
+    "_id": "16nQnD3PNNUruKPiiO0yCD"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "BGMSource",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 114
+      }
+    ],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": "44v5gZGhZGrLsgcYq6A+Q1"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "PingServer",
     "_objFlags": 0,
@@ -3421,7 +3489,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 115
+        "__id__": 117
       }
     ],
     "_prefab": null,
@@ -3459,7 +3527,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 114
+      "__id__": 116
     },
     "_enabled": true,
     "__prefab": null,
@@ -3473,10 +3541,10 @@
     "instance": null,
     "targetOverrides": [
       {
-        "__id__": 117
+        "__id__": 119
       },
       {
-        "__id__": 120
+        "__id__": 122
       }
     ],
     "nestedPrefabInstanceRoots": [
@@ -3491,7 +3559,7 @@
       "__id__": 32
     },
     "sourceInfo": {
-      "__id__": 118
+      "__id__": 120
     },
     "propertyPath": [
       "_textLabel"
@@ -3500,7 +3568,7 @@
       "__id__": 32
     },
     "targetInfo": {
-      "__id__": 119
+      "__id__": 121
     }
   },
   {
@@ -3521,7 +3589,7 @@
       "__id__": 32
     },
     "sourceInfo": {
-      "__id__": 121
+      "__id__": 123
     },
     "propertyPath": [
       "_placeholderLabel"
@@ -3530,7 +3598,7 @@
       "__id__": 32
     },
     "targetInfo": {
-      "__id__": 122
+      "__id__": 124
     }
   },
   {
@@ -3548,22 +3616,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 124
-    },
-    "shadows": {
-      "__id__": 125
-    },
-    "_skybox": {
       "__id__": 126
     },
-    "fog": {
+    "shadows": {
       "__id__": 127
     },
-    "octree": {
+    "_skybox": {
       "__id__": 128
     },
-    "lightProbeInfo": {
+    "fog": {
       "__id__": 129
+    },
+    "octree": {
+      "__id__": 130
+    },
+    "lightProbeInfo": {
+      "__id__": 131
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

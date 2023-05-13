@@ -220,7 +220,7 @@
     "__prefab": {
       "__id__": 9
     },
-    "value": 0,
+    "value": 1,
     "dragForce": 0.7,
     "type": 4,
     "isMultiImgs": false,
@@ -231,6 +231,7 @@
     "moveLeftX": -50,
     "moveRightX": 100,
     "movingSpeed": 10,
+    "explodeRadium": 300,
     "bombPrefab": null,
     "_id": ""
   },

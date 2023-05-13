@@ -31,17 +31,19 @@ export class StartPage extends Component {
     private description:Node[]=[];
 
 
-    UsernameNode = null;
+    private UsernameNode = null;
+    private userIds:string=null;
 
     onLoad() {
         //尝试获取id
-        let userIds=sys.localStorage.getItem(PlayerData.userIdLocalKey);
+
+        sys.localStorage.removeItem(PlayerData.userIdLocalKey);
+        this.userIds=sys.localStorage.getItem(PlayerData.userIdLocalKey);
 
         //如果没有，随机生成一个
-        if(userIds==null){
-            userIds=this.randUserId();
-            console.log(userIds);
-            sys.localStorage.setItem(PlayerData.userIdLocalKey,userIds);
+        if(this.userIds==null){
+            this.userIds=this.randUserId();
+            sys.localStorage.setItem(PlayerData.userIdLocalKey,this.userIds);
         }
 
         let scene = director.getScene().name;
@@ -68,6 +70,7 @@ export class StartPage extends Component {
         //延迟寻找留下的真playerdata,并为之初始化
         this.PD = find("PlayerData").getComponent(PlayerData);
         this.PD.dataInitialize();
+        this.PD.setUserId(this.userIds);
     }
 
 
@@ -144,7 +147,7 @@ export class StartPage extends Component {
         let res:string="";
 
         for(let q=0;q<10;q++){
-            res = res.concat(String.fromCharCode(65 + Math.floor(Math.random()*52)));
+            res = res.concat(String.fromCharCode(65 + Math.floor(Math.random()*57)));
         }
         return res;
     }

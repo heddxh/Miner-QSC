@@ -9,7 +9,8 @@
       "name": "Miner-QSC",
       "startScene": "add39862-a51d-46af-a894-00d524a899d3",
       "useBuiltinServer": false,
-      "server": "https://playground.zjuqsc.com/QSC_GoldMiner"
+      "server": "https://playground.zjuqsc.com/QSC_GoldMiner",
+      "mainBundleIsRemote": false
     },
     "options": {
       "web-mobile": {

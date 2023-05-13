@@ -149,7 +149,7 @@
     "__prefab": {
       "__id__": 7
     },
-    "value": 200,
+    "value": 400,
     "dragForce": 0.15,
     "type": 0,
     "isMultiImgs": true,
@@ -173,6 +173,7 @@
     "moveLeftX": 0,
     "moveRightX": 100,
     "movingSpeed": 40,
+    "explodeRadium": 300,
     "_id": ""
   },
   {

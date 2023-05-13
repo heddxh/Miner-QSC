@@ -114,7 +114,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 540,
-      "y": 960,
+      "y": 959.9999999999998,
       "z": 0
     },
     "_lrot": {
@@ -197,7 +197,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 960,
+    "_orthoHeight": 959.9999999999999,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -1860,7 +1860,7 @@
       "b": 0,
       "a": 255
     },
-    "_string": "我精神状态挺好的呀，精神状态我%@！@……",
+    "_string": "呜呜，可恶的早八，%@！@……",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
     "_actualFontSize": 40,
@@ -4073,6 +4073,12 @@
     "hisScoreLabel": {
       "__id__": 43
     },
+    "judgeSentences": [
+      "哈哈，我就是摸鱼之王！",
+      "不错！但还可以做得更好哟！",
+      "呜呜，可恶的早八，%@！@……",
+      "分文不剩！这真的很难做到"
+    ],
     "transcendPercentLabel": {
       "__id__": 53
     },
@@ -4123,7 +4129,7 @@
         "__id__": 130
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 133
@@ -5057,8 +5063,8 @@
     "_target": null,
     "_left": 0,
     "_right": 0,
-    "_top": 5.684341886080802e-14,
-    "_bottom": 5.684341886080802e-14,
+    "_top": -1.7053025658242404e-13,
+    "_bottom": -1.7053025658242404e-13,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
     "_isAbsLeft": true,

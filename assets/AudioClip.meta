@@ -6,7 +6,11 @@
   "files": [],
   "subMetas": {},
   "userData": {
-    "compressionType": {},
-    "isRemoteBundle": {}
+    "compressionType": {
+      "web-desktop": "merge_all_json"
+    },
+    "isRemoteBundle": {},
+    "isBundle": true,
+    "priority": 3
   }
 }

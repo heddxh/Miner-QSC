@@ -205,7 +205,7 @@
       "__id__": 9
     },
     "value": 20,
-    "dragForce": 0.2,
+    "dragForce": 0.18,
     "type": 4,
     "isMultiImgs": false,
     "imgs": [],
@@ -215,6 +215,7 @@
     "moveLeftX": 0,
     "moveRightX": 100,
     "movingSpeed": 40,
+    "explodeRadium": 300,
     "_id": ""
   },
   {

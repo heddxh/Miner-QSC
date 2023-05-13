@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Prefab, Label,find, instantiate, tween, Vec3} from 'cc';
+import { _decorator, Component, Node, Prefab, Label,find, instantiate, tween, Vec3, CCString} from 'cc';
 import { UIController } from '../GamePage/UIController';
 import { PlayerData } from '../PlayerData';
 import { SceneController } from '../SceneController';
@@ -31,6 +31,9 @@ export class RankController extends Component {
     @property(Label)
     private hisScoreLabel:Label;
 
+    @property({type:[CCString],tooltip:"用户超越多少人显示的文案，从上到下为高档到低档",multiline:true})
+
+    private judgeSentences: string[]=[];
     
 
     //玩家超越百分比和排名文本
@@ -114,10 +117,13 @@ export class RankController extends Component {
         }
     }
 
-    //显示玩家超越百分比和排名
+    //显示玩家超越百分比和排名,文案
     public static showUserRank(currentRank:number,per:string){
-        RankController.instance.transcendPercentLabel.string=per+"%";
-        RankController.instance.transcendRankLabel.string="第"+currentRank.toString()+"名";
+        let ins=RankController.instance;
+        ins.transcendPercentLabel.string=per+"%";
+        ins.transcendRankLabel.string="第"+currentRank.toString()+"名";
+
+        ins.judgement.string=ins.judgeSentences[3-Math.ceil(parseInt(per)/100*3)];
     }
 
     //正在等待服务器响应，显示转圈
@@ -150,7 +156,7 @@ export class RankController extends Component {
         ins.rewardBoardId.string=id;
 
         tween().target(ins.rewardBoard)
-        .to(0.5,{position:new Vec3(0,-92.307,0)},{easing:"cubicOut"})
+        .to(0.5,{position:new Vec3(0,164.042,0)},{easing:"cubicOut"})
         .start();
     }
 

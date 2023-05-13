@@ -11,7 +11,8 @@
     "platform": "web-mobile",
     "name": "Miner-QSC",
     "useBuiltinServer": false,
-    "server": "https://playground.zjuqsc.com/QSC_GoldMiner"
+    "server": "https://playground.zjuqsc.com/QSC_GoldMiner",
+    "mainBundleIsRemote": false
   },
   "BuildTaskManager": {
     "taskMap": {

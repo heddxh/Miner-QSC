@@ -42,6 +42,10 @@ export class AudioController extends Component {
     @property(AudioSource)
     private UIAudio:AudioSource;
 
+    //背景音乐
+    @property(AudioSource)
+    private BGMAudio:AudioSource;
+
     private static instance:AudioController=null;
     
     start() {
@@ -52,6 +56,9 @@ export class AudioController extends Component {
             //持久化音频播放节点，game和UI
             director.addPersistRootNode(this.node);
             director.addPersistRootNode(this.UIAudio.node);
+
+            this.BGMAudio.play();
+            director.addPersistRootNode(this.BGMAudio.node);
             AudioController.instance=this;
         }
         else {

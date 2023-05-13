@@ -1121,7 +1121,7 @@
     "hookoutSpeed": 400,
     "ropeLength": 2400,
     "refreshDelay": 0.4,
-    "affectOfStrengthenDose": 2,
+    "affectOfStrengthenDose": 2.2,
     "hookNode": {
       "__id__": 21
     },
