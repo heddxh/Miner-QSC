@@ -47,12 +47,19 @@ export class PlayerData extends Component {
     //判断是否已经实例化过，根据UserId,可以刷新记录
     public static hasInit:boolean=false;
 
+    //判断是否游戏过，根据是否游戏确定是否显示当局排名
+    public static hasPlay:boolean=false;
+
+    //判断是否从大厅进来，还是刚刚结束一次游戏，决定是否上交
+    public static hasJustFinish:boolean=false;
+
     start() {
         if(!PlayerData.hasInit){
             //第一次游玩
             director.addPersistRootNode(this.node);
             console.log("成功持久化 PlayData");
             PlayerData.hasInit=true;
+            PlayerData.hasJustFinish=false;
         }else{
             //例如Unity，持久化节点在二次进入场景时又会生成一个重复的持久节点，要删去
             this.destroy();
@@ -62,10 +69,14 @@ export class PlayerData extends Component {
     //玩家数据彻底刷新，在新的一局才使用
     public dataInitialize(){
         let data = this;
+        //道具清空
         data.TNTNum=0;
         data.isDiamondPolish = data.isLucky = data.isRockAppreciate = data.isStrengthen = false;
+        
+        //关卡清0
         data.level=1;
         data.totalTime = PlayerData.LevelTotalTimes[0];
+        
         //开局150块钱
         data.money=150;
     }

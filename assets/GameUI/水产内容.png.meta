@@ -2,7 +2,7 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
-  "uuid": "d18ca52f-997f-4037-b7b7-918f96132309",
+  "uuid": "af5d9d9c-6968-403d-9f78-50dec4b6500b",
   "files": [
     ".json",
     ".png"
@@ -10,14 +10,14 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "d18ca52f-997f-4037-b7b7-918f96132309@6c48a",
-      "displayName": "水产说明",
+      "uuid": "af5d9d9c-6968-403d-9f78-50dec4b6500b@6c48a",
+      "displayName": "水产内容",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "d18ca52f-997f-4037-b7b7-918f96132309",
+        "imageUuidOrDatabaseUri": "af5d9d9c-6968-403d-9f78-50dec4b6500b",
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,8 +34,8 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "d18ca52f-997f-4037-b7b7-918f96132309@f9941",
-      "displayName": "水产说明",
+      "uuid": "af5d9d9c-6968-403d-9f78-50dec4b6500b@f9941",
+      "displayName": "水产内容",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
@@ -43,13 +43,13 @@
         "trimThreshold": 1,
         "rotated": false,
         "offsetX": 0,
-        "offsetY": 0,
+        "offsetY": -2,
         "trimX": 0,
-        "trimY": 0,
-        "width": 780,
-        "height": 1688,
-        "rawWidth": 780,
-        "rawHeight": 1688,
+        "trimY": 4,
+        "width": 296,
+        "height": 1724,
+        "rawWidth": 296,
+        "rawHeight": 1728,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
@@ -61,17 +61,17 @@
         "meshType": 0,
         "vertices": {
           "rawPosition": [
-            -390,
-            -844,
+            -148,
+            -862,
             0,
-            390,
-            -844,
+            148,
+            -862,
             0,
-            -390,
-            844,
+            -148,
+            862,
             0,
-            390,
-            844,
+            148,
+            862,
             0
           ],
           "indexes": [
@@ -84,12 +84,12 @@
           ],
           "uv": [
             0,
-            1688,
-            780,
-            1688,
+            1724,
+            296,
+            1724,
             0,
             0,
-            780,
+            296,
             0
           ],
           "nuv": [
@@ -98,23 +98,23 @@
             1,
             0,
             0,
+            0.9976851851851852,
             1,
-            1,
-            1
+            0.9976851851851852
           ],
           "minPos": [
-            -390,
-            -844,
+            -148,
+            -862,
             0
           ],
           "maxPos": [
-            390,
-            844,
+            148,
+            862,
             0
           ]
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "d18ca52f-997f-4037-b7b7-918f96132309@6c48a",
+        "imageUuidOrDatabaseUri": "af5d9d9c-6968-403d-9f78-50dec4b6500b@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +129,6 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
-    "redirect": "d18ca52f-997f-4037-b7b7-918f96132309@f9941"
+    "redirect": "af5d9d9c-6968-403d-9f78-50dec4b6500b@f9941"
   }
 }

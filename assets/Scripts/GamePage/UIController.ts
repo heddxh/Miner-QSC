@@ -1,6 +1,7 @@
 import {Color, Component, Label,  Sprite,  tween, Vec3,  _decorator,Node,director, easing, find, NodeEventType} from 'cc';
 import { GameController } from './GameController';
 import { SceneController } from '../SceneController';
+import { AudioController } from '../AudioController';
 const { ccclass, property } = _decorator;
 
 @ccclass('UIController')
@@ -139,6 +140,8 @@ export class UIController extends Component {
                 icon.color=Color.WHITE;
             }
         },interval);
+
+        AudioController.playWarn();
     }
 }
 

@@ -22,7 +22,7 @@
         "progress": 1,
         "state": "success",
         "stage": "build",
-        "message": "2023-5-12 22:34:05 build success in 19111 ms!",
+        "message": "2023-5-22 18:53:15 build success in 20778 ms!",
         "options": {
           "name": "Miner-QSC",
           "platform": "web-mobile",
@@ -70,7 +70,7 @@
           "web-mobile": [],
           "server": "https://playground.zjuqsc.com/QSC_GoldMiner"
         },
-        "time": "2023-5-12 22:33",
+        "time": "2023-5-22 18:52",
         "dirty": false
       }
     }

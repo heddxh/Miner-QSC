@@ -51,6 +51,14 @@ export class ShopLogic extends Component {
     @property({type:AnimationComponent})
     private shopKeeperAni: Animation = null; 
 
+    @property({type:SpriteFrame,tooltip:"商品未选中的默认框"})
+    private unselectedBlock:SpriteFrame=null;
+
+    @property({type:SpriteFrame,tooltip:"商品已选中时展现的框"})
+    private selectedBlock:SpriteFrame=null;
+    
+    private lastSelected:number = -1;
+
     onLoad() {
         this.PD = find("PlayerData").getComponent(PlayerData);
     }
@@ -65,7 +73,7 @@ export class ShopLogic extends Component {
             this.commoDatas[q] = this.commodities[q].getComponent(CommodityData);
 
             this.commodities[q].on(Node.EventType.TOUCH_START,(event)=>{
-                this.setMsg(this.commoDatas[q].description);
+                this.setMsg(parseInt(q));
             },this);
 
             //显示价格
@@ -83,9 +91,25 @@ export class ShopLogic extends Component {
     }
 
 
-    setMsg(msg:string){
-        this.msgLabel.string = msg;
+    setMsg(index:number){
+        this.msgLabel.string = this.commoDatas[index].description;
         //讲解商品的动画和音效
+
+        if(this.lastSelected != index){
+            //选中当前框
+            this.commodities[index].getComponent(Sprite).spriteFrame=this.selectedBlock;
+            //取消上次选中框
+            if(this.lastSelected != -1)
+                this.commodities[this.lastSelected].getComponent(Sprite).spriteFrame=this.unselectedBlock;
+            this.lastSelected = index;
+
+        }else{
+            //只是取消选中
+            this.commodities[index].getComponent(Sprite).spriteFrame=this.unselectedBlock;
+            
+            this.lastSelected=-1;
+        }
+
         AudioController.playButtonClick();
         this.shopKeeperAni.play();
     }
@@ -99,6 +123,8 @@ export class ShopLogic extends Component {
         
         let index:number = parseInt(customEventData)-1;
         
+        this.setMsg(index);
+
         //买得起并且还有剩余
         if(this.commoDatas[index].leftNum>0){
             if(this.PD.money >= this.commoDatas[index].price){
@@ -144,8 +170,8 @@ export class ShopLogic extends Component {
                 }
             }else{
                 //余额不足
-                this.setMsg("你小子没钱了还在这鬼混，去去去");
-                    UIController.redWarning(this.moneyLabel.node.getParent().getComponent(Sprite));
+                
+                UIController.redWarning(this.moneyLabel.node.getParent().getComponent(Sprite));
             }
         }else{
             switch(index){

@@ -79,6 +79,10 @@ export class RankController extends Component {
         ins.hisScoreLabel.string=history.toString();
     }
 
+    public static showHisScore(history:number){
+        RankController.instance.hisScoreLabel.string=history.toString();
+    }
+
 
     //显示整个排行榜
     public static showWholeRank(users:User[]){

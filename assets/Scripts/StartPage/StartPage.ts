@@ -36,8 +36,6 @@ export class StartPage extends Component {
 
     onLoad() {
         //尝试获取id
-
-        sys.localStorage.removeItem(PlayerData.userIdLocalKey);
         this.userIds=sys.localStorage.getItem(PlayerData.userIdLocalKey);
 
         //如果没有，随机生成一个
@@ -67,14 +65,18 @@ export class StartPage extends Component {
     }
 
     start() {
-        //延迟寻找留下的真playerdata,并为之初始化
+        //延迟寻找留下的真playerdata,先不为之初始化，当玩家进入游戏再初始化(保留上次游玩数据)
         this.PD = find("PlayerData").getComponent(PlayerData);
-        this.PD.dataInitialize();
+        
         this.PD.setUserId(this.userIds);
     }
 
 
     GoShop(event: Event) {
+        //正式开完，可以初始化玩家数据了
+
+        this.PD.dataInitialize();
+        
         SceneController.loadScene("Shop");
     }
 
@@ -94,6 +96,9 @@ export class StartPage extends Component {
         //检查是否有输入用户名，没有则提示用户输入
         if (username == ""){
             UIController.showToast("请输入用户名!",1000);
+            return;
+        }else if(username.length>10){
+            UIController.showToast("请输入十个字符以下的名字!",900);
             return;
         }
 

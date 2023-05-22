@@ -34,6 +34,11 @@ export class AudioController extends Component {
     @property(AudioClip)
     private buyItem:AudioClip=null;
     
+
+    
+    @property(AudioClip)
+    private warn:AudioClip = null;
+
     //游戏音效,含于当前节点中
     @property(AudioSource)
     private gameAudio:AudioSource;
@@ -41,6 +46,7 @@ export class AudioController extends Component {
     //UI音效，只能含于另一个节点中
     @property(AudioSource)
     private UIAudio:AudioSource;
+    
 
     //背景音乐
     @property(AudioSource)
@@ -51,7 +57,7 @@ export class AudioController extends Component {
     start() {
         if(AudioController.instance==null){
             this.gameAudio.loop=false;
-            this.gameAudio.volume=0.7;
+            this.gameAudio.volume=0.8;
             this.UIAudio.volume=0.7;
             //持久化音频播放节点，game和UI
             director.addPersistRootNode(this.node);
@@ -84,6 +90,13 @@ export class AudioController extends Component {
             AudioController.instance.gameOver;
         AudioController.instance.UIAudio.play();
     }
+
+    public static playWarn(){
+        AudioController.instance.UIAudio.clip=
+            AudioController.instance.warn;
+        AudioController.instance.UIAudio.play();
+    }
+
     //提供播放game音频的函数
     public static playTNTBomb(){
         AudioController.instance.gameAudio.clip=

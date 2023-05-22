@@ -47,6 +47,8 @@ export class GameController extends Component {
 
         //发送开始游戏信息
         Sentry.captureMessage("EnterGame!");
+        PlayerData.hasPlay=true;
+
 
         this.playerData = find("PlayerData").getComponent(PlayerData);
         
@@ -64,7 +66,7 @@ export class GameController extends Component {
             ins = GameController.instance = this;
         }
         */
-        
+
         //展示初始UI信息
         ins.setUserName();
         ins.leftTime = ins.playerData.totalTime;
@@ -232,6 +234,10 @@ export class GameController extends Component {
         GameController.instance.isGameOver = true;
         
         UIController.ShowFinalScore(GameController.getPlayerData().money);
+
+        //刚刚结束了一场游戏
+        PlayerData.hasJustFinish=true;
+
     }
 
     public static showEndingScene(){
