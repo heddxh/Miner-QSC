@@ -5,7 +5,7 @@ const { ccclass, property } = _decorator;
 export class CommodityData extends Component {
 
     @property
-    public price:number = 75;
+    private _price:number = 75;
 
     @property
     public leftNum:number = 1;
@@ -13,5 +13,11 @@ export class CommodityData extends Component {
     @property({multiline:true})
     public description:string = "";
     
+    get price():number{
+        return this._price;
+    }
+    set price(newPrice:number){
+        this._price=newPrice;
+    }
 }
 

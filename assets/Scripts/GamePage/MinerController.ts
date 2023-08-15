@@ -131,9 +131,14 @@ export class MinerController extends Component {
 
         this.TNTText.enabled = false;
 
-        //开局技能的开关
+        //开局技能的开关，以及无尽模式减弱力量
+        const isEndless:boolean=GameController.getPlayerData().isEndlessMode;
+        if(isEndless){
+            this.hookoutSpeed *=0.85;
+        }
         if (GameController.getStrengthen) {
             this.hookoutSpeed *= this.affectOfStrengthenDose;
+            if(isEndless) this.hookoutSpeed*=1.5;
         }
     }
 

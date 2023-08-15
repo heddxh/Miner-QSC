@@ -59,7 +59,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Canvas",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 1
     },
@@ -105,7 +105,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 540,
-      "y": 959.9999999999998,
+      "y": 960,
       "z": 0
     },
     "_lrot": {
@@ -134,7 +134,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Camera",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 2
     },
@@ -188,7 +188,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 959.9999999999999,
+    "_orthoHeight": 960,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -221,7 +221,7 @@
   {
     "__type__": "cc.Node",
     "_name": "纯白",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 2
     },
@@ -327,7 +327,7 @@
   {
     "__type__": "cc.Node",
     "_name": "商品",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 2
     },
@@ -381,7 +381,7 @@
   {
     "__type__": "cc.Node",
     "_name": "view",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 8
     },
@@ -435,7 +435,7 @@
   {
     "__type__": "cc.Node",
     "_name": "content",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 9
     },
@@ -497,7 +497,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 10
     },
@@ -685,7 +685,7 @@
     "propertyPath": [
       "description"
     ],
-    "value": "炸药:\n\n崩坏时炸毁抓到的东西\n\"我保留了一点不稳定性，才知道你用的是浙大体艺\""
+    "value": "炸药:\n\n浙大体艺，强身健体，精神倍加，横扫一切"
   },
   {
     "__type__": "cc.TargetInfo",
@@ -695,7 +695,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 10
     },
@@ -931,7 +931,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 10
     },
@@ -1186,7 +1186,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 10
     },
@@ -1441,7 +1441,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 10
     },
@@ -1904,7 +1904,7 @@
   {
     "__type__": "cc.Node",
     "_name": "商店背景",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 2
@@ -1956,7 +1956,7 @@
   {
     "__type__": "cc.Node",
     "_name": "老板",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 108
     },
@@ -2149,7 +2149,7 @@
   {
     "__type__": "cc.Node",
     "_name": "基础信息栏",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 2
     },
@@ -2206,7 +2206,7 @@
   {
     "__type__": "cc.Node",
     "_name": "前去摸鱼",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 115
     },
@@ -2381,7 +2381,7 @@
   {
     "__type__": "cc.Node",
     "_name": "名字框",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 115
     },
@@ -2432,7 +2432,7 @@
   {
     "__type__": "cc.Node",
     "_name": "名字",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 121
     },
@@ -2600,7 +2600,7 @@
   {
     "__type__": "cc.Node",
     "_name": "头像框",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 115
     },
@@ -2765,7 +2765,7 @@
   {
     "__type__": "cc.Node",
     "_name": "金币显示框",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 2
     },
@@ -2822,7 +2822,7 @@
   {
     "__type__": "cc.Node",
     "_name": "金币",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 132
     },
@@ -2928,7 +2928,7 @@
   {
     "__type__": "cc.Node",
     "_name": "dollar-sign",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 132
     },
@@ -3034,7 +3034,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Label",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 132
     },
@@ -3202,7 +3202,7 @@
   {
     "__type__": "cc.Node",
     "_name": "对话框",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 2
     },
@@ -3253,7 +3253,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Label",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 144
     },
@@ -3467,8 +3467,8 @@
     "_target": null,
     "_left": 0,
     "_right": 0,
-    "_top": -1.7053025658242404e-13,
-    "_bottom": -1.7053025658242404e-13,
+    "_top": 5.684341886080802e-14,
+    "_bottom": 5.684341886080802e-14,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
     "_isAbsLeft": true,
@@ -3514,7 +3514,10 @@
       "__expectedType__": "cc.SpriteFrame"
     },
     "icon": [
-      null,
+      {
+        "__uuid__": "206e7316-1084-4259-bb04-dd3d6e1f4bb3@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
       {
         "__uuid__": "dcdfbaf0-415e-4520-8527-3efef7666153@f9941",
         "__expectedType__": "cc.SpriteFrame"

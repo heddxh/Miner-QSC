@@ -10,7 +10,34 @@
       "startScene": "add39862-a51d-46af-a894-00d524a899d3",
       "useBuiltinServer": false,
       "server": "https://playground.zjuqsc.com/QSC_GoldMiner",
-      "mainBundleIsRemote": false
+      "mainBundleIsRemote": false,
+      "scenes": [
+        {
+          "url": "db://assets/Scene/GameScene.scene",
+          "uuid": "0d972fe8-dc46-4193-bf9b-f52a43030c77",
+          "inBundle": false
+        },
+        {
+          "url": "db://assets/Scene/RankPage.scene",
+          "uuid": "9975327f-c8dd-4da2-8ce1-80f74012f83c",
+          "inBundle": false
+        },
+        {
+          "url": "db://assets/Scene/Shop.scene",
+          "uuid": "b1275fe4-3522-4d66-b2fb-52501a33a579",
+          "inBundle": false
+        },
+        {
+          "url": "db://assets/Scene/StartPage.scene",
+          "uuid": "add39862-a51d-46af-a894-00d524a899d3",
+          "inBundle": false
+        },
+        {
+          "url": "db://assets/Scene/TrialHall.scene",
+          "uuid": "4e7a9f6a-54ee-4ee4-801b-e2458758c281",
+          "inBundle": false
+        }
+      ]
     },
     "options": {
       "web-mobile": {

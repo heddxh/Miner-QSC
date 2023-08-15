@@ -160,7 +160,7 @@
     "moveLeftX": 0,
     "moveRightX": 100,
     "movingSpeed": 40,
-    "explodeRadium": 300,
+    "explodeRadium": 350,
     "bombPrefab": {
       "__uuid__": "1941638d-6da2-4798-95f6-e2547010cbc1",
       "__expectedType__": "cc.Prefab"

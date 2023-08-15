@@ -73,11 +73,18 @@ export class StartPage extends Component {
 
 
     GoShop(event: Event) {
-        //正式开完，可以初始化玩家数据了
-
+        //正式开玩，可以初始化玩家数据了
         this.PD.dataInitialize();
-        
+        this.PD.isEndlessMode=false;
         SceneController.loadScene("Shop");
+    }
+
+    GoEndlessTrial(event:Event){
+        //进入无尽模式
+        this.PD.dataInitialize();
+        this.PD.isEndlessMode=true;
+        this.PD.level=1;
+        SceneController.loadScene("TrialHall");
     }
 
     ShowInputbox() {

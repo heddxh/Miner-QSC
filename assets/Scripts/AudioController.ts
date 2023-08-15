@@ -10,7 +10,15 @@ export class AudioController extends Component {
     private timeOut:AudioClip=null;
     @property(AudioClip)
     private gameOver:AudioClip=null;
+
+    @property(AudioClip)
+    private endlessWin:AudioClip=null;
     
+    @property(AudioClip)
+    private endlessFail:AudioClip=null;
+
+    @property(AudioClip)
+    private endlessBegin:AudioClip=null;
 
     @property(AudioClip)
     private tntBomb:AudioClip=null;
@@ -90,6 +98,25 @@ export class AudioController extends Component {
             AudioController.instance.gameOver;
         AudioController.instance.UIAudio.play();
     }
+
+    public static playEndlessWin(){
+        AudioController.instance.UIAudio.clip=
+            AudioController.instance.endlessWin;
+        AudioController.instance.UIAudio.play();
+    }
+
+    public static playEndlessFail(){
+        AudioController.instance.UIAudio.clip=
+            AudioController.instance.endlessFail;
+        AudioController.instance.UIAudio.play();
+    }
+
+    public static playEndlessBegin(){
+        AudioController.instance.UIAudio.clip=
+            AudioController.instance.endlessBegin;
+        AudioController.instance.UIAudio.play();
+    }
+
 
     public static playWarn(){
         AudioController.instance.UIAudio.clip=

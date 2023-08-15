@@ -18,7 +18,9 @@ import { CommodityData } from "./CommodityData";
 import { AudioController } from "../AudioController";
 const { ccclass, property } = _decorator;
 
-
+export enum CommoType{
+    TNT,DIAMOND,STRENGTH,LUCKY,ROCK,
+}
 @ccclass("ShopLogic")
 export class ShopLogic extends Component {
     //获取常驻节点和节点上的脚本（即玩家数据）
@@ -71,11 +73,12 @@ export class ShopLogic extends Component {
         //监测手指是否触摸物品
         for(let q in this.commodities){
             this.commoDatas[q] = this.commodities[q].getComponent(CommodityData);
+            //设置价格
+            this.commoDatas[q].price=this.PD.commodityPriceList[q];
 
             this.commodities[q].on(Node.EventType.TOUCH_START,(event)=>{
                 this.setMsg(parseInt(q));
             },this);
-
             //显示价格
             this.commodities[q].getComponentInChildren(Label).string=
                 "$ "+this.commoDatas[q].price.toString();
@@ -93,7 +96,7 @@ export class ShopLogic extends Component {
 
     setMsg(index:number){
         this.msgLabel.string = this.commoDatas[index].description;
-        //讲解商品的动画和音效
+        //讲解商品的动画和音效(X)
 
         if(this.lastSelected != index){
             //选中当前框
@@ -132,23 +135,24 @@ export class ShopLogic extends Component {
                     this.commodities[index].getChildByName("priceTag").getComponent(Label).string="取消"
                 }
                 switch(index){
-                    case 0:
+                    //顺序:炸药，钻石，生力水，幸运，点石成金
+                    case CommoType.TNT:
                         this.PD.TNTNum++;
                         this.PD.money-=this.commoDatas[index].price;
                         break;
-                    case 1:
+                    case CommoType.DIAMOND:
                             this.PD.isDiamondPolish=true;
                             this.PD.money-=this.commoDatas[index].price;
                             break;
-                    case 2:
+                    case CommoType.STRENGTH:
                             this.PD.isStrengthen=true;
                             this.PD.money-=this.commoDatas[index].price;
                             break;
-                    case 3:
+                    case CommoType.LUCKY:
                             this.PD.isLucky=true;
                             this.PD.money-=this.commoDatas[index].price;
                             break;
-                    case 4:
+                    case CommoType.ROCK:
                             this.PD.isRockAppreciate=true;
                             this.PD.money-=this.commoDatas[index].price;
                             break;

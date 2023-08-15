@@ -8,6 +8,8 @@ import {
     Label,
     UIOpacity,
     NodeEventType,
+    Node,
+    AnimationComponent,
 } from "cc";
 import { UIController } from "./UIController";
 import { PlayerData } from "../PlayerData";
@@ -24,8 +26,6 @@ export class GameController extends Component {
 
     @property({ type: Prefab })
     private description: Prefab = null;
-
-
     //当前游戏剩余时间
     private leftTime: number;
 
@@ -43,47 +43,52 @@ export class GameController extends Component {
 
     private static instance: GameController = null;
 
+    //结果显示面板控制
+    @property({ group: { name: "结算面板" }, type: Label})
+    private SubmitButtonLabel: Label;
+
+    @property({ group: { name: "结算面板" }, type: Node})
+    private EndlessInform: Node;
+    @property({ group: { name: "结算面板" }, type: AnimationComponent})
+    private puzzleAni: Animation;
+    @property({ group: { name: "结算面板" }, type: AnimationComponent})
+    private blueBlingAni: Animation;
+
+    @property(Label)
+    private EndlessLevelLabel:Label=null;
+
     onLoad() {
-
-        //发送开始游戏信息
-        Sentry.captureMessage("EnterGame!");
-        PlayerData.hasPlay=true;
-
-
+        
         this.playerData = find("PlayerData").getComponent(PlayerData);
         
+        //发送开始游戏信息（仅限于活动模式）,显示关卡
+
+        if(!this.playerData.isEndlessMode){
+            Sentry.captureMessage("EnterGame!");
+            PlayerData.hasPlay=true;
+            this.EndlessLevelLabel.node.active=false;
+        }else{
+            this.EndlessLevelLabel.node.active=true;
+            this.EndlessLevelLabel.string=`第 ${this.playerData.level} 关\n目标分:${this.playerData.targetMoney}`;
+        }
+
         //进入下一关,关卡开始时进行技能使用(更新序列化信息，不是单例)
         let ins = GameController.instance = this;
-        
-        /*
-        if (ins == null) {
-            //重开新游戏,获得游戏数据节点
-            
-        } else {
-            
-            ins.playerData= find("PlayerData").getComponent(PlayerData);
-            
-            ins = GameController.instance = this;
-        }
-        */
 
         //展示初始UI信息
         ins.setUserName();
         ins.leftTime = ins.playerData.totalTime;
         UIController.setTime(ins.leftTime);
         UIController.setScore(ins.playerData.money);
-
-        //等待用户点击提示后开始游戏
-        ins.isGameOver=true;
+        
         ins.TipBoardOpacity.node.on(NodeEventType.TOUCH_START,ins.macroHookDown,ins);
-
         //第一次进入游戏会多一个提示，点击后才开始游戏
         if(ins.playerData.isFirstTimePlay){
+            //等待用户点击提示后开始游戏
+            ins.isGameOver=true;
             ins.TipBoardOpacity.opacity=255;
         }else{
-            ins.TipBoardOpacity.opacity=0;
             //直接开始游戏
-            console.log("Let game Begin!");
             ins.letGameBegin();
         }
 
@@ -108,7 +113,7 @@ export class GameController extends Component {
 
     private letGameBegin(){
         let ins=GameController.instance;
-
+        console.log("gameBegin");
         //去除灰雾
         ins.TipBoardOpacity.opacity=0;
         //开始响应下钩
@@ -227,26 +232,68 @@ export class GameController extends Component {
     //游戏结束，总分结算
     public static gameOver() {
         //先等动画完成后再pause，此处先禁用玩家下钩等操作
-        AudioController.playGameOver();
-
         //可直接控制注册的miner属性
         //GameController.instance.miner.node.active=false;
         GameController.instance.isGameOver = true;
-        
-        UIController.ShowFinalScore(GameController.getPlayerData().money);
-
         //刚刚结束了一场游戏
         PlayerData.hasJustFinish=true;
-
+        GameController.gameOverRouter();
     }
 
-    public static showEndingScene(){
-        SceneController.loadSettlingScoreScene(GameController.getPlayerData().money);
+    //游戏结束后的跳转逻辑
+    public static gameOverRouter(){
+        const playerData=GameController.getPlayerData();
+        const endless=GameController.instance.EndlessInform;
+        const submitButtonLabel=GameController.instance.SubmitButtonLabel;
+        if(!playerData.isEndlessMode){
+            //如果是单局游戏，设置按钮为提交结果，隐藏更多tips
+            AudioController.playGameOver();
+            endless.active=false;
+            submitButtonLabel.string="提交结果"
+        }else{
+            //无尽模式，设置按钮为进入下一关/返回主菜单，显示tips
+            endless.active=true;
+            const tips=endless.getComponentInChildren(Label);
+            const failIcon=endless.getChildByName("puzzling");
+            const successIcon=endless.getChildByName("blueBlingBling");
+            if(playerData.money>=playerData.targetMoney){
+                AudioController
+                failIcon.active=false;
+                successIcon.active=true;
+                tips.string="恭喜你，完成目标！";
+                GameController.instance.blueBlingAni.play();
+                AudioController.playEndlessWin();
+                submitButtonLabel.string="进入下一关";
+            }else{
+                failIcon.active=true;
+                successIcon.active=false;
+                GameController.instance.puzzleAni.play();
+                AudioController.playEndlessFail();
+                tips.string="很遗憾，没能达成目标。。";
+                submitButtonLabel.string="返回主菜单";
+            }
+            
+        }
+        //展示最终分数和排名跳转
+        UIController.ShowFinalScore(playerData.money);
     }
 
-
+    //绑定单局模式下查看排名的按钮上。
     private goToRank(event:Event){
         console.log("ToRankPage");
-        SceneController.loadScene("RankPage");
+        const playerData=GameController.getPlayerData();
+        let nextSceneStr:string="";
+        if(playerData.isEndlessMode){
+            if(playerData.money>=playerData.targetMoney){        
+                //清空技能数据，迎来下一关。
+                playerData.dataToNextLevel();
+                nextSceneStr="TrialHall";
+            }else{
+                nextSceneStr="StartPage";
+            }
+        }else{
+            nextSceneStr="RankPage";
+        }
+        SceneController.loadScene(nextSceneStr);
     }
 }
