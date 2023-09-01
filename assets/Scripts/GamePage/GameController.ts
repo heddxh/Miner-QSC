@@ -54,9 +54,9 @@ export class GameController extends Component {
     @property({ group: { name: "结算面板" }, type: AnimationComponent})
     private blueBlingAni: Animation;
 
-    @property(Label)
-    private EndlessLevelLabel:Label=null;
-
+    @property(Node)
+    private EndlessLevelBoard:Node=null;
+    
     onLoad() {
         
         this.playerData = find("PlayerData").getComponent(PlayerData);
@@ -66,10 +66,11 @@ export class GameController extends Component {
         if(!this.playerData.isEndlessMode){
             Sentry.captureMessage("EnterGame!");
             PlayerData.hasPlay=true;
-            this.EndlessLevelLabel.node.active=false;
+            this.EndlessLevelBoard.active=false;
         }else{
-            this.EndlessLevelLabel.node.active=true;
-            this.EndlessLevelLabel.string=`第 ${this.playerData.level} 关\n目标分:${this.playerData.targetMoney}`;
+            this.EndlessLevelBoard.active=true;
+            this.EndlessLevelBoard.getComponentInChildren(Label)
+                .string=`第 ${this.playerData.level} 关\n目标分:${this.playerData.targetMoney}`;
         }
 
         //进入下一关,关卡开始时进行技能使用(更新序列化信息，不是单例)

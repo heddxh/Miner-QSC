@@ -129,7 +129,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 540,
-      "y": 960,
+      "y": 960.0000000000002,
       "z": 0
     },
     "_lrot": {
@@ -3527,8 +3527,8 @@
     "_target": null,
     "_left": 0,
     "_right": 0,
-    "_top": 5.684341886080802e-14,
-    "_bottom": 5.684341886080802e-14,
+    "_top": 1.7053025658242404e-13,
+    "_bottom": 1.7053025658242404e-13,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
     "_isAbsLeft": true,
@@ -3848,7 +3848,7 @@
     "_enabled": true,
     "__prefab": null,
     "_clip": {
-      "__uuid__": "db82fc5e-fa43-46eb-92f6-bb3e7b90efd0",
+      "__uuid__": "bdec654b-0d71-4eb7-a1f1-3a70bca38d3e",
       "__expectedType__": "cc.AudioClip"
     },
     "_loop": true,

@@ -45,7 +45,7 @@ export class Messenger extends Component {
 
 
         //只有游玩了才上传当前玩家分数
-        if(PlayerData.hasPlay && PlayerData.hasJustFinish){
+        if(PlayerData.hasPlay && PlayerData.hasJustFinish && !this.PD.isEndlessMode){
             //展示分数
             RankController.showTwoScore(this.PD.money,historyHigh);
 

@@ -67,8 +67,8 @@ export class StartPage extends Component {
     start() {
         //延迟寻找留下的真playerdata,先不为之初始化，当玩家进入游戏再初始化(保留上次游玩数据)
         this.PD = find("PlayerData").getComponent(PlayerData);
-        
         this.PD.setUserId(this.userIds);
+        PlayerData.hasJustFinish=false;
     }
 
 

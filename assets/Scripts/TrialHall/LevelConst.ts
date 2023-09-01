@@ -133,7 +133,7 @@ export namespace LevelConst{
     //根据当前关卡半随机地生成矿图
     function makeNormalMap(level:number):MapOrder{
         let ret:MapOrder=[];
-        if(level<getCreditLevel[0]){
+        if(level<3){
             ret.push({
                 startX:0,endX:0.6,startY:0.4,endY:1,
                 allocate:{
@@ -154,7 +154,7 @@ export namespace LevelConst{
                 startX:0.1,endX:0.95,startY:0,endY:0.4,
                 allocate:{
                     //对高价值矿物采取更精准的概率调控
-                    CatGoldLarge:(randBetween(0,2)===0)?((randBetween(0,3)===0)?3:1):2,
+                    CatGoldLarge:(randBetween(0,2)===0)?((randBetween(0,3)===0)?3:2):1,
                     EarlyEight:randBetween(0,1),
                 }
             });
@@ -284,6 +284,7 @@ export namespace LevelConst{
         return ret;
     }
 
+    //最初的价格
     export const OriginalPrice:[number,number,number,number,number]=[75,80,75,50,150];
     //根据关卡调整道具价钱(疯狂涨价hhh)
     //1.上次买了该物品，涨价30-150，

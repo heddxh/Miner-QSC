@@ -19,9 +19,11 @@ export class PlayerData extends Component {
     //玩家的userId
     private userId:string = "";
 
+    //初始金币
     public money = 150;
-    
-    public totalTime: number = 100;
+
+    //总时间(只有活动模式要用)
+    public totalTime: number = 90;
     //所在关卡信息(只有无尽模式要用)
     public level:number = 1;
     public targetMoney:number = 150;
